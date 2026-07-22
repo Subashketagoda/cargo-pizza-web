@@ -35,14 +35,32 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Contact */}
+            {/* Contact & Location Map */}
             <div className="footer-col">
-              <h4 className="footer-col__title">Contact</h4>
+              <h4 className="footer-col__title">Location & Contact</h4>
               <ul>
                 <li>📞 077 881 77 42</li>
-                <li>📍 Docklands, VIC 3008</li>
+                <li>
+                  <a href="https://share.google/nEqIZkVHYV0SUUj1M" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
+                    📍 Cargo Restaurant, Docklands
+                  </a>
+                </li>
                 <li>📧 info@cargorestaurant.com.au</li>
               </ul>
+              
+              {/* Google Maps Embed */}
+              <div style={{ marginTop: '1.5rem' }}>
+                <iframe 
+                  src="https://maps.google.com/maps?q=Cargo+Restaurant+Docklands+VIC+3008&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                  width="100%" 
+                  height="180" 
+                  style={{ border: 0, borderRadius: '12px' }} 
+                  allowFullScreen="" 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Cargo Restaurant Location"
+                ></iframe>
+              </div>
             </div>
 
             {/* Hours */}
