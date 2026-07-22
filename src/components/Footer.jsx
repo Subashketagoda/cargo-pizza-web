@@ -42,7 +42,7 @@ const Footer = () => {
                 <li>📞 077 881 77 42</li>
                 <li>
                   <a href="https://share.google/nEqIZkVHYV0SUUj1M" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
-                    📍 Cargo Restaurant, Docklands
+                    📍 Cargo Pizzeria, 422A Nawala Rd, Sri Jayawardenepura Kotte 10107
                   </a>
                 </li>
                 <li>📧 info@cargorestaurant.com.au</li>
@@ -51,7 +51,7 @@ const Footer = () => {
               {/* Google Maps Embed */}
               <div style={{ marginTop: '1.5rem' }}>
                 <iframe 
-                  src="https://maps.google.com/maps?q=Cargo+Restaurant+Docklands+VIC+3008&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                  src="https://maps.google.com/maps?q=Cargo+Pizzeria,+422A+Nawala+Rd,+Sri+Jayawardenepura+Kotte+10107&t=&z=15&ie=UTF8&iwloc=&output=embed" 
                   width="100%" 
                   height="180" 
                   style={{ border: 0, borderRadius: '12px' }} 
