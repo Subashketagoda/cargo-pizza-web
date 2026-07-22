@@ -1,0 +1,124 @@
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--yellow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+.loading-screen.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Pizza Animation */
+.pizza-filler {
+  width: 140px;
+  height: 140px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.realistic-pizza {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.pizza-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg); /* Start from top */
+}
+
+.pizza-mask-circle {
+  stroke-dashoffset: 0;
+  animation: revealPizza 1.8s steps(6, end) forwards;
+}
+
+@keyframes revealPizza {
+  0% {
+    stroke-dashoffset: 0; /* Fully covered */
+  }
+  100% {
+    stroke-dashoffset: 157.08; /* Fully revealed */
+  }
+}
+
+/* Brand & Logo */
+.loading-brand {
+  margin-top: 1rem;
+}
+
+.loading-logo {
+  height: 60px;
+  animation: pulse 1.5s infinite;
+}
+
+/* Loading Bar */
+.loading-bar-container {
+  width: 200px;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.loading-bar {
+  height: 100%;
+  width: 0%;
+  background-color: var(--red);
+  border-radius: 10px;
+  animation: fillBar 2s ease-in-out forwards;
+}
+
+@keyframes fillBar {
+  0% {
+    width: 0%;
+  }
+  50% {
+    width: 70%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Loading Text */
+.loading-text {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--blue-dark);
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  animation: ellipsis 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
