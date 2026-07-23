@@ -85,9 +85,9 @@ const MenuPreview = () => {
           ) : (
             filteredItems.map((item, i) => (
               <div key={item.id || i} className="menu-card">
-                {item.tag && <div className="menu-card__tag-pill">{item.tag}</div>}
+                <img src={item.imageUrl || placeholderImg} alt={item.name} className="menu-card__img" style={{objectFit: 'cover'}} />
                 
-                <img src={placeholderImg} alt={item.name} className="menu-card__img" />
+                {item.tag && <div className="menu-card__tag-pill">{item.tag}</div>}
                 
                 <h4 className="menu-card__name">{item.name}</h4>
                 

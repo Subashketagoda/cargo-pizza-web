@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { db, auth } from '../firebase';
+import { db, auth, storage } from '../firebase';
 import { signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import './Admin.css';
 
 const Admin = () => {
@@ -21,8 +22,10 @@ const Admin = () => {
     price: '',
     category: 'pizzas',
     tag: '',
-    popular: false
+    popular: false,
+    imageUrl: ''
   });
+  const [imageFile, setImageFile] = useState(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -111,23 +114,47 @@ const Admin = () => {
     });
   };
 
+  const handleFileChange = (e) => {
+    if (e.target.files[0]) {
+      setImageFile(e.target.files[0]);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setError('');
+    
     try {
+      let uploadedImageUrl = formData.imageUrl;
+      
+      if (imageFile) {
+        const imageRef = ref(storage, `menu-images/${Date.now()}_${imageFile.name}`);
+        const snapshot = await uploadBytes(imageRef, imageFile);
+        uploadedImageUrl = await getDownloadURL(snapshot.ref);
+      }
+
+      const finalData = { ...formData, imageUrl: uploadedImageUrl };
+
       if (isEditing) {
         const itemRef = doc(db, "menuItems", editId);
-        await updateDoc(itemRef, formData);
+        await updateDoc(itemRef, finalData);
       } else {
-        await addDoc(collection(db, "menuItems"), formData);
+        await addDoc(collection(db, "menuItems"), finalData);
       }
-      setFormData({ name: '', price: '', category: 'pizzas', tag: '', popular: false });
+      
+      setFormData({ name: '', price: '', category: 'pizzas', tag: '', popular: false, imageUrl: '' });
+      setImageFile(null);
       setIsEditing(false);
       setEditId(null);
+      
+      const fileInput = document.getElementById('image-upload-input');
+      if (fileInput) fileInput.value = '';
+
       fetchMenuItems();
     } catch (err) {
       console.error("Error saving item:", err);
-      setError("Error saving item. Did you enable Firestore in Firebase Console?");
+      setError("Error saving item. Ensure Firebase Storage is enabled in the Firebase Console!");
     }
     setLoading(false);
   };
@@ -140,8 +167,10 @@ const Admin = () => {
       price: item.price,
       category: item.category,
       tag: item.tag || '',
-      popular: item.popular || false
+      popular: item.popular || false,
+      imageUrl: item.imageUrl || ''
     });
+    setImageFile(null);
   };
 
   const handleDelete = async (id) => {
@@ -199,6 +228,12 @@ const Admin = () => {
             
             <input type="text" name="tag" placeholder="Tag Pill Text (e.g. CARGO SPECIALS)" value={formData.tag} onChange={handleInputChange} />
             
+            <div className="form-group" style={{marginTop: '15px', marginBottom: '15px', textAlign: 'left'}}>
+              <label style={{display: 'block', fontSize: '0.9rem', marginBottom: '5px', fontWeight: 'bold'}}>Item Photo (Optional)</label>
+              <input id="image-upload-input" type="file" accept="image/*" onChange={handleFileChange} />
+              {formData.imageUrl && !imageFile && <p style={{fontSize: '0.8rem', color: 'green', marginTop: '5px'}}>Current image exists. Upload new to replace.</p>}
+            </div>
+
             <label className="checkbox-label">
               <input type="checkbox" name="popular" checked={formData.popular} onChange={handleInputChange} />
               Is Popular? (Shows a badge, if supported)
@@ -206,7 +241,13 @@ const Admin = () => {
             
             <div className="form-actions">
               <button type="submit" disabled={loading}>{isEditing ? 'Update Item' : 'Add Item'}</button>
-              {isEditing && <button type="button" onClick={() => { setIsEditing(false); setFormData({name:'', price:'', category:'pizzas', tag:'', popular:false}); }}>Cancel</button>}
+              {isEditing && <button type="button" onClick={() => { 
+                setIsEditing(false); 
+                setFormData({name:'', price:'', category:'pizzas', tag:'', popular:false, imageUrl:''}); 
+                setImageFile(null);
+                const fileInput = document.getElementById('image-upload-input');
+                if (fileInput) fileInput.value = '';
+              }}>Cancel</button>}
             </div>
           </form>
         </div>
@@ -216,8 +257,14 @@ const Admin = () => {
           {loading && <p>Loading...</p>}
           <div className="admin-items-list">
             {menuItems.map(item => (
-              <div key={item.id} className="admin-item-card">
-                <div>
+              <div key={item.id} className="admin-item-card" style={{display: 'flex', alignItems: 'center', gap: '15px'}}>
+                {item.imageUrl ? (
+                  <img src={item.imageUrl} alt={item.name} style={{width: '60px', height: '60px', objectFit: 'cover', borderRadius: '8px'}} />
+                ) : (
+                  <div style={{width: '60px', height: '60px', backgroundColor: '#eee', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', color: '#888'}}>No Img</div>
+                )}
+                
+                <div style={{flex: 1, textAlign: 'left'}}>
                   <strong>{item.name}</strong> - Rs. {item.price}
                   <span className="admin-item-badge">{item.category}</span>
                 </div>
