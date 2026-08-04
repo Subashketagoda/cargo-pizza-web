@@ -45,15 +45,33 @@ const About = () => {
             <p className="promo__desc">Walk in, sit back, and enjoy freshly made pizza right from our stone oven. The perfect spot for family, friends, and good vibes!</p>
             <div className="promo__options">
               <div className="promo__option">
-                <span className="promo__option-icon">🍽️</span>
-                <span>Dine-in</span>
+                <div className="promo__option-icon-bg">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" />
+                    <path d="M7 2v20" />
+                    <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" />
+                  </svg>
+                </div>
+                <span>Dine-In</span>
               </div>
+
               <div className="promo__option">
-                <span className="promo__option-icon">🏪</span>
-                <span>Take Away</span>
+                <div className="promo__option-icon-bg">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <path d="M16 10a4 4 0 0 1-8 0"/>
+                  </svg>
+                </div>
+                <span>Takeaway</span>
               </div>
+
               <div className="promo__option">
-                <span className="promo__option-icon">🎉</span>
+                <div className="promo__option-icon-bg">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="m5.8 11.3 2.9 2.9m-2.9-2.9 8.5-8.5a2.12 2.12 0 1 1 3 3l-8.5 8.5m-3-3L3 17l4 1 1 4 2.7-2.8m8.5-12.7 1.4-1.4m-12.7 8.5-1.4 1.4"/>
+                  </svg>
+                </div>
                 <span>Events</span>
               </div>
             </div>

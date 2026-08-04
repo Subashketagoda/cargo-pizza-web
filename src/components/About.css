@@ -150,37 +150,56 @@
 
 .promo__options {
   display: flex;
-  gap: 1.5rem;
+  flex-wrap: wrap;
+  gap: 0.85rem;
 }
 
 .promo__option {
-  display: flex;
-  flex-direction: column;
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 1.5rem;
-  background: rgba(255,255,255,0.1);
-  border-radius: 16px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.1);
-  transition: var(--transition);
+  gap: 0.65rem;
+  padding: 0.65rem 1.25rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 215, 0, 0.25);
+  border-radius: 100px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .promo__option:hover {
-  background: rgba(255,255,255,0.2);
-  transform: translateY(-4px);
+  background: rgba(255, 215, 0, 0.18);
+  border-color: var(--yellow);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 215, 0, 0.25);
 }
 
-.promo__option-icon {
-  font-size: 1.8rem;
+.promo__option-icon-bg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 215, 0, 0.15);
+  color: var(--yellow);
+  transition: var(--transition);
+}
+
+.promo__option:hover .promo__option-icon-bg {
+  background: var(--yellow);
+  color: var(--blue-dark);
 }
 
 .promo__option span:last-child {
   color: var(--white);
   font-family: var(--font-heading);
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.92rem;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
 }
 
 .promo__visual {
