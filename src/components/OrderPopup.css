@@ -82,8 +82,9 @@
 .order-popup__btn {
   width: 100%;
   margin-bottom: 0.8rem;
-  padding: 0.8rem 1.2rem;
-  font-size: 0.92rem;
+  padding: 0.85rem 1.2rem;
+  font-size: 0.95rem;
+  justify-content: center;
 }
 
 .order-popup__hours {

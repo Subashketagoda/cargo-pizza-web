@@ -49,12 +49,12 @@ const OrderPopup = () => {
             href="https://wa.me/94778817742?text=Hi%20Cargo%20Pizzeria!%20I%20want%20to%20place%20an%20order." 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="order-popup__btn btn-whatsapp"
+            className="btn btn-whatsapp order-popup__btn"
           >
             💬 Order on WhatsApp
           </a>
 
-          <a href="tel:0778817742" className="order-popup__btn btn-primary">
+          <a href="tel:0778817742" className="btn btn-primary order-popup__btn">
             📞 Call 077 881 7742
           </a>
 
