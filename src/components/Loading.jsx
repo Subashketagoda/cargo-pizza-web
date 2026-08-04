@@ -3,47 +3,47 @@ import './Loading.css';
 import logo from '../assets/logo.png';
 import mascot from '../assets/mascot.png';
 
-const loadingSteps = [
-  "Firing up the stone oven... 🔥",
-  "Handcrafting fresh dough... 🍕",
-  "Adding premium mozzarella... 🧀",
-  "Ready to serve! 🚀"
+const loadingStages = [
+  { text: "Firing up the stone oven (400°C)...", icon: "🔥", tag: "HEAT" },
+  { text: "Handcrafting fresh organic dough...", icon: "🍕", tag: "DOUGH" },
+  { text: "Melting rich mozzarella & toppings...", icon: "🧀", tag: "TOPPINGS" },
+  { text: "Cargo Experience Ready!", icon: "✨", tag: "SERVE" }
 ];
 
 const Loading = ({ onLoadingComplete }) => {
   const [isFadingOut, setIsFadingOut] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [stepText, setStepText] = useState(loadingSteps[0]);
+  const [currentStage, setCurrentStage] = useState(loadingStages[0]);
 
   useEffect(() => {
-    // Smooth progress timer (0% to 100% over ~2s)
+    // Smooth progress counter from 0 to 100
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
           return 100;
         }
-        const next = prev + 5;
+        const next = prev + 4;
         
-        // Update step text based on progress
-        if (next < 30) setStepText(loadingSteps[0]);
-        else if (next < 65) setStepText(loadingSteps[1]);
-        else if (next < 90) setStepText(loadingSteps[2]);
-        else setStepText(loadingSteps[3]);
+        // Stage transitions
+        if (next < 30) setCurrentStage(loadingStages[0]);
+        else if (next < 60) setCurrentStage(loadingStages[1]);
+        else if (next < 88) setCurrentStage(loadingStages[2]);
+        else setCurrentStage(loadingStages[3]);
 
         return next;
       });
-    }, 90);
+    }, 80);
 
-    // Start fade out at 2.2s
+    // Start fade out at 2.3s
     const fadeOutTimer = setTimeout(() => {
       setIsFadingOut(true);
-    }, 2200);
+    }, 2300);
 
-    // Remove component at 2.7s
+    // Remove component at 2.8s
     const removeTimer = setTimeout(() => {
       onLoadingComplete();
-    }, 2700);
+    }, 2800);
 
     return () => {
       clearInterval(interval);
@@ -53,32 +53,52 @@ const Loading = ({ onLoadingComplete }) => {
   }, [onLoadingComplete]);
 
   return (
-    <div className={`loading-screen ${isFadingOut ? 'fade-out' : ''}`}>
-      {/* Ambient background glow elements */}
-      <div className="loading-bg-glow loading-bg-glow--red"></div>
-      <div className="loading-bg-glow loading-bg-glow--yellow"></div>
+    <div className={`nextlevel-loader ${isFadingOut ? 'nextlevel-loader--exit' : ''}`}>
+      {/* Woodfire Ember Particles */}
+      <div className="ember-particle ember-1"></div>
+      <div className="ember-particle ember-2"></div>
+      <div className="ember-particle ember-3"></div>
+      <div className="ember-particle ember-4"></div>
+      <div className="ember-particle ember-5"></div>
 
-      <div className="loading-content">
-        {/* Animated Mascot Ring */}
-        <div className="loading-mascot-container">
-          <div className="loading-spinner-ring"></div>
-          <div className="loading-mascot-glow"></div>
-          <img src={mascot} alt="Cargo Pizza Mascot" className="loading-mascot-img" />
+      {/* Ambient Lighting Orbs */}
+      <div className="ambient-orb ambient-orb--red"></div>
+      <div className="ambient-orb ambient-orb--gold"></div>
+
+      {/* Glassmorphic Main Card */}
+      <div className="loader-glass-card">
+        {/* Top Tag Badge */}
+        <div className="loader-stage-pill">
+          <span className="stage-pill-icon">{currentStage.icon}</span>
+          <span className="stage-pill-text">{currentStage.tag}</span>
+        </div>
+
+        {/* Mascot Centerpiece with Dual Spinning Rings */}
+        <div className="mascot-emblem-wrap">
+          <div className="spin-ring spin-ring--outer"></div>
+          <div className="spin-ring spin-ring--inner"></div>
+          <div className="flame-glow-core"></div>
+          <img src={mascot} alt="Cargo Pizza Mascot" className="mascot-hero-img" />
         </div>
 
         {/* Brand Logo */}
-        <img src={logo} alt="Cargo Pizza Logo" className="loading-brand-logo" />
+        <div className="brand-logo-wrap">
+          <img src={logo} alt="Cargo Pizza Logo" className="brand-logo-img" />
+        </div>
 
-        {/* Progress Bar & Percentage */}
-        <div className="loading-bar-wrapper">
-          <div className="loading-bar-track">
-            <div className="loading-bar-fill" style={{ width: `${progress}%` }}>
-              <div className="loading-bar-spark"></div>
+        {/* Dynamic Status Text */}
+        <p className="stage-status-text">{currentStage.text}</p>
+
+        {/* Progress Track & Spark */}
+        <div className="progress-section">
+          <div className="progress-track">
+            <div className="progress-fill" style={{ width: `${progress}%` }}>
+              <div className="progress-spark"></div>
             </div>
           </div>
-          <div className="loading-info">
-            <span className="loading-step-text">{stepText}</span>
-            <span className="loading-percentage">{progress}%</span>
+          <div className="progress-counter">
+            <span className="counter-label">PREPARING EXPERIENCE</span>
+            <span className="counter-val">{progress}%</span>
           </div>
         </div>
       </div>
