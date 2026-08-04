@@ -1,0 +1,68 @@
+.floating-actions-bar {
+  position: fixed;
+  bottom: 1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9995;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.8rem;
+  background: rgba(19, 22, 28, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6);
+  max-width: 92vw;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.2rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #ffffff;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.action-btn--whatsapp {
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+.action-btn--call {
+  background: linear-gradient(135deg, var(--cargo-red), var(--cargo-red-dark));
+  box-shadow: 0 4px 15px rgba(229, 57, 53, 0.3);
+}
+
+.action-btn--map {
+  background: linear-gradient(135deg, var(--cargo-blue-light), var(--cargo-blue-dark));
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+  color: #ffffff;
+}
+
+.action-btn__icon {
+  font-size: 1.1rem;
+}
+
+@media (max-width: 480px) {
+  .floating-actions-bar {
+    width: 94%;
+    justify-content: space-between;
+  }
+
+  .action-btn {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}
