@@ -1,6 +1,6 @@
 import React from 'react';
 import './About.css';
-import interiorImg from '../assets/restaurant-interior.png';
+import promoVideo from '../assets/promo-video.mp4';
 
 const About = () => {
   return (
@@ -59,7 +59,15 @@ const About = () => {
             </div>
           </div>
           <div className="promo__visual">
-            <img src={interiorImg} alt="Cargo Restaurant Interior" className="promo__img promo__img--interior" />
+            <video
+              src={promoVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="promo__video"
+              aria-label="Cargo Pizza Woodfire Oven Experience Video"
+            />
           </div>
         </div>
       </div>
