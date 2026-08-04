@@ -147,23 +147,53 @@
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .menu-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
   .menu-tabs {
-    gap: 0.5rem;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 0.4rem 0.5rem 0.8rem;
+    gap: 0.6rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Hide scrollbar for Chrome/Firefox/Safari */
+  }
+
+  .menu-tabs::-webkit-scrollbar {
+    display: none;
   }
 
   .menu-tab {
-    padding: 0.5rem 1rem;
-    font-size: 0.8rem;
+    flex: 0 0 auto;
+    padding: 0.6rem 1.4rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
   }
-  
+
   .menu-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .menu-card {
+    padding: 1.2rem 0.8rem;
+  }
+
+  .menu-card__img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .menu-card__name {
+    font-size: 0.95rem;
+    min-height: 2.2rem;
+  }
+
+  .menu-card__price-pill {
+    font-size: 0.88rem;
+    padding: 0.35rem 1rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
   }
 }
