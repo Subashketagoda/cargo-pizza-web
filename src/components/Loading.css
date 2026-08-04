@@ -1,124 +1,208 @@
+/* ── Loading Fullscreen Overlay ── */
 .loading-screen {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: var(--yellow);
+  background-color: var(--blue-dark, #0f1b47);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 99999;
-  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+  overflow: hidden;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .loading-screen.fade-out {
   opacity: 0;
-  visibility: hidden;
+  transform: scale(1.06);
+  pointer-events: none;
 }
 
+/* ── Ambient Background Glows ── */
+.loading-bg-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.loading-bg-glow--red {
+  top: 20%;
+  left: 30%;
+  width: 350px;
+  height: 350px;
+  background: var(--red, #e63946);
+  animation: pulseGlow 4s ease-in-out infinite alternate;
+}
+
+.loading-bg-glow--yellow {
+  bottom: 20%;
+  right: 30%;
+  width: 350px;
+  height: 350px;
+  background: var(--yellow, #FFD700);
+  animation: pulseGlow 4s ease-in-out 2s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% { transform: scale(0.8) translate(0, 0); opacity: 0.25; }
+  100% { transform: scale(1.2) translate(20px, -20px); opacity: 0.45; }
+}
+
+/* ── Central Content ── */
 .loading-content {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
-}
-
-/* Pizza Animation */
-.pizza-filler {
-  width: 140px;
-  height: 140px;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.realistic-pizza {
+  gap: 1.8rem;
+  padding: 2rem;
+  max-width: 420px;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  text-align: center;
 }
 
-.pizza-cover {
+/* ── Mascot Container & Rotating Spinner Ring ── */
+.loading-mascot-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-spinner-ring {
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  padding: 3px;
+  background: conic-gradient(from 0deg, transparent 0%, var(--yellow, #FFD700) 50%, var(--red, #e63946) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: spinRing 1.8s linear infinite;
+}
+
+@keyframes spinRing {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-mascot-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+  animation: mascotPulse 2s ease-in-out infinite;
+}
+
+@keyframes mascotPulse {
+  0%, 100% { transform: scale(0.9); opacity: 0.5; }
+  50% { transform: scale(1.15); opacity: 0.9; }
+}
+
+.loading-mascot-img {
+  width: 110px;
+  height: auto;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4));
+  animation: floatMascot 3s ease-in-out infinite;
+}
+
+@keyframes floatMascot {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(2deg); }
+}
+
+/* ── Brand Logo ── */
+.loading-brand-logo {
+  height: 52px;
+  width: auto;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+}
+
+/* ── Progress Bar ── */
+.loading-bar-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.loading-bar-track {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 100px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.loading-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--red, #e63946), var(--yellow, #FFD700));
+  border-radius: 100px;
+  position: relative;
+  transition: width 0.1s linear;
+}
+
+.loading-bar-spark {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform: rotate(-90deg); /* Start from top */
+  right: 0;
+  bottom: 0;
+  width: 15px;
+  background: #ffffff;
+  filter: blur(3px);
+  opacity: 0.8;
 }
 
-.pizza-mask-circle {
-  stroke-dashoffset: 0;
-  animation: revealPizza 1.8s steps(6, end) forwards;
+/* ── Status Text & Percentage ── */
+.loading-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-heading, 'Fredoka', sans-serif);
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.85);
 }
 
-@keyframes revealPizza {
-  0% {
-    stroke-dashoffset: 0; /* Fully covered */
-  }
-  100% {
-    stroke-dashoffset: 157.08; /* Fully revealed */
-  }
+.loading-step-text {
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: var(--yellow, #FFD700);
 }
 
-/* Brand & Logo */
-.loading-brand {
-  margin-top: 1rem;
-}
-
-.loading-logo {
-  height: 60px;
-  animation: pulse 1.5s infinite;
-}
-
-/* Loading Bar */
-.loading-bar-container {
-  width: 200px;
-  height: 6px;
-  background-color: rgba(255, 255, 255, 0.4);
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.loading-bar {
-  height: 100%;
-  width: 0%;
-  background-color: var(--red);
-  border-radius: 10px;
-  animation: fillBar 2s ease-in-out forwards;
-}
-
-@keyframes fillBar {
-  0% {
-    width: 0%;
-  }
-  50% {
-    width: 70%;
-  }
-  100% {
-    width: 100%;
-  }
-}
-
-/* Loading Text */
-.loading-text {
-  font-family: var(--font-heading);
+.loading-percentage {
   font-weight: 700;
-  color: var(--blue-dark);
-  font-size: 1.2rem;
+  color: #ffffff;
   letter-spacing: 1px;
-  animation: ellipsis 1.5s infinite;
 }
 
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
+/* ── Mobile ── */
+@media (max-width: 480px) {
+  .loading-mascot-container {
+    width: 120px;
+    height: 120px;
   }
-  50% {
-    transform: scale(1.05);
+
+  .loading-mascot-img {
+    width: 90px;
+  }
+
+  .loading-brand-logo {
+    height: 44px;
+  }
+
+  .loading-info {
+    font-size: 0.85rem;
   }
 }
