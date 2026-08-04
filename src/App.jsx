@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import OrderPopup from './components/OrderPopup';
 import Loading from './components/Loading';
 import Admin from './components/Admin';
+import PromoPopup from './components/PromoPopup';
 import './App.css';
 
 const MainSite = ({ isLoading, setIsLoading }) => (
@@ -21,6 +22,7 @@ const MainSite = ({ isLoading, setIsLoading }) => (
     </main>
     <Footer />
     <OrderPopup />
+    <PromoPopup />
   </>
 );
 
