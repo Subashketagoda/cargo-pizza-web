@@ -7,14 +7,15 @@ const Loading = ({ onLoadingComplete }) => {
   const [isFadingOut, setIsFadingOut] = useState(false);
 
   useEffect(() => {
-    // Fast non-blocking load animation (800ms) for high Lighthouse performance
+    // Show loader for 2 seconds, then start fading out
     const fadeOutTimer = setTimeout(() => {
       setIsFadingOut(true);
-    }, 800);
+    }, 2000);
 
+    // After fade out animation completes (0.5s), remove component
     const removeTimer = setTimeout(() => {
       onLoadingComplete();
-    }, 1100);
+    }, 2500);
 
     return () => {
       clearTimeout(fadeOutTimer);
@@ -23,10 +24,22 @@ const Loading = ({ onLoadingComplete }) => {
   }, [onLoadingComplete]);
 
   return (
-    <div className={`loading-screen ${isFadingOut ? 'fade-out' : ''}`} aria-label="Loading site">
+    <div className={`loading-screen ${isFadingOut ? 'fade-out' : ''}`}>
       <div className="loading-content">
         <div className="pizza-filler">
-          <img src={pizzaImg} alt="Cargo Pizza" className="realistic-pizza" />
+          <img src={pizzaImg} alt="Realistic Pizza" className="realistic-pizza" />
+          <svg viewBox="0 0 100 100" className="pizza-cover">
+            <circle 
+              cx="50" 
+              cy="50" 
+              r="25" 
+              fill="none" 
+              stroke="var(--yellow)" 
+              strokeWidth="50" 
+              strokeDasharray="157.08" 
+              className="pizza-mask-circle"
+            />
+          </svg>
         </div>
         
         <div className="loading-brand">

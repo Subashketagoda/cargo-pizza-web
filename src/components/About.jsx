@@ -6,73 +6,60 @@ const About = () => {
   return (
     <section id="about" className="about section">
       <div className="container">
-        {/* Section Header */}
+        {/* Section header */}
         <div className="about__header text-center">
-          <span className="section-badge">Why Choose Cargo</span>
-          <h2 className="section-title">The Ultimate <span className="text-gold">Pizza Restaurant</span> in Nawala</h2>
-          <p className="section-subtitle">
-            We are not just a pizza joint — we are a culinary vibe. Serving pizza lovers across Nawala, Rajagiriya, and Kotte with fresh ingredients, stone-fired craft, and unbeatable flavors.
-          </p>
+          <span className="about__label">About Us</span>
+          <h2 className="section-title">Why Choose <span style={{color: 'var(--red)'}}>Cargo?</span></h2>
+          <p className="section-subtitle">We're not just a pizza place — we're a vibe. Fresh ingredients, bold flavors, and a whole lot of love in every slice.</p>
         </div>
 
-        {/* Feature Cards Grid */}
+        {/* Feature cards */}
         <div className="about__features">
           <div className="feature-card feature-card--accent">
             <div className="feature-card__icon">🍕</div>
             <h3>Fresh Dough Daily</h3>
-            <p>Our pizza dough is kneaded fresh every morning. No preservatives, no freezing — just pure artisan dough.</p>
+            <p>Our dough is made fresh every single day — never frozen, always perfect.</p>
           </div>
           <div className="feature-card">
             <div className="feature-card__icon">🔥</div>
-            <h3>Stone-Fired Perfection</h3>
-            <p>Baked in authentic high-heat stone ovens for that smoky flavor and irresistible crispy crust.</p>
+            <h3>Stone-Fired</h3>
+            <p>Cooked in our stone oven for that authentic crispy, smoky flavor.</p>
           </div>
           <div className="feature-card">
             <div className="feature-card__icon">🧀</div>
-            <h3>Gourmet Ingredients</h3>
-            <p>100% real mozzarella cheese, vine-ripened tomato sauces, and locally sourced fresh meats & veggies.</p>
+            <h3>Premium Toppings</h3>
+            <p>Only the finest ingredients — real mozzarella, fresh veggies, and quality meats.</p>
           </div>
           <div className="feature-card">
             <div className="feature-card__icon">💰</div>
-            <h3>Big Heat, Small Bill</h3>
-            <p>Generous portions, packed toppings, and budget-friendly prices for families, friends & students.</p>
+            <h3>Best Prices</h3>
+            <p>Big Heat, Small Bill — quality pizza that won't break the bank.</p>
           </div>
         </div>
 
-        {/* Dine-in & Family Experience Banner */}
+        {/* Dine-in Promo Banner */}
         <div className="about__promo">
           <div className="promo__content">
-            <span className="promo__badge">🎉 Family Restaurant in Nawala</span>
-            <h3 className="promo__title">Come & Experience the Vibe!</h3>
-            <p className="promo__desc">
-              Looking for a cozy family restaurant near Rajagiriya & Kotte? Visit Cargo Pizzeria for a warm atmosphere, freshly stone-baked pizzas, cold refreshers, and memory-making food!
-            </p>
-
+            <span className="promo__badge">🎉 Visit Us</span>
+            <h3 className="promo__title">Come & Enjoy the Experience!</h3>
+            <p className="promo__desc">Walk in, sit back, and enjoy freshly made pizza right from our stone oven. The perfect spot for family, friends, and good vibes!</p>
             <div className="promo__options">
               <div className="promo__option">
                 <span className="promo__option-icon">🍽️</span>
-                <span>Dine-In</span>
+                <span>Dine-in</span>
               </div>
               <div className="promo__option">
                 <span className="promo__option-icon">🏪</span>
-                <span>Takeaway</span>
+                <span>Take Away</span>
               </div>
               <div className="promo__option">
-                <span className="promo__option-icon">🛵</span>
-                <span>Fast Delivery</span>
+                <span className="promo__option-icon">🎉</span>
+                <span>Events</span>
               </div>
             </div>
           </div>
-
           <div className="promo__visual">
-            <img 
-              src={interiorImg} 
-              alt="Cargo Pizzeria Dining Area" 
-              className="promo__img" 
-              loading="lazy" 
-              width="450" 
-              height="280"
-            />
+            <img src={interiorImg} alt="Cargo Restaurant Interior" className="promo__img promo__img--interior" />
           </div>
         </div>
       </div>
