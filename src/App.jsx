@@ -6,6 +6,7 @@ import About from './components/About';
 import MenuPreview from './components/MenuPreview';
 import Combos from './components/Combos';
 import Reviews from './components/Reviews';
+import InstagramFeed from './components/InstagramFeed';
 import Footer from './components/Footer';
 import OrderPopup from './components/OrderPopup';
 import Loading from './components/Loading';
@@ -23,6 +24,7 @@ const MainSite = ({ isLoading, setIsLoading }) => (
       <MenuPreview />
       <Combos />
       <Reviews />
+      <InstagramFeed />
     </main>
     <Footer />
     <OrderPopup />
