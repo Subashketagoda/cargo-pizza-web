@@ -155,6 +155,7 @@
   padding: 3.5px;
   background: conic-gradient(from 0deg, transparent 0%, #FFD700 40%, #e63946 70%, #FFD700 100%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   animation: spinOuter 2.2s linear infinite;
@@ -165,6 +166,7 @@
   padding: 2.5px;
   background: conic-gradient(from 180deg, transparent 0%, #e63946 50%, #FFD700 100%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   animation: spinInner 1.6s linear infinite reverse;
