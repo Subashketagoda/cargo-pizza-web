@@ -6,31 +6,63 @@ const About = ({ audioUnlocked }) => {
   const videoRef = useRef(null);
   const [isSoundOn, setIsSoundOn] = useState(false);
 
-  // Auto-play video sound when page loads (user gesture from loading screen unlocks it)
+  // Auto-play video sound when loading completes / user interacts on mobile
   useEffect(() => {
-    if (!audioUnlocked || !videoRef.current) return;
     const vid = videoRef.current;
-    vid.muted = false;
-    vid.volume = 0.5;
-    vid.play().then(() => {
-      setIsSoundOn(true);
-    }).catch(() => {
-      // Fallback: keep muted if browser still blocks
-      vid.muted = true;
-      setIsSoundOn(false);
-    });
+    if (!vid) return;
+
+    const attemptPlayAudio = () => {
+      vid.muted = false;
+      vid.volume = 0.5;
+      const playPromise = vid.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsSoundOn(true);
+          })
+          .catch(() => {
+            // Mobile browser fallback: keep video playing muted until user taps sound button or screen
+            vid.muted = true;
+            setIsSoundOn(false);
+          });
+      }
+    };
+
+    if (audioUnlocked) {
+      attemptPlayAudio();
+    }
+
+    // Mobile touch listener fallback to unlock audio on first touch if autoplay was restricted
+    const handleMobileTouch = () => {
+      if (vid && vid.muted) {
+        attemptPlayAudio();
+      }
+    };
+
+    window.addEventListener('touchstart', handleMobileTouch, { passive: true });
+    window.addEventListener('click', handleMobileTouch, { passive: true });
+
+    return () => {
+      window.removeEventListener('touchstart', handleMobileTouch);
+      window.removeEventListener('click', handleMobileTouch);
+    };
   }, [audioUnlocked]);
 
-  const toggleSound = () => {
+  const toggleSound = (e) => {
+    e.stopPropagation();
     if (!videoRef.current) return;
+    const vid = videoRef.current;
     if (isSoundOn) {
-      videoRef.current.muted = true;
+      vid.muted = true;
       setIsSoundOn(false);
     } else {
-      videoRef.current.muted = false;
-      videoRef.current.volume = 0.65;
-      videoRef.current.play();
-      setIsSoundOn(true);
+      vid.muted = false;
+      vid.volume = 0.65;
+      vid.play()
+        .then(() => setIsSoundOn(true))
+        .catch(() => {
+          setIsSoundOn(false);
+        });
     }
   };
 
@@ -122,7 +154,7 @@ const About = ({ audioUnlocked }) => {
               className={`video-sound-toggle ${isSoundOn ? 'video-sound-toggle--on' : ''}`}
               onClick={toggleSound}
               aria-label={isSoundOn ? 'Mute video' : 'Unmute video'}
-              title={isSoundOn ? 'Mute' : 'Turn on sound'}
+              title={isSoundOn ? 'Mute sound' : 'Turn on sound'}
             >
               {isSoundOn ? (
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -136,7 +168,7 @@ const About = ({ audioUnlocked }) => {
                   <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
                 </svg>
               )}
-              <span>{isSoundOn ? 'Sound On' : 'Sound Off'}</span>
+              <span>{isSoundOn ? 'Sound On' : 'Tap for Sound'}</span>
             </button>
           </div>
         </div>
