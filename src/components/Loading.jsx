@@ -10,19 +10,17 @@ const loadingStages = [
 ];
 
 const Loading = ({ onLoadingComplete }) => {
+  const [hasStarted, setHasStarted] = useState(false);
   const [isFadingOut, setIsFadingOut] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [isMuted, setIsMuted] = useState(false);
   const [currentStage, setCurrentStage] = useState(loadingStages[0]);
 
   const audioCtxRef = useRef(null);
   const gainNodeRef = useRef(null);
-  const isAudioActiveRef = useRef(false);
 
-  // Web Audio API Fire Crackling Synthesizer
+  // Web Audio API Fire Crackling Sound Synthesizer
   const startFireSound = () => {
     try {
-      if (isAudioActiveRef.current) return;
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
       if (!AudioCtx) return;
 
@@ -30,7 +28,7 @@ const Loading = ({ onLoadingComplete }) => {
       audioCtxRef.current = ctx;
 
       const mainGain = ctx.createGain();
-      mainGain.gain.setValueAtTime(0.18, ctx.currentTime);
+      mainGain.gain.setValueAtTime(0.2, ctx.currentTime);
       mainGain.connect(ctx.destination);
       gainNodeRef.current = mainGain;
 
@@ -49,7 +47,7 @@ const Loading = ({ onLoadingComplete }) => {
         b4 = 0.55000 * b4 + white * 0.5329522;
         b5 = -0.7616 * b5 - white * 0.0168980;
         output[i] = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
-        output[i] *= 0.11;
+        output[i] *= 0.12;
         b6 = white * 0.115926;
       }
 
@@ -73,15 +71,15 @@ const Loading = ({ onLoadingComplete }) => {
           return;
         }
 
-        if (Math.random() > 0.3) {
+        if (Math.random() > 0.25) {
           const popGain = ctx.createGain();
           const popTime = ctx.currentTime;
-          popGain.gain.setValueAtTime(Math.random() * 0.25 + 0.05, popTime);
+          popGain.gain.setValueAtTime(Math.random() * 0.28 + 0.06, popTime);
           popGain.gain.exponentialRampToValueAtTime(0.001, popTime + Math.random() * 0.08 + 0.02);
 
           const popFilter = ctx.createBiquadFilter();
           popFilter.type = 'highpass';
-          popFilter.frequency.setValueAtTime(Math.random() * 2000 + 800, popTime);
+          popFilter.frequency.setValueAtTime(Math.random() * 2200 + 800, popTime);
 
           const popNoise = ctx.createBufferSource();
           popNoise.buffer = noiseBuffer;
@@ -93,11 +91,9 @@ const Loading = ({ onLoadingComplete }) => {
           popNoise.start(popTime);
           popNoise.stop(popTime + 0.1);
         }
-      }, 90);
-
-      isAudioActiveRef.current = true;
+      }, 85);
     } catch (e) {
-      console.log("Audio autoplay prevented", e);
+      console.log("Audio play error", e);
     }
   };
 
@@ -114,35 +110,16 @@ const Loading = ({ onLoadingComplete }) => {
     }
   };
 
-  const toggleMute = () => {
-    if (gainNodeRef.current && audioCtxRef.current) {
-      if (isMuted) {
-        gainNodeRef.current.gain.setValueAtTime(0.18, audioCtxRef.current.currentTime);
-        setIsMuted(false);
-      } else {
-        gainNodeRef.current.gain.setValueAtTime(0, audioCtxRef.current.currentTime);
-        setIsMuted(true);
-      }
-    } else {
-      startFireSound();
-      setIsMuted(false);
-    }
+  // Start Baking Button Click Handler
+  const handleStartBake = () => {
+    setHasStarted(true);
+    startFireSound();
   };
 
+  // 10-Second Progress Timer (triggers only after user clicks Start)
   useEffect(() => {
-    // Attempt auto sound start on load
-    startFireSound();
+    if (!hasStarted) return;
 
-    // User interaction listener to start sound if autoplay policy blocked it
-    const handleUserGesture = () => {
-      if (!isAudioActiveRef.current) {
-        startFireSound();
-      }
-    };
-    window.addEventListener('click', handleUserGesture, { once: true });
-    window.addEventListener('touchstart', handleUserGesture, { once: true });
-
-    // Exactly 10 Seconds Loading Timer (100 steps * 100ms = 10,000ms = 10s)
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
@@ -160,13 +137,13 @@ const Loading = ({ onLoadingComplete }) => {
       });
     }, 100);
 
-    // Start fade out at 10.0 seconds (10000ms)
+    // Fade out at 10.0 seconds
     const fadeOutTimer = setTimeout(() => {
       setIsFadingOut(true);
       stopFireSound();
     }, 10000);
 
-    // Remove component at 10.5 seconds (10500ms)
+    // Remove component at 10.5 seconds
     const removeTimer = setTimeout(() => {
       onLoadingComplete();
     }, 10500);
@@ -176,10 +153,8 @@ const Loading = ({ onLoadingComplete }) => {
       clearTimeout(fadeOutTimer);
       clearTimeout(removeTimer);
       stopFireSound();
-      window.removeEventListener('click', handleUserGesture);
-      window.removeEventListener('touchstart', handleUserGesture);
     };
-  }, [onLoadingComplete]);
+  }, [hasStarted, onLoadingComplete]);
 
   return (
     <div className={`yellow-fire-loader ${isFadingOut ? 'yellow-fire-loader--exit' : ''}`}>
@@ -193,48 +168,60 @@ const Loading = ({ onLoadingComplete }) => {
       {/* Ambient Flame Glow Backlight */}
       <div className="yellow-loader__ambient-glow"></div>
 
-      {/* Sound Mute/Unmute Toggle Button */}
-      <button className="fire-sound-toggle" onClick={toggleMute} aria-label="Toggle fire crackle sound">
-        {isMuted ? '🔇 Sound Off' : '🔊 Fire Crackle Sound On'}
-      </button>
+      {/* Initial Screen: Start To Bake Button */}
+      {!hasStarted ? (
+        <div className="yellow-loader__content start-bake-screen">
+          <div className="yellow-loader__logo-container">
+            <div className="yellow-loader__logo-glow"></div>
+            <img src={logo} alt="Cargo Pizza" className="yellow-loader__logo" />
+          </div>
 
-      <div className="yellow-loader__content">
-        {/* Stage Badge */}
-        <div className="yellow-loader__stage-pill">
-          <span className="stage-pill-txt">{currentStage.tag}</span>
+          <div className="yellow-loader__brand-meta">
+            <span className="yellow-loader__title">CARGO PIZZA</span>
+            <span className="yellow-loader__subtitle">SRI JAYAWARDENEPURA KOTTE</span>
+          </div>
+
+          <button className="start-bake-btn" onClick={handleStartBake}>
+            🔥 START TO BAKE 🍕
+          </button>
+          <p className="start-bake-hint">Tap to ignite woodfire oven & enter</p>
         </div>
+      ) : (
+        /* Baking & 10-Second Loading Screen */
+        <div className="yellow-loader__content baking-progress-screen">
+          <div className="yellow-loader__stage-pill">
+            <span className="stage-pill-txt">{currentStage.tag}</span>
+          </div>
 
-        {/* Glowing Brand Logo */}
-        <div className="yellow-loader__logo-container">
-          <div className="yellow-loader__logo-glow"></div>
-          <img src={logo} alt="Cargo Pizza" className="yellow-loader__logo" />
-        </div>
+          <div className="yellow-loader__logo-container">
+            <div className="yellow-loader__logo-glow"></div>
+            <img src={logo} alt="Cargo Pizza" className="yellow-loader__logo" />
+          </div>
 
-        {/* Dynamic Cooking Message */}
-        <p className="yellow-loader__stage-msg">{currentStage.text}</p>
+          <p className="yellow-loader__stage-msg">{currentStage.text}</p>
 
-        {/* Brand Meta */}
-        <div className="yellow-loader__brand-meta">
-          <span className="yellow-loader__title">CARGO PIZZA</span>
-          <span className="yellow-loader__subtitle">SRI JAYAWARDENEPURA KOTTE</span>
-        </div>
+          <div className="yellow-loader__brand-meta">
+            <span className="yellow-loader__title">CARGO PIZZA</span>
+            <span className="yellow-loader__subtitle">SRI JAYAWARDENEPURA KOTTE</span>
+          </div>
 
-        {/* 10-Second Progress Bar Track */}
-        <div className="yellow-loader__progress-section">
-          <div className="yellow-loader__progress-track">
-            <div
-              className="yellow-loader__progress-fill"
-              style={{ width: `${progress}%` }}
-            >
-              <div className="progress-flame-head">🔥</div>
+          {/* 10-Second Progress Bar Track */}
+          <div className="yellow-loader__progress-section">
+            <div className="yellow-loader__progress-track">
+              <div
+                className="yellow-loader__progress-fill"
+                style={{ width: `${progress}%` }}
+              >
+                <div className="progress-flame-head">🔥</div>
+              </div>
+            </div>
+            <div className="yellow-loader__counter-row">
+              <span>WOODFIRE BAKING IN PROGRESS</span>
+              <span className="counter-val">{progress}%</span>
             </div>
           </div>
-          <div className="yellow-loader__counter-row">
-            <span>WOODFIRE BAKING IN PROGRESS</span>
-            <span className="counter-val">{progress}%</span>
-          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
