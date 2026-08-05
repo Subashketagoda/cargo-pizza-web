@@ -4,6 +4,8 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import MenuPreview from './components/MenuPreview';
+import Combos from './components/Combos';
+import Reviews from './components/Reviews';
 import Footer from './components/Footer';
 import OrderPopup from './components/OrderPopup';
 import Loading from './components/Loading';
@@ -19,6 +21,8 @@ const MainSite = ({ isLoading, setIsLoading }) => (
       <Hero />
       <About />
       <MenuPreview />
+      <Combos />
+      <Reviews />
     </main>
     <Footer />
     <OrderPopup />
