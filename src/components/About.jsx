@@ -1,10 +1,25 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import './About.css';
 import promoVideo from '../assets/promo-video.mp4';
 
-const About = () => {
+const About = ({ audioUnlocked }) => {
   const videoRef = useRef(null);
   const [isSoundOn, setIsSoundOn] = useState(false);
+
+  // Auto-play video sound when page loads (user gesture from loading screen unlocks it)
+  useEffect(() => {
+    if (!audioUnlocked || !videoRef.current) return;
+    const vid = videoRef.current;
+    vid.muted = false;
+    vid.volume = 0.5;
+    vid.play().then(() => {
+      setIsSoundOn(true);
+    }).catch(() => {
+      // Fallback: keep muted if browser still blocks
+      vid.muted = true;
+      setIsSoundOn(false);
+    });
+  }, [audioUnlocked]);
 
   const toggleSound = () => {
     if (!videoRef.current) return;

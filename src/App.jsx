@@ -20,7 +20,7 @@ const MainSite = ({ isLoading, setIsLoading }) => (
     <Navbar />
     <main>
       <Hero />
-      <About />
+      <About audioUnlocked={!isLoading} />
       <MenuPreview />
       <Combos />
       <Reviews />
