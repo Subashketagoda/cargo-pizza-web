@@ -154,7 +154,7 @@ const Loading = ({ onLoadingComplete }) => {
     startFireSound();
   };
 
-  // 10-Second Progress Timer (triggers only after user clicks Start)
+  // 5-Second Progress Timer (triggers only after user clicks Start)
   useEffect(() => {
     if (!hasStarted) return;
 
@@ -164,7 +164,7 @@ const Loading = ({ onLoadingComplete }) => {
           clearInterval(interval);
           return 100;
         }
-        const next = prev + 1;
+        const next = prev + 2;
         if (next < 25) setCurrentStage(loadingStages[0]);
         else if (next < 50) setCurrentStage(loadingStages[1]);
         else if (next < 85) setCurrentStage(loadingStages[2]);
@@ -176,11 +176,11 @@ const Loading = ({ onLoadingComplete }) => {
     const fadeOutTimer = setTimeout(() => {
       setIsFadingOut(true);
       stopFireSound();
-    }, 10000);
+    }, 5000);
 
     const removeTimer = setTimeout(() => {
       onLoadingComplete();
-    }, 10500);
+    }, 5500);
 
     return () => {
       clearInterval(interval);

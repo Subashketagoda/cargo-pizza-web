@@ -12,6 +12,7 @@ import OrderPopup from './components/OrderPopup';
 import Loading from './components/Loading';
 import Admin from './components/Admin';
 import PromoPopup from './components/PromoPopup';
+import BackgroundMusic from './components/BackgroundMusic';
 import './App.css';
 
 const MainSite = ({ isLoading, setIsLoading }) => (
@@ -29,6 +30,7 @@ const MainSite = ({ isLoading, setIsLoading }) => (
     <Footer />
     <OrderPopup />
     <PromoPopup />
+    {!isLoading && <BackgroundMusic />}
   </>
 );
 
