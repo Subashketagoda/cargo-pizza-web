@@ -1,272 +1,352 @@
-/* ── Ultra-Luxury Dark Loader with Gold Flame Ring & Ambient Glow ── */
-.yellow-fire-loader {
+/* ==========================================================================
+   Cargo Pizzeria — Premium Cinematic Full-Screen Loader
+   Brand Palette:
+     Deep Navy: #0B1F3A
+     Cargo Yellow: #FFC72C
+     White: #FFFFFF
+     Charcoal: #1A1A1A
+   ========================================================================== */
+
+/* Full Screen Container */
+.premium-loader {
   position: fixed;
   inset: 0;
   width: 100vw;
   height: 100vh;
-  background: radial-gradient(circle at center, #0F172A 0%, #080D1A 60%, #03060D 100%);
+  background: radial-gradient(circle at center, #0B1F3A 0%, #061222 70%, #030812 100%);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 999999;
   overflow: hidden;
-  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.yellow-fire-loader--exit {
+.premium-loader--exit {
   opacity: 0;
-  transform: scale(1.05);
+  transform: scale(1.04);
   pointer-events: none;
 }
 
-/* Ambient Flame & Gold Backlight */
-.yellow-loader__ambient-glow {
+/* Floating Particles Background */
+.particles-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 199, 44, 0.35);
+  box-shadow: 0 0 12px rgba(255, 199, 44, 0.6);
+  animation: floatParticle linear infinite;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.p1 { width: 4px; height: 4px; left: 12%; bottom: -10px; animation-duration: 6s; animation-delay: 0s; }
+.p2 { width: 6px; height: 6px; left: 32%; bottom: -10px; animation-duration: 8s; animation-delay: 1.2s; background: rgba(255, 255, 255, 0.4); }
+.p3 { width: 5px; height: 5px; left: 52%; bottom: -10px; animation-duration: 7s; animation-delay: 0.4s; }
+.p4 { width: 7px; height: 7px; left: 74%; bottom: -10px; animation-duration: 9s; animation-delay: 2s; }
+.p5 { width: 3px; height: 3px; left: 88%; bottom: -10px; animation-duration: 6.5s; animation-delay: 0.8s; background: rgba(230, 57, 70, 0.4); }
+.p6 { width: 5px; height: 5px; left: 45%; bottom: -10px; animation-duration: 7.5s; animation-delay: 3s; }
+
+@keyframes floatParticle {
+  0% { transform: translateY(0) scale(0.6); opacity: 0; }
+  20% { opacity: 0.8; }
+  80% { opacity: 0.8; }
+  100% { transform: translateY(-105vh) scale(1.3); opacity: 0; }
+}
+
+/* Soft Yellow Glow Behind Logo */
+.premium-loader__yellow-glow {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 550px;
-  height: 550px;
+  width: 480px;
+  height: 480px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 215, 0, 0.18) 0%, rgba(230, 57, 70, 0.15) 45%, transparent 75%);
-  filter: blur(90px);
+  background: radial-gradient(circle, rgba(255, 199, 44, 0.22) 0%, rgba(11, 31, 58, 0) 70%);
+  filter: blur(80px);
   pointer-events: none;
-  animation: floatAmbient 4s ease-in-out infinite alternate;
+  animation: pulseGlow 4s ease-in-out infinite alternate;
+  will-change: transform, opacity;
 }
 
-@keyframes floatAmbient {
-  0% { transform: translate(-50%, -50%) scale(0.85); opacity: 0.5; }
-  100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.9; }
+@keyframes pulseGlow {
+  0% { transform: translate(-50%, -50%) scale(0.88); opacity: 0.6; }
+  100% { transform: translate(-50%, -50%) scale(1.18); opacity: 0.95; }
 }
 
-/* Rising Fire Sparks */
-.fire-spark {
-  position: absolute;
-  font-size: 1.4rem;
-  filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.8));
-  pointer-events: none;
-  animation: riseFireSpark linear infinite;
-  opacity: 0;
-}
-
-.spark-1 { left: 15%; bottom: -30px; animation-duration: 4s; animation-delay: 0s; font-size: 1.6rem; }
-.spark-2 { left: 35%; bottom: -30px; animation-duration: 5.2s; animation-delay: 0.8s; font-size: 1.2rem; }
-.spark-3 { left: 55%; bottom: -30px; animation-duration: 4.5s; animation-delay: 0.3s; font-size: 1.8rem; }
-.spark-4 { left: 75%; bottom: -30px; animation-duration: 5.8s; animation-delay: 1.2s; font-size: 1.3rem; }
-.spark-5 { left: 88%; bottom: -30px; animation-duration: 4.8s; animation-delay: 0.5s; font-size: 1.5rem; }
-
-@keyframes riseFireSpark {
-  0% {
-    transform: translateY(0) rotate(0deg) scale(0.6);
-    opacity: 0;
-  }
-  25% { opacity: 0.75; }
-  75% { opacity: 0.75; }
-  100% {
-    transform: translateY(-110vh) rotate(360deg) scale(1.2);
-    opacity: 0;
-  }
-}
-
-/* ── Central Content Box ── */
-.yellow-loader__content {
+/* Glassmorphism Center Card */
+.premium-loader__glass-card {
   position: relative;
-  z-index: 2;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.3rem;
-  padding: 2.5rem 2rem;
-  max-width: 420px;
-  width: 100%;
+  gap: 1.5rem;
+  padding: 2.8rem 2.2rem;
+  max-width: 400px;
+  width: 90%;
   text-align: center;
-  background: rgba(15, 23, 42, 0.45);
-  border: 1px solid rgba(255, 215, 0, 0.15);
-  border-radius: 28px;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  background: rgba(11, 31, 58, 0.45);
+  border: 1px solid rgba(255, 199, 44, 0.22);
+  border-radius: 32px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  animation: cardFadeIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-.start-bake-screen, .baking-progress-screen {
-  animation: contentFadeIn 0.5s ease forwards;
+@keyframes cardFadeIn {
+  from { opacity: 0; transform: scale(0.94) translateY(12px); }
+  to { opacity: 1; transform: scale(1.0) translateY(0); }
 }
 
-@keyframes contentFadeIn {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ── Glowing Gold Logo Container & Pulsing Flame Ring ── */
-.yellow-loader__logo-container {
+/* Logo Wrapper with Pizza Ring & Orbiting Items */
+.premium-loader__logo-wrapper {
   position: relative;
+  width: 170px;
+  height: 170px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.2rem;
 }
 
-.yellow-loader__logo-ring {
+/* Ambient Yellow Glow inside Logo Ring */
+.logo-ambient-yellow {
   position: absolute;
-  width: 130px;
-  height: 130px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
-  border: 2px dashed rgba(255, 215, 0, 0.4);
-  animation: spinRing 12s linear infinite;
-  box-shadow: 0 0 25px rgba(255, 215, 0, 0.2);
+  background: radial-gradient(circle, rgba(255, 199, 44, 0.35) 0%, transparent 70%);
+  filter: blur(15px);
+  animation: ambientPulse 2s ease-in-out infinite alternate;
 }
 
-@keyframes spinRing {
+@keyframes ambientPulse {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  100% { transform: scale(1.15); opacity: 1; }
+}
+
+/* Pizza Inspired Circular Loading SVG Ring */
+.pizza-loading-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: rotateRing 3s linear infinite;
+  will-change: transform;
+}
+
+.ring-track {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 4;
+}
+
+.ring-fill {
+  fill: none;
+  stroke: url(#yellowGradient);
+  stroke: #FFC72C;
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  stroke-dasharray: 400;
+  stroke-dashoffset: 240;
+  filter: drop-shadow(0 0 8px rgba(255, 199, 44, 0.8));
+  animation: dashPulse 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes rotateRing {
   from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  to { transform: rotate(360deg); }
 }
 
-.yellow-loader__logo-glow {
+@keyframes dashPulse {
+  0% { stroke-dashoffset: 300; }
+  100% { stroke-dashoffset: 120; }
+}
+
+/* Orbiting Pizza Ingredients (Cheese, Pepperoni, Basil) */
+.orbit-container {
   position: absolute;
-  width: 120px;
-  height: 120px;
+  inset: -10px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 215, 0, 0.4) 0%, rgba(230, 57, 70, 0.2) 60%, transparent 80%);
-  animation: logoGlowPulse 2.2s ease-in-out infinite alternate;
+  animation: orbitRotate 9s linear infinite;
+  will-change: transform;
+  pointer-events: none;
 }
 
-@keyframes logoGlowPulse {
-  0% { transform: scale(0.85); opacity: 0.5; }
-  100% { transform: scale(1.25); opacity: 0.95; }
+@keyframes orbitRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-.yellow-loader__logo {
-  height: 85px;
-  width: auto;
+.orbit-item {
+  position: absolute;
+  font-size: 1.15rem;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6));
+  animation: counterRotate 9s linear infinite;
+  will-change: transform;
+}
+
+@keyframes counterRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+.item-cheese { top: -2px; left: 50%; transform: translateX(-50%); }
+.item-pizza { right: -2px; top: 50%; transform: translateY(-50%); }
+.item-basil { bottom: -2px; left: 50%; transform: translateX(-50%); }
+.item-sparkle { left: -2px; top: 50%; transform: translateY(-50%); }
+
+/* Logo Image (Gently scale 0.95 -> 1.0 & fade in) */
+.premium-loader__logo {
+  width: 90px;
+  height: auto;
   position: relative;
-  z-index: 2;
-  filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.45));
-  animation: logoBreath 2.4s ease-in-out infinite alternate;
+  z-index: 5;
+  filter: drop-shadow(0 0 20px rgba(255, 199, 44, 0.45));
+  animation: logoGentleScale 3s ease-in-out infinite alternate;
+  will-change: transform;
 }
 
-@keyframes logoBreath {
-  0% { transform: scale(0.96); }
-  100% { transform: scale(1.04); }
+@keyframes logoGentleScale {
+  0% { transform: scale(0.95); }
+  100% { transform: scale(1.03); }
 }
 
-/* ── Typography & Meta ── */
-.yellow-loader__brand-meta {
+.logo-ring-outer {
+  position: absolute;
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(255, 199, 44, 0.4);
+  animation: rotateRing 14s linear infinite;
+}
+
+/* Brand Meta Info */
+.premium-loader__brand-info {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.2rem;
 }
 
-.yellow-loader__title {
+.brand-title {
   font-family: var(--font-heading, 'Fredoka', sans-serif);
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #FFF099 0%, #FFD700 50%, #FFA800 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  filter: drop-shadow(0 2px 10px rgba(255, 215, 0, 0.3));
-}
-
-.yellow-loader__subtitle {
-  font-family: var(--font-heading, 'Fredoka', sans-serif);
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: #E63946;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-}
-
-/* ── Start To Bake Button ── */
-.start-bake-btn {
-  margin-top: 0.4rem;
-  padding: 1.1rem 2.8rem;
-  background: linear-gradient(135deg, #E63946 0%, #B5253C 100%);
   color: #FFFFFF;
+  letter-spacing: 4px;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.brand-tagline {
+  font-family: var(--font-heading, 'Fredoka', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #FFC72C;
+  letter-spacing: 3px;
+  margin: 0;
+}
+
+/* Start Button */
+.premium-start-btn {
+  margin-top: 0.3rem;
+  padding: 1.1rem 2.8rem;
+  background: linear-gradient(135deg, #FFC72C 0%, #E6A100 100%);
+  color: #0B1F3A;
   font-family: var(--font-heading, 'Fredoka', sans-serif);
   font-weight: 800;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   letter-spacing: 2px;
-  border: 1.5px solid rgba(255, 215, 0, 0.6);
+  border: none;
   border-radius: 100px;
   cursor: pointer;
-  box-shadow: 0 10px 30px rgba(230, 57, 70, 0.5), 0 0 20px rgba(255, 215, 0, 0.25);
+  box-shadow: 0 10px 30px rgba(255, 199, 44, 0.45), 0 4px 15px rgba(0, 0, 0, 0.3);
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   position: relative;
   overflow: hidden;
 }
 
-.start-bake-btn::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transform: translateX(-100%);
-  transition: transform 0.6s ease;
-}
-
-.start-bake-btn:hover {
+.premium-start-btn:hover {
   transform: scale(1.06) translateY(-3px);
-  box-shadow: 0 16px 40px rgba(230, 57, 70, 0.7), 0 0 30px rgba(255, 215, 0, 0.4);
-  border-color: #FFD700;
+  box-shadow: 0 16px 40px rgba(255, 199, 44, 0.65);
 }
 
-.start-bake-btn:hover::after {
-  transform: translateX(100%);
-}
-
-.start-bake-btn:active {
+.premium-start-btn:active {
   transform: scale(0.97);
 }
 
-.start-bake-hint {
+.start-subtext {
   font-family: var(--font-heading, 'Fredoka', sans-serif);
   font-size: 0.8rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.6);
   letter-spacing: 1px;
-  margin-top: -0.3rem;
+  margin-top: -0.4rem;
 }
 
-/* ── Stage Pill & Messages ── */
-.yellow-loader__stage-pill {
-  display: inline-block;
-  padding: 0.35rem 1.1rem;
-  background: rgba(255, 215, 0, 0.1);
-  border: 1px solid rgba(255, 215, 0, 0.3);
-  border-radius: 100px;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.15);
-}
-
-.stage-pill-txt {
-  font-family: var(--font-heading, 'Fredoka', sans-serif);
-  font-weight: 800;
-  font-size: 0.75rem;
-  letter-spacing: 2px;
-  color: #FFD700;
-  text-transform: uppercase;
-}
-
-.yellow-loader__stage-msg {
-  font-family: var(--font-heading, 'Fredoka', sans-serif);
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: #F8FAFC;
-  min-height: 1.6rem;
-  letter-spacing: 0.5px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
-}
-
-/* ── Progress Track & Counter ── */
-.yellow-loader__progress-section {
-  width: 100%;
+/* Loading Text Section */
+.premium-loader__text-section {
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
+  gap: 0.3rem;
+  min-height: 52px;
+}
+
+.loading-main-text {
+  font-family: var(--font-heading, 'Fredoka', sans-serif);
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 0.5px;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.typing-dots {
+  display: inline-block;
+  min-width: 24px;
+  text-align: left;
+  color: #FFC72C;
+}
+
+.loading-sub-text {
+  font-family: var(--font-heading, 'Fredoka', sans-serif);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+
+.pizza-emoji {
+  display: inline-block;
+  animation: emojiWiggle 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes emojiWiggle {
+  0% { transform: rotate(-8deg) scale(0.95); }
+  100% { transform: rotate(12deg) scale(1.1); }
+}
+
+/* Rounded 280px Premium Progress Bar */
+.premium-progress-container {
+  width: 280px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
   margin-top: 0.4rem;
 }
 
-.yellow-loader__progress-track {
+.premium-progress-track {
   width: 100%;
   height: 10px;
   background: rgba(255, 255, 255, 0.1);
@@ -274,61 +354,88 @@
   overflow: hidden;
   position: relative;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.6);
 }
 
-.yellow-loader__progress-fill {
+.premium-progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #E63946 0%, #FFD700 100%);
+  background: linear-gradient(90deg, #FFC72C 0%, #FFA800 50%, #FFD700 100%);
   border-radius: 100px;
   position: relative;
-  transition: width 0.08s linear;
-  box-shadow: 0 0 14px rgba(255, 215, 0, 0.8);
+  transition: width 0.1s linear;
+  box-shadow: 0 0 16px rgba(255, 199, 44, 0.85);
 }
 
-.progress-flame-head {
+.progress-glow-tip {
   position: absolute;
-  right: -8px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 0.85rem;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  background: #FFFFFF;
+  border-radius: 100px;
+  filter: blur(2px);
 }
 
-.yellow-loader__counter-row {
+.progress-percentage-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-family: var(--font-heading, 'Fredoka', sans-serif);
-  font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.76rem;
   font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
   letter-spacing: 1px;
 }
 
-.counter-val {
-  font-size: 1rem;
-  color: #FFD700;
+.progress-value {
+  font-size: 0.92rem;
+  color: #FFC72C;
   font-weight: 800;
 }
 
-/* Mobile */
+/* Respect Prefers-Reduced-Motion */
+@media (prefers-reduced-motion: reduce) {
+  .pizza-loading-svg,
+  .orbit-container,
+  .orbit-item,
+  .premium-loader__logo,
+  .particle,
+  .premium-loader__yellow-glow {
+    animation: none !important;
+  }
+}
+
+/* Mobile Responsiveness */
 @media (max-width: 480px) {
-  .yellow-loader__content {
-    padding: 2rem 1.4rem;
-    max-width: 90%;
+  .premium-loader__glass-card {
+    padding: 2.2rem 1.4rem;
+    max-width: 88%;
   }
 
-  .yellow-loader__logo {
-    height: 70px;
+  .premium-loader__logo-wrapper {
+    width: 145px;
+    height: 145px;
   }
 
-  .yellow-loader__title {
-    font-size: 1.3rem;
+  .premium-loader__logo {
+    width: 75px;
+  }
+
+  .brand-title {
+    font-size: 1.4rem;
     letter-spacing: 3px;
   }
 
-  .start-bake-btn {
-    padding: 1rem 2.2rem;
-    font-size: 1.1rem;
+  .loading-main-text {
+    font-size: 1.05rem;
+  }
+
+  .loading-sub-text {
+    font-size: 0.82rem;
+  }
+
+  .premium-progress-container {
+    width: 100%;
   }
 }

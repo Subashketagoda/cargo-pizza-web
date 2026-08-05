@@ -2,23 +2,18 @@ import React, { useEffect, useState, useRef } from 'react';
 import './Loading.css';
 import logo from '../assets/logo.png';
 
-const loadingStages = [
-  { text: "Firing Up Woodfire Stone Oven... 🔥", tag: "STONE OVEN HEAT" },
-  { text: "Handcrafting Organic Dough & Toppings... 🍕", tag: "FRESH DOUGH" },
-  { text: "Baking Fresh Pizza in 400°C Heat... 🧀", tag: "WOODFIRE BAKING" },
-  { text: "Piping Hot & Ready To Serve! ✨", tag: "SERVED HOT" }
-];
+const dotsCycle = ['.', '..', '...'];
 
 const Loading = ({ onLoadingComplete }) => {
   const [hasStarted, setHasStarted] = useState(false);
   const [isFadingOut, setIsFadingOut] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [currentStage, setCurrentStage] = useState(loadingStages[0]);
+  const [dotIndex, setDotIndex] = useState(0);
 
   const audioCtxRef = useRef(null);
   const gainNodeRef = useRef(null);
 
-  // ── Ultra-Realistic 5-Layer Woodfire Sound Engine ──
+  // ── Ultra-Realistic Woodfire Sound Engine ──
   const startFireSound = () => {
     try {
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -27,14 +22,12 @@ const Loading = ({ onLoadingComplete }) => {
       const ctx = new AudioCtx();
       audioCtxRef.current = ctx;
 
-      // Master output gain — gradual 1.2s fade-in
       const masterGain = ctx.createGain();
       masterGain.gain.setValueAtTime(0.0, ctx.currentTime);
-      masterGain.gain.linearRampToValueAtTime(0.82, ctx.currentTime + 1.2);
+      masterGain.gain.linearRampToValueAtTime(0.8, ctx.currentTime + 1.2);
       masterGain.connect(ctx.destination);
       gainNodeRef.current = masterGain;
 
-      // Shared Pink Noise Buffer (3 seconds)
       const sampleRate = ctx.sampleRate;
       const bufferSize = sampleRate * 3;
       const noiseBuffer = ctx.createBuffer(1, bufferSize, sampleRate);
@@ -49,11 +42,11 @@ const Loading = ({ onLoadingComplete }) => {
         b6=w*0.115926;
       }
 
-      // LAYER 1: Deep Low Rumble with LFO Breathing (wood base roar)
+      // Deep Rumble
       const rumbleSrc = ctx.createBufferSource();
       rumbleSrc.buffer = noiseBuffer; rumbleSrc.loop = true;
       const rumbleLPF = ctx.createBiquadFilter();
-      rumbleLPF.type = 'lowpass'; rumbleLPF.frequency.value = 110; rumbleLPF.Q.value = 0.7;
+      rumbleLPF.type = 'lowpass'; rumbleLPF.frequency.value = 110;
       const rumbleGain = ctx.createGain(); rumbleGain.gain.value = 0.55;
       const lfo = ctx.createOscillator(); lfo.frequency.value = 0.5;
       const lfoGain = ctx.createGain(); lfoGain.gain.value = 0.2;
@@ -61,44 +54,32 @@ const Loading = ({ onLoadingComplete }) => {
       rumbleSrc.connect(rumbleLPF); rumbleLPF.connect(rumbleGain); rumbleGain.connect(masterGain);
       rumbleSrc.start();
 
-      // LAYER 2: Mid Flame Hiss (main fire body) — animated filter sweep
+      // Mid Hiss
       const hissSrc = ctx.createBufferSource();
       hissSrc.buffer = noiseBuffer; hissSrc.loop = true;
       const hissBPF = ctx.createBiquadFilter();
       hissBPF.type = 'bandpass'; hissBPF.frequency.value = 750; hissBPF.Q.value = 1.4;
-      hissBPF.frequency.linearRampToValueAtTime(1300, ctx.currentTime + 5);
-      hissBPF.frequency.linearRampToValueAtTime(650, ctx.currentTime + 10);
-      const hissGain = ctx.createGain(); hissGain.gain.value = 0.30;
+      const hissGain = ctx.createGain(); hissGain.gain.value = 0.28;
       hissSrc.connect(hissBPF); hissBPF.connect(hissGain); hissGain.connect(masterGain);
       hissSrc.start();
 
-      // LAYER 3: High Crackle + Ember Sizzle
-      const crackleSrc = ctx.createBufferSource();
-      crackleSrc.buffer = noiseBuffer; crackleSrc.loop = true;
-      const crackleHPF = ctx.createBiquadFilter();
-      crackleHPF.type = 'highpass'; crackleHPF.frequency.value = 4000;
-      const crackleGain = ctx.createGain(); crackleGain.gain.value = 0.13;
-      crackleSrc.connect(crackleHPF); crackleHPF.connect(crackleGain); crackleGain.connect(masterGain);
-      crackleSrc.start();
-
-      // LAYER 4: Random Wood Pop Crackles (recursive ADSR impulses)
+      // Wood Pops
       const scheduleWoodPop = () => {
         if (!ctx || ctx.state === 'closed') return;
         const now = ctx.currentTime;
-        const nextMs = 28 + Math.random() * 190;
-        if (Math.random() > 0.14) {
+        const nextMs = 30 + Math.random() * 200;
+        if (Math.random() > 0.15) {
           const pGain = ctx.createGain();
-          const atk = 0.002 + Math.random() * 0.006;
-          const dec = 0.022 + Math.random() * 0.13;
-          const peak = 0.08 + Math.random() * 0.44;
+          const atk = 0.002 + Math.random() * 0.005;
+          const dec = 0.02 + Math.random() * 0.12;
+          const peak = 0.1 + Math.random() * 0.4;
           pGain.gain.setValueAtTime(0, now);
           pGain.gain.linearRampToValueAtTime(peak, now + atk);
           pGain.gain.exponentialRampToValueAtTime(0.0001, now + atk + dec);
           const pFilter = ctx.createBiquadFilter();
           pFilter.type = 'peaking';
-          pFilter.frequency.value = 700 + Math.random() * 4800;
-          pFilter.gain.value = 12 + Math.random() * 14;
-          pFilter.Q.value = 0.5 + Math.random() * 2.8;
+          pFilter.frequency.value = 800 + Math.random() * 4500;
+          pFilter.gain.value = 12;
           const pSrc = ctx.createBufferSource();
           pSrc.buffer = noiseBuffer;
           pSrc.connect(pFilter); pFilter.connect(pGain); pGain.connect(masterGain);
@@ -107,28 +88,6 @@ const Loading = ({ onLoadingComplete }) => {
         setTimeout(scheduleWoodPop, nextMs);
       };
       scheduleWoodPop();
-
-      // LAYER 5: Occasional Flame Whoosh Flare-Ups
-      const scheduleWhoosh = () => {
-        if (!ctx || ctx.state === 'closed') return;
-        const delay = 1100 + Math.random() * 3400;
-        setTimeout(() => {
-          if (!ctx || ctx.state === 'closed') return;
-          const now = ctx.currentTime;
-          const wGain = ctx.createGain();
-          wGain.gain.setValueAtTime(0, now);
-          wGain.gain.linearRampToValueAtTime(0.13 + Math.random() * 0.16, now + 0.32);
-          wGain.gain.exponentialRampToValueAtTime(0.0001, now + 1.1);
-          const wFilter = ctx.createBiquadFilter();
-          wFilter.type = 'bandpass'; wFilter.frequency.value = 320 + Math.random() * 720; wFilter.Q.value = 0.4;
-          const wSrc = ctx.createBufferSource();
-          wSrc.buffer = noiseBuffer;
-          wSrc.connect(wFilter); wFilter.connect(wGain); wGain.connect(masterGain);
-          wSrc.start(now); wSrc.stop(now + 1.4);
-          scheduleWhoosh();
-        }, delay);
-      };
-      scheduleWhoosh();
 
     } catch (e) {
       console.log("Audio play error", e);
@@ -148,13 +107,21 @@ const Loading = ({ onLoadingComplete }) => {
     }
   };
 
-  // Start Baking Button Click Handler
   const handleStartBake = () => {
     setHasStarted(true);
     startFireSound();
   };
 
-  // 5-Second Progress Timer (triggers only after user clicks Start)
+  // Dots typing cycle (every 400ms)
+  useEffect(() => {
+    if (!hasStarted) return;
+    const dotInterval = setInterval(() => {
+      setDotIndex((prev) => (prev + 1) % dotsCycle.length);
+    }, 400);
+    return () => clearInterval(dotInterval);
+  }, [hasStarted]);
+
+  // 6-Second Progress Timer
   useEffect(() => {
     if (!hasStarted) return;
 
@@ -164,23 +131,18 @@ const Loading = ({ onLoadingComplete }) => {
           clearInterval(interval);
           return 100;
         }
-        const next = prev + 2;
-        if (next < 25) setCurrentStage(loadingStages[0]);
-        else if (next < 50) setCurrentStage(loadingStages[1]);
-        else if (next < 85) setCurrentStage(loadingStages[2]);
-        else setCurrentStage(loadingStages[3]);
-        return next;
+        return prev + 2; // 50 steps * 120ms = 6000ms
       });
-    }, 100);
+    }, 120);
 
     const fadeOutTimer = setTimeout(() => {
       setIsFadingOut(true);
       stopFireSound();
-    }, 5000);
+    }, 6000);
 
     const removeTimer = setTimeout(() => {
       onLoadingComplete();
-    }, 5500);
+    }, 6600);
 
     return () => {
       clearInterval(interval);
@@ -191,54 +153,82 @@ const Loading = ({ onLoadingComplete }) => {
   }, [hasStarted, onLoadingComplete]);
 
   return (
-    <div className={`yellow-fire-loader ${isFadingOut ? 'yellow-fire-loader--exit' : ''}`}>
-      <div className="fire-spark spark-1">🔥</div>
-      <div className="fire-spark spark-2">✨</div>
-      <div className="fire-spark spark-3">🔥</div>
-      <div className="fire-spark spark-4">✨</div>
-      <div className="fire-spark spark-5">🔥</div>
-      <div className="yellow-loader__ambient-glow"></div>
+    <div className={`premium-loader ${isFadingOut ? 'premium-loader--exit' : ''}`}>
+      {/* Background Soft Floating Particles */}
+      <div className="particles-container">
+        <div className="particle p1"></div>
+        <div className="particle p2"></div>
+        <div className="particle p3"></div>
+        <div className="particle p4"></div>
+        <div className="particle p5"></div>
+        <div className="particle p6"></div>
+      </div>
+
+      {/* Soft Yellow Glow Behind Center */}
+      <div className="premium-loader__yellow-glow"></div>
 
       {!hasStarted ? (
-        <div className="yellow-loader__content start-bake-screen">
-          <div className="yellow-loader__logo-container">
-            <div className="yellow-loader__logo-ring"></div>
-            <div className="yellow-loader__logo-glow"></div>
-            <img src={logo} alt="Cargo Pizza" className="yellow-loader__logo" />
+        <div className="premium-loader__glass-card start-card">
+          <div className="premium-loader__logo-wrapper">
+            <div className="logo-ring-outer"></div>
+            <img src={logo} alt="Cargo Pizzeria" className="premium-loader__logo" />
           </div>
-          <div className="yellow-loader__brand-meta">
-            <span className="yellow-loader__title">CARGO PIZZA</span>
-            <span className="yellow-loader__subtitle">SRI JAYAWARDENEPURA KOTTE</span>
+
+          <div className="premium-loader__brand-info">
+            <h1 className="brand-title">CARGO PIZZERIA</h1>
+            <p className="brand-tagline">WOODFIRED CRAFT PIZZA</p>
           </div>
-          <button className="start-bake-btn" onClick={handleStartBake}>
-            🔥 START TO BAKE 🍕
+
+          <button className="premium-start-btn" onClick={handleStartBake}>
+            <span className="btn-glow"></span>
+            <span className="btn-text">🔥 START TO BAKE 🍕</span>
           </button>
-          <p className="start-bake-hint">Tap to ignite woodfire oven & enter</p>
+          <span className="start-subtext">Tap to ignite oven & enter</span>
         </div>
       ) : (
-        <div className="yellow-loader__content baking-progress-screen">
-          <div className="yellow-loader__stage-pill">
-            <span className="stage-pill-txt">{currentStage.tag}</span>
+        <div className="premium-loader__glass-card progress-card">
+          {/* Logo with Pizza Ring & Orbiting Ingredients */}
+          <div className="premium-loader__logo-wrapper">
+            <svg className="pizza-loading-svg" viewBox="0 0 200 200">
+              <circle className="ring-track" cx="100" cy="100" r="88" />
+              <circle className="ring-fill" cx="100" cy="100" r="88" />
+            </svg>
+
+            {/* Orbiting Pizza Ingredients */}
+            <div className="orbit-container">
+              <span className="orbit-item item-cheese" title="Mozzarella">🧀</span>
+              <span className="orbit-item item-pizza" title="Pepperoni">🍕</span>
+              <span className="orbit-item item-basil" title="Fresh Basil">🌿</span>
+              <span className="orbit-item item-sparkle" title="Flame Sparkle">✨</span>
+            </div>
+
+            <div className="logo-ambient-yellow"></div>
+            <img src={logo} alt="Cargo Pizzeria" className="premium-loader__logo" />
           </div>
-          <div className="yellow-loader__logo-container">
-            <div className="yellow-loader__logo-ring"></div>
-            <div className="yellow-loader__logo-glow"></div>
-            <img src={logo} alt="Cargo Pizza" className="yellow-loader__logo" />
+
+          {/* Animated Loading Text */}
+          <div className="premium-loader__text-section">
+            <h2 className="loading-main-text">
+              Preparing Your Order<span className="typing-dots">{dotsCycle[dotIndex]}</span>
+            </h2>
+            <p className="loading-sub-text">
+              Crafting Fresh Pizza with Love <span className="pizza-emoji">🍕</span>
+            </p>
           </div>
-          <p className="yellow-loader__stage-msg">{currentStage.text}</p>
-          <div className="yellow-loader__brand-meta">
-            <span className="yellow-loader__title">CARGO PIZZA</span>
-            <span className="yellow-loader__subtitle">SRI JAYAWARDENEPURA KOTTE</span>
-          </div>
-          <div className="yellow-loader__progress-section">
-            <div className="yellow-loader__progress-track">
-              <div className="yellow-loader__progress-fill" style={{ width: `${progress}%` }}>
-                <div className="progress-flame-head">🔥</div>
+
+          {/* Rounded 280px Premium Progress Bar */}
+          <div className="premium-progress-container">
+            <div className="premium-progress-track">
+              <div
+                className="premium-progress-fill"
+                style={{ width: `${progress}%` }}
+              >
+                <div className="progress-glow-tip"></div>
               </div>
             </div>
-            <div className="yellow-loader__counter-row">
-              <span>WOODFIRE BAKING IN PROGRESS</span>
-              <span className="counter-val">{progress}%</span>
+            <div className="progress-percentage-row">
+              <span className="progress-label">BAKING IN PROGRESS</span>
+              <span className="progress-value">{progress}%</span>
             </div>
           </div>
         </div>
