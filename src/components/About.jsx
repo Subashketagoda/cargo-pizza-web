@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import './About.css';
 import promoVideo from '../assets/promo-video.mp4';
 
 const About = () => {
+  const videoRef = useRef(null);
+  const [isSoundOn, setIsSoundOn] = useState(false);
+
+  const toggleSound = () => {
+    if (!videoRef.current) return;
+    if (isSoundOn) {
+      videoRef.current.muted = true;
+      setIsSoundOn(false);
+    } else {
+      videoRef.current.muted = false;
+      videoRef.current.volume = 0.65;
+      videoRef.current.play();
+      setIsSoundOn(true);
+    }
+  };
+
   return (
     <section id="about" className="about section">
       <div className="container">
@@ -78,6 +94,7 @@ const About = () => {
           </div>
           <div className="promo__visual">
             <video
+              ref={videoRef}
               src={promoVideo}
               autoPlay
               loop
@@ -86,6 +103,26 @@ const About = () => {
               className="promo__video"
               aria-label="Cargo Pizza Woodfire Oven Experience Video"
             />
+            <button
+              className={`video-sound-toggle ${isSoundOn ? 'video-sound-toggle--on' : ''}`}
+              onClick={toggleSound}
+              aria-label={isSoundOn ? 'Mute video' : 'Unmute video'}
+              title={isSoundOn ? 'Mute' : 'Turn on sound'}
+            >
+              {isSoundOn ? (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                </svg>
+              ) : (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                  <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+                </svg>
+              )}
+              <span>{isSoundOn ? 'Sound On' : 'Sound Off'}</span>
+            </button>
           </div>
         </div>
       </div>
