@@ -202,6 +202,7 @@ const Loading = ({ onLoadingComplete }) => {
       {!hasStarted ? (
         <div className="yellow-loader__content start-bake-screen">
           <div className="yellow-loader__logo-container">
+            <div className="yellow-loader__logo-ring"></div>
             <div className="yellow-loader__logo-glow"></div>
             <img src={logo} alt="Cargo Pizza" className="yellow-loader__logo" />
           </div>
@@ -220,6 +221,7 @@ const Loading = ({ onLoadingComplete }) => {
             <span className="stage-pill-txt">{currentStage.tag}</span>
           </div>
           <div className="yellow-loader__logo-container">
+            <div className="yellow-loader__logo-ring"></div>
             <div className="yellow-loader__logo-glow"></div>
             <img src={logo} alt="Cargo Pizza" className="yellow-loader__logo" />
           </div>
