@@ -1,4 +1,4 @@
-/* ── Vibrant Cargo Yellow Loader with Rising Fire Sparks ── */
+/* ── Vibrant Cargo Yellow Loader with Fire Sound & 10s Timer ── */
 .yellow-fire-loader {
   position: fixed;
   inset: 0;
@@ -10,13 +10,40 @@
   align-items: center;
   z-index: 999999;
   overflow: hidden;
-  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .yellow-fire-loader--exit {
   opacity: 0;
   transform: scale(1.05);
   pointer-events: none;
+}
+
+/* ── Sound Toggle Button ── */
+.fire-sound-toggle {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 10;
+  background: rgba(15, 27, 71, 0.85);
+  color: #FFD700;
+  border: 1.5px solid #FFD700;
+  border-radius: 100px;
+  padding: 0.5rem 1.1rem;
+  font-family: var(--font-heading, 'Fredoka', sans-serif);
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  transition: all 0.25s ease;
+  backdrop-filter: blur(10px);
+}
+
+.fire-sound-toggle:hover {
+  background: #e63946;
+  color: #ffffff;
+  border-color: #ffffff;
+  transform: scale(1.05);
 }
 
 /* ── Rising Fire Sparks & Flames ── */
@@ -29,11 +56,11 @@
   opacity: 0;
 }
 
-.spark-1 { left: 18%; bottom: -30px; animation-duration: 3.5s; animation-delay: 0s; font-size: 1.8rem; }
-.spark-2 { left: 38%; bottom: -30px; animation-duration: 4.2s; animation-delay: 0.8s; font-size: 1.2rem; }
-.spark-3 { left: 58%; bottom: -30px; animation-duration: 3.2s; animation-delay: 0.3s; font-size: 1.9rem; }
-.spark-4 { left: 78%; bottom: -30px; animation-duration: 4.5s; animation-delay: 1.2s; font-size: 1.3rem; }
-.spark-5 { left: 88%; bottom: -30px; animation-duration: 3.8s; animation-delay: 0.5s; font-size: 1.7rem; }
+.spark-1 { left: 15%; bottom: -30px; animation-duration: 4s; animation-delay: 0s; font-size: 1.8rem; }
+.spark-2 { left: 35%; bottom: -30px; animation-duration: 5s; animation-delay: 0.8s; font-size: 1.3rem; }
+.spark-3 { left: 55%; bottom: -30px; animation-duration: 4.2s; animation-delay: 0.3s; font-size: 2rem; }
+.spark-4 { left: 75%; bottom: -30px; animation-duration: 5.5s; animation-delay: 1.2s; font-size: 1.4rem; }
+.spark-5 { left: 88%; bottom: -30px; animation-duration: 4.8s; animation-delay: 0.5s; font-size: 1.7rem; }
 
 @keyframes riseFireSpark {
   0% {
@@ -58,11 +85,11 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 480px;
-  height: 480px;
+  width: 500px;
+  height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(230, 57, 70, 0.22) 0%, rgba(255, 255, 255, 0.4) 50%, transparent 75%);
-  filter: blur(80px);
+  background: radial-gradient(circle, rgba(230, 57, 70, 0.25) 0%, rgba(255, 255, 255, 0.45) 50%, transparent 75%);
+  filter: blur(85px);
   pointer-events: none;
   animation: floatAmbient 3.5s ease-in-out infinite alternate;
 }
@@ -79,11 +106,29 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.8rem;
+  gap: 1.4rem;
   padding: 2rem;
-  max-width: 380px;
+  max-width: 400px;
   width: 100%;
   text-align: center;
+}
+
+/* Stage Pill */
+.yellow-loader__stage-pill {
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  background: rgba(15, 27, 71, 0.12);
+  border: 1px solid rgba(15, 27, 71, 0.25);
+  border-radius: 100px;
+}
+
+.stage-pill-txt {
+  font-family: var(--font-heading, 'Fredoka', sans-serif);
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: #0f1b47;
+  text-transform: uppercase;
 }
 
 /* Logo & Breathing Glow */
@@ -92,15 +137,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 .yellow-loader__logo-glow {
   position: absolute;
-  width: 135px;
-  height: 135px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, rgba(230, 57, 70, 0.2) 60%, transparent 80%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.75) 0%, rgba(230, 57, 70, 0.25) 60%, transparent 80%);
   animation: logoGlowPulse 2s ease-in-out infinite alternate;
 }
 
@@ -110,7 +155,7 @@
 }
 
 .yellow-loader__logo {
-  height: 78px;
+  height: 80px;
   width: auto;
   position: relative;
   z-index: 2;
@@ -123,11 +168,22 @@
   100% { transform: scale(1.03); }
 }
 
+/* Cooking Stage Message */
+.yellow-loader__stage-msg {
+  font-family: var(--font-heading, 'Fredoka', sans-serif);
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #0f1b47;
+  min-height: 1.6rem;
+  letter-spacing: 0.3px;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
+}
+
 /* Typography Meta */
 .yellow-loader__brand-meta {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.25rem;
 }
 
 .yellow-loader__title {
@@ -148,42 +204,78 @@
   text-transform: uppercase;
 }
 
-/* Minimal 4px Progress Track */
+/* Progress Track & Counter */
+.yellow-loader__progress-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
 .yellow-loader__progress-track {
-  width: 180px;
-  height: 4.5px;
+  width: 100%;
+  height: 10px;
   background: rgba(15, 27, 71, 0.15);
   border-radius: 100px;
   overflow: hidden;
   position: relative;
-  margin-top: 0.5rem;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 .yellow-loader__progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #e63946, #0f1b47);
+  background: linear-gradient(90deg, #e63946 0%, #0f1b47 100%);
   border-radius: 100px;
+  position: relative;
   transition: width 0.08s linear;
-  box-shadow: 0 0 10px rgba(230, 57, 70, 0.6);
+  box-shadow: 0 0 12px rgba(230, 57, 70, 0.6);
+}
+
+.progress-flame-head {
+  position: absolute;
+  right: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.85rem;
+}
+
+.yellow-loader__counter-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-heading, 'Fredoka', sans-serif);
+  font-size: 0.8rem;
+  color: rgba(15, 27, 71, 0.8);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.counter-val {
+  font-size: 1rem;
+  color: #e63946;
+  font-weight: 800;
 }
 
 /* Mobile */
 @media (max-width: 480px) {
+  .fire-sound-toggle {
+    top: 16px;
+    right: 16px;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.75rem;
+  }
+
   .yellow-loader__logo {
     height: 65px;
+  }
+
+  .yellow-loader__stage-msg {
+    font-size: 0.95rem;
   }
 
   .yellow-loader__title {
     font-size: 1.2rem;
     letter-spacing: 3px;
-  }
-
-  .yellow-loader__subtitle {
-    font-size: 0.7rem;
-    letter-spacing: 2px;
-  }
-
-  .yellow-loader__progress-track {
-    width: 150px;
   }
 }
