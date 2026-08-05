@@ -7,7 +7,7 @@ const Loading = ({ onLoadingComplete }) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // Smooth progress counter from 0 to 100 over ~1.8 seconds
+    // Smooth progress counter from 0 to 100
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
@@ -18,15 +18,15 @@ const Loading = ({ onLoadingComplete }) => {
       });
     }, 70);
 
-    // Fade out at 1.8s
+    // Fade out at 1.9s
     const fadeOutTimer = setTimeout(() => {
       setIsFadingOut(true);
-    }, 1800);
+    }, 1900);
 
-    // Remove component at 2.3s
+    // Remove component at 2.4s
     const removeTimer = setTimeout(() => {
       onLoadingComplete();
-    }, 2300);
+    }, 2400);
 
     return () => {
       clearInterval(interval);
@@ -36,27 +36,34 @@ const Loading = ({ onLoadingComplete }) => {
   }, [onLoadingComplete]);
 
   return (
-    <div className={`apple-loader ${isFadingOut ? 'apple-loader--exit' : ''}`}>
-      {/* Soft Ambient Backlight */}
-      <div className="apple-loader__ambient"></div>
+    <div className={`yellow-fire-loader ${isFadingOut ? 'yellow-fire-loader--exit' : ''}`}>
+      {/* Background Rising Fire Sparks & Flames */}
+      <div className="fire-spark spark-1">🔥</div>
+      <div className="fire-spark spark-2">✨</div>
+      <div className="fire-spark spark-3">🔥</div>
+      <div className="fire-spark spark-4">✨</div>
+      <div className="fire-spark spark-5">🔥</div>
 
-      <div className="apple-loader__content">
+      {/* Ambient Flame Glow Backlight */}
+      <div className="yellow-loader__ambient-glow"></div>
+
+      <div className="yellow-loader__content">
         {/* Glowing Brand Logo */}
-        <div className="apple-loader__logo-container">
-          <div className="apple-loader__logo-glow"></div>
-          <img src={logo} alt="Cargo Pizza" className="apple-loader__logo" />
+        <div className="yellow-loader__logo-container">
+          <div className="yellow-loader__logo-glow"></div>
+          <img src={logo} alt="Cargo Pizza" className="yellow-loader__logo" />
         </div>
 
-        {/* Brand Tagline */}
-        <div className="apple-loader__brand-meta">
-          <span className="apple-loader__title">CARGO PIZZA</span>
-          <span className="apple-loader__subtitle">SRI JAYAWARDENEPURA KOTTE</span>
+        {/* Brand Meta */}
+        <div className="yellow-loader__brand-meta">
+          <span className="yellow-loader__title">CARGO PIZZA</span>
+          <span className="yellow-loader__subtitle">SRI JAYAWARDENEPURA KOTTE</span>
         </div>
 
-        {/* Minimal Thin Progress Bar */}
-        <div className="apple-loader__progress-track">
+        {/* Minimal 4px Progress Track */}
+        <div className="yellow-loader__progress-track">
           <div
-            className="apple-loader__progress-fill"
+            className="yellow-loader__progress-fill"
             style={{ width: `${progress}%` }}
           ></div>
         </div>
