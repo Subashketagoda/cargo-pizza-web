@@ -1,12 +1,12 @@
 .insta-section {
   padding: 6rem 0;
-  background: linear-gradient(180deg, #fff7d6 0%, #fdfce5 100%);
+  background: var(--bg-dark);
   position: relative;
   overflow: hidden;
 }
 
 .insta-header {
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
 }
 
 .insta-badge {
@@ -14,16 +14,17 @@
   align-items: center;
   gap: 0.5rem;
   font-family: var(--font-heading);
-  font-weight: 800;
+  font-weight: 700;
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 2px;
   color: #E1306C;
   margin-bottom: 0.75rem;
-  padding: 0.4rem 1.2rem;
-  background: linear-gradient(135deg, rgba(225, 48, 108, 0.08), rgba(131, 58, 180, 0.08));
-  border: 1px solid rgba(225, 48, 108, 0.2);
+  padding: 0.45rem 1.2rem;
+  background: linear-gradient(135deg, rgba(225, 48, 108, 0.12), rgba(131, 58, 180, 0.12));
+  border: 1px solid rgba(225, 48, 108, 0.3);
   border-radius: 100px;
+  box-shadow: 0 0 15px rgba(225, 48, 108, 0.2);
 }
 
 .insta-badge svg {
@@ -33,7 +34,7 @@
 /* Elfsight Widget Container */
 .insta-widget-container {
   min-height: 300px;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
   border-radius: 24px;
   overflow: hidden;
 }
@@ -43,28 +44,31 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5rem 2rem;
-  background: #ffffff;
+  padding: 1.6rem 2.2rem;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-radius: 100px;
-  border: 2px solid rgba(15, 27, 71, 0.08);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
-  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .insta-cta-strip:hover {
-  border-color: #E1306C;
-  box-shadow: 0 12px 35px rgba(225, 48, 108, 0.12);
+  border-color: rgba(225, 48, 108, 0.5);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 30px rgba(225, 48, 108, 0.25);
+  transform: translateY(-3px);
 }
 
 .insta-cta-left {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.2rem;
 }
 
 .insta-profile-avatar {
-  width: 52px;
-  height: 52px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   background: linear-gradient(135deg, #833AB4, #E1306C, #F77737, #FCAF45);
   display: flex;
@@ -72,13 +76,14 @@
   justify-content: center;
   font-size: 1.5rem;
   padding: 3px;
+  box-shadow: 0 4px 15px rgba(225, 48, 108, 0.3);
 }
 
 .insta-profile-avatar span {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: #ffffff;
+  background: var(--bg-dark);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,37 +91,37 @@
 
 .insta-profile-info h4 {
   font-family: var(--font-heading);
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 700;
-  color: var(--blue-dark);
+  color: var(--white);
 }
 
 .insta-profile-info p {
-  font-size: 0.85rem;
-  color: #888;
+  font-size: 0.88rem;
+  color: var(--text-muted);
   font-weight: 500;
 }
 
 .insta-follow-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.8rem 1.8rem;
+  gap: 0.65rem;
+  padding: 0.85rem 2rem;
   background: linear-gradient(135deg, #833AB4, #E1306C, #F77737);
   color: #ffffff;
   font-family: var(--font-heading);
-  font-weight: 700;
+  font-weight: 800;
   font-size: 0.95rem;
   border-radius: 100px;
   text-decoration: none;
-  box-shadow: 0 6px 20px rgba(225, 48, 108, 0.35);
+  box-shadow: 0 6px 20px rgba(225, 48, 108, 0.4);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
 }
 
 .insta-follow-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(225, 48, 108, 0.5);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(225, 48, 108, 0.6);
   color: #ffffff;
 }
 
@@ -128,10 +133,10 @@
 @media (max-width: 768px) {
   .insta-cta-strip {
     flex-direction: column;
-    gap: 1.2rem;
-    border-radius: 24px;
+    gap: 1.4rem;
+    border-radius: 28px;
     text-align: center;
-    padding: 1.5rem;
+    padding: 1.8rem 1.5rem;
   }
 
   .insta-cta-left {
@@ -144,3 +149,4 @@
     justify-content: center;
   }
 }
+

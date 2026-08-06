@@ -2,7 +2,7 @@
   position: relative;
   padding: 6rem 0;
   overflow: hidden;
-  background: #fdfce5; /* Light cream/yellow background */
+  background: var(--bg-darker);
 }
 
 .menu-section__inner {
@@ -13,19 +13,20 @@
 .menu-section__label {
   display: inline-block;
   font-family: var(--font-heading);
-  font-weight: 800;
+  font-weight: 700;
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: var(--blue-dark);
+  color: var(--yellow);
   margin-bottom: 0.75rem;
-  padding: 0.4rem 1rem;
-  background: rgba(26, 45, 109, 0.1);
+  padding: 0.45rem 1.2rem;
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.25);
   border-radius: 100px;
 }
 
 .menu-section__header {
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
 }
 
 /* ── Tabs ── */
@@ -33,7 +34,7 @@
   display: flex;
   justify-content: center;
   gap: 0.8rem;
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
   flex-wrap: wrap;
 }
 
@@ -41,43 +42,46 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.7rem 1.8rem;
-  border: 2px solid rgba(26, 45, 109, 0.1);
+  padding: 0.75rem 1.8rem;
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
   border-radius: 100px;
-  background: #ffffff;
-  color: var(--blue-dark);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.85);
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 0.95rem;
   cursor: pointer;
-  transition: var(--transition);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .menu-tab:hover {
-  border-color: var(--yellow);
-  background: #ffffff;
-  color: var(--blue-dark);
+  border-color: rgba(255, 215, 0, 0.4);
+  background: rgba(255, 215, 0, 0.1);
+  color: var(--yellow);
   transform: translateY(-2px);
 }
 
 .menu-tab--active {
-  background: var(--yellow);
+  background: linear-gradient(135deg, var(--yellow), #ff9f43);
   border-color: var(--yellow);
   color: var(--blue-dark);
+  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
 }
 
 .menu-tab--active:hover {
-  background: var(--yellow);
+  background: linear-gradient(135deg, var(--yellow), #ff9f43);
   border-color: var(--yellow);
   color: var(--blue-dark);
+  transform: translateY(-2px);
 }
 
 /* ── Menu Grid ── */
 .menu-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 1.8rem;
   margin-bottom: 2.5rem;
 }
 
@@ -86,63 +90,102 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 1.5rem 1rem;
-  background: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-  transition: var(--transition);
-  cursor: default;
+  padding: 1.8rem 1.2rem;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
   position: relative;
+  overflow: hidden;
+}
+
+.menu-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--yellow), var(--red));
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .menu-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  transform: translateY(-8px) scale(1.02);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 215, 0, 0.35);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 215, 0, 0.15);
+}
+
+.menu-card:hover::before {
+  opacity: 1;
 }
 
 .menu-card__tag-pill {
-  background: #ffb703;
+  background: linear-gradient(135deg, var(--yellow), #ff9f43);
   color: var(--blue-dark);
   font-family: var(--font-heading);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 800;
   text-transform: uppercase;
-  padding: 0.35rem 0.8rem;
+  padding: 0.35rem 0.9rem;
   border-radius: 100px;
   margin-bottom: 1rem;
   letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
 }
 
 .menu-card__img {
-  width: 120px;
-  height: 120px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 1rem;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
-  border: 4px solid #ffffff;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  border: 3px solid rgba(255, 215, 0, 0.3);
+  transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+.menu-card:hover .menu-card__img {
+  transform: scale(1.08) rotate(5deg);
+  border-color: var(--yellow);
+  box-shadow: 0 12px 30px rgba(255, 215, 0, 0.35);
 }
 
 .menu-card__name {
   font-family: var(--font-heading);
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: var(--blue-dark);
-  margin-bottom: 0.8rem;
-  min-height: 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 1rem;
+  min-height: 2.6rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  line-height: 1.3;
 }
 
 .menu-card__price-pill {
-  background: #f0f4f8;
-  color: var(--blue-dark);
+  background: rgba(255, 215, 0, 0.15);
+  color: var(--yellow);
+  border: 1px solid rgba(255, 215, 0, 0.3);
   font-family: var(--font-heading);
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 800;
-  padding: 0.4rem 1.2rem;
+  padding: 0.45rem 1.3rem;
   border-radius: 100px;
+  transition: var(--transition);
+}
+
+.menu-card:hover .menu-card__price-pill {
+  background: var(--yellow);
+  color: var(--blue-dark);
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
 }
 
 /* ── Responsive ── */
@@ -153,7 +196,7 @@
     padding: 0.4rem 0.5rem 0.8rem;
     gap: 0.6rem;
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Hide scrollbar for Chrome/Firefox/Safari */
+    scrollbar-width: none;
   }
 
   .menu-tabs::-webkit-scrollbar {
@@ -162,33 +205,33 @@
 
   .menu-tab {
     flex: 0 0 auto;
-    padding: 0.6rem 1.4rem;
+    padding: 0.65rem 1.4rem;
     font-size: 0.9rem;
     white-space: nowrap;
   }
 
   .menu-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: 1.2rem;
   }
 
   .menu-card {
-    padding: 1.2rem 0.8rem;
+    padding: 1.4rem 0.9rem;
   }
 
   .menu-card__img {
-    width: 100px;
-    height: 100px;
+    width: 105px;
+    height: 105px;
   }
 
   .menu-card__name {
-    font-size: 0.95rem;
-    min-height: 2.2rem;
+    font-size: 0.98rem;
+    min-height: 2.3rem;
   }
 
   .menu-card__price-pill {
-    font-size: 0.88rem;
-    padding: 0.35rem 1rem;
+    font-size: 0.9rem;
+    padding: 0.38rem 1.1rem;
   }
 }
 
@@ -197,3 +240,4 @@
     grid-template-columns: 1fr;
   }
 }
+

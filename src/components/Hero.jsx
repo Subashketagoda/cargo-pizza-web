@@ -74,7 +74,7 @@ const Hero = () => {
       {/* Wavy bottom divider */}
       <div className="hero__wave">
         <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <path d="M0 40C360 80 720 0 1080 40C1260 60 1380 80 1440 80V100H0V40Z" fill="#FFD700"/>
+          <path d="M0 40C360 80 720 0 1080 40C1260 60 1380 80 1440 80V100H0V40Z" fill="#0b0e17"/>
         </svg>
       </div>
     </section>
