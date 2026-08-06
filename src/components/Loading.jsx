@@ -171,6 +171,7 @@ const Loading = ({ onLoadingComplete }) => {
         <div className="premium-loader__glass-card start-card">
           <div className="premium-loader__logo-wrapper">
             <div className="logo-ring-outer"></div>
+            <div className="logo-ring-pulse"></div>
             <img src={logo} alt="Cargo Pizzeria" className="premium-loader__logo" />
           </div>
 
@@ -181,25 +182,28 @@ const Loading = ({ onLoadingComplete }) => {
 
           <button className="premium-start-btn" onClick={handleStartBake}>
             <span className="btn-glow"></span>
-            <span className="btn-text">🔥 START TO BAKE 🍕</span>
+            <span className="btn-text">ENTER CARGO PIZZERIA</span>
           </button>
-          <span className="start-subtext">Tap to ignite oven & enter</span>
+          <span className="start-subtext">Click to initialize experience</span>
         </div>
       ) : (
         <div className="premium-loader__glass-card progress-card">
-          {/* Logo with Pizza Ring & Orbiting Ingredients */}
+          {/* Logo with Dual Concentric Spinning Rings */}
           <div className="premium-loader__logo-wrapper">
             <svg className="pizza-loading-svg" viewBox="0 0 200 200">
               <circle className="ring-track" cx="100" cy="100" r="88" />
               <circle className="ring-fill" cx="100" cy="100" r="88" />
             </svg>
+            <svg className="pizza-loading-svg-inner" viewBox="0 0 200 200">
+              <circle className="ring-fill-inner" cx="100" cy="100" r="70" />
+            </svg>
 
-            {/* Orbiting Pizza Ingredients */}
+            {/* Elegant Orbiting Gold Accent Nodes */}
             <div className="orbit-container">
-              <span className="orbit-item item-cheese" title="Mozzarella">🧀</span>
-              <span className="orbit-item item-pizza" title="Pepperoni">🍕</span>
-              <span className="orbit-item item-basil" title="Fresh Basil">🌿</span>
-              <span className="orbit-item item-sparkle" title="Flame Sparkle">✨</span>
+              <span className="orbit-node node-1"></span>
+              <span className="orbit-node node-2"></span>
+              <span className="orbit-node node-3"></span>
+              <span className="orbit-node node-4"></span>
             </div>
 
             <div className="logo-ambient-yellow"></div>
@@ -209,14 +213,14 @@ const Loading = ({ onLoadingComplete }) => {
           {/* Animated Loading Text */}
           <div className="premium-loader__text-section">
             <h2 className="loading-main-text">
-              Preparing Your Order<span className="typing-dots">{dotsCycle[dotIndex]}</span>
+              PREPARING YOUR EXPERIENCE<span className="typing-dots">{dotsCycle[dotIndex]}</span>
             </h2>
             <p className="loading-sub-text">
-              Crafting Fresh Pizza with Love <span className="pizza-emoji">🍕</span>
+              Crafting Authentic Woodfired Artisanal Pizza
             </p>
           </div>
 
-          {/* Rounded 280px Premium Progress Bar */}
+          {/* Rounded Pro Progress Bar */}
           <div className="premium-progress-container">
             <div className="premium-progress-track">
               <div
@@ -227,7 +231,7 @@ const Loading = ({ onLoadingComplete }) => {
               </div>
             </div>
             <div className="progress-percentage-row">
-              <span className="progress-label">BAKING IN PROGRESS</span>
+              <span className="progress-label">HEATING WOODFIRED OVEN</span>
               <span className="progress-value">{progress}%</span>
             </div>
           </div>
