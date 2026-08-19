@@ -1,0 +1,194 @@
+/* ── Backdrop ── */
+.promo-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 27, 71, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 10000;
+  animation: backdropIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.promo-backdrop--closing {
+  animation: backdropOut 0.35s ease forwards;
+}
+
+@keyframes backdropIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes backdropOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* ── Popup Container ── */
+.promo-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.85);
+  z-index: 10001;
+  width: min(90vw, 420px);
+  background: var(--blue-dark, #0f1b47);
+  border: 3px solid var(--yellow, #FFD700);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.65), 0 0 35px rgba(255, 215, 0, 0.35);
+  animation: popupIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.promo-popup--closing {
+  animation: popupOut 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes popupIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.75);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes popupOut {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.85);
+  }
+}
+
+/* ── Header Badge ── */
+.promo-popup__header-badge {
+  background: linear-gradient(135deg, var(--yellow, #FFD700), var(--yellow-dark, #F5C400));
+  color: var(--blue-dark, #0f1b47);
+  font-family: var(--font-heading, 'Fredoka', sans-serif);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0.6rem 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ── Close Button ── */
+.promo-popup__close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(15, 27, 71, 0.85);
+  border: 1.5px solid var(--yellow, #FFD700);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--yellow, #FFD700);
+  z-index: 10;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.promo-popup__close:hover {
+  background: var(--red, #e63946);
+  color: #fff;
+  border-color: #fff;
+  transform: scale(1.1) rotate(90deg);
+}
+
+/* ── Image Container ── */
+.promo-popup__img-wrap {
+  width: 100%;
+  line-height: 0;
+  background: #000;
+}
+
+.promo-popup__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-bottom: 2px solid rgba(255, 215, 0, 0.2);
+}
+
+/* ── Action Buttons ── */
+.promo-popup__actions {
+  padding: 1.2rem 1.5rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  background: var(--blue-dark, #0f1b47);
+  align-items: center;
+}
+
+.promo-popup__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  border-radius: 100px;
+  font-family: var(--font-heading, 'Fredoka', sans-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.5px;
+}
+
+.promo-popup__btn--call {
+  background: linear-gradient(135deg, var(--red, #e63946), var(--red-dark, #c1282e));
+  color: #ffffff;
+  box-shadow: 0 6px 20px rgba(230, 57, 70, 0.5);
+}
+
+.promo-popup__btn--call:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(230, 57, 70, 0.7);
+  color: #ffffff;
+}
+
+.promo-popup__btn--close-text {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.2rem;
+
+}
+
+.promo-popup__btn--close-text:hover {
+  color: var(--yellow, #FFD700);
+}
+
+/* ── Mobile Optimization ── */
+@media (max-width: 480px) {
+  .promo-popup {
+    width: 92vw;
+    border-radius: 22px;
+    border-width: 2.5px;
+  }
+
+  .promo-popup__actions {
+    padding: 1rem 1.2rem 1.2rem;
+  }
+
+  .promo-popup__btn--call {
+    font-size: 0.95rem;
+    padding: 0.8rem 1.2rem;
+  }
+}
