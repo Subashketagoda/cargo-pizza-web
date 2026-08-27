@@ -1,150 +1,201 @@
-.combos-section {
-  padding: 6rem 0;
-  background: linear-gradient(180deg, #fdfce5 0%, #fff7d6 100%);
-  position: relative;
-}
+/* ==========================================================================
+   Cargo Pizzeria — Buy One Get One Free Offer Section
+   ========================================================================== */
 
-.combos-header {
-  margin-bottom: 3.5rem;
-}
-
-.combos-badge {
-  display: inline-block;
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: var(--red);
-  margin-bottom: 0.75rem;
-  padding: 0.4rem 1.2rem;
-  background: rgba(230, 57, 70, 0.1);
-  border-radius: 100px;
-  border: 1px solid rgba(230, 57, 70, 0.2);
-}
-
-.combos-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-}
-
-.combo-card {
-  background: #ffffff;
-  border-radius: 28px;
-  padding: 2.2rem 1.8rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border: 2px solid rgba(15, 27, 71, 0.08);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+.bogo-section {
+  padding: 5.5rem 0 6.5rem;
+  background: linear-gradient(180deg, #0a1128 0%, #0f1b47 50%, #070d1e 100%);
   position: relative;
   overflow: hidden;
 }
 
-.combo-card::before {
+.bogo-card {
+  background: linear-gradient(135deg, #FFD700 0%, #F5C400 100%);
+  border-radius: 32px;
+  padding: 3.5rem 3.5rem;
+  box-shadow: 0 20px 50px rgba(15, 27, 71, 0.12), 0 0 0 3px rgba(255, 255, 255, 0.8);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background subtle ray overlay */
+.bogo-card::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 5px;
-  background: linear-gradient(90deg, var(--red), var(--yellow));
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.3) 0%, transparent 60%);
+  pointer-events: none;
 }
 
-.combo-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 45px rgba(15, 27, 71, 0.12);
-  border-color: var(--yellow);
-}
-
-.combo-card:hover::before {
-  opacity: 1;
-}
-
-.combo-card__top {
+.bogo-card__inner {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.2rem;
+  justify-content: space-between;
+  gap: 3.5rem;
+  position: relative;
+  z-index: 2;
 }
 
-.combo-card__badge {
-  color: #ffffff;
-  font-family: var(--font-heading);
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 1px;
-  padding: 0.35rem 0.9rem;
+/* Left Content */
+.bogo-card__content {
+  flex: 1;
+  max-width: 580px;
+}
+
+.bogo-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1.2rem;
+  background: #0f1b47;
+  color: #FFD700;
   border-radius: 100px;
-  text-transform: uppercase;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-.combo-card__icon {
-  font-size: 2.5rem;
-}
-
-.combo-card__title {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 0.78rem;
   font-weight: 800;
-  color: var(--blue-dark);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 4px 15px rgba(15, 27, 71, 0.2);
+}
+
+.bogo-tag__fire {
+  font-size: 0.95rem;
+}
+
+.bogo-eyebrow {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0f1b47;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   margin-bottom: 0.6rem;
 }
 
-.combo-card__desc {
-  color: #666;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  flex: 1;
+.bogo-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 4.5vw, 4.5rem);
+  line-height: 0.95;
+  color: #e63946;
+  margin-bottom: 1.2rem;
+  text-shadow: 0 2px 10px rgba(230, 57, 70, 0.2);
+  letter-spacing: 1px;
 }
 
-.combo-card__pricing {
-  display: flex;
-  align-items: baseline;
-  gap: 0.8rem;
-  margin-bottom: 1.5rem;
+.bogo-title__highlight {
+  color: #0f1b47;
+  background: #FFFFFF;
+  padding: 0.2rem 0.8rem;
+  border-radius: 12px;
+  display: inline-block;
+  margin-top: 0.3rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
-.combo-card__price {
+.bogo-subtitle {
   font-family: var(--font-heading);
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   font-weight: 800;
-  color: var(--red);
+  color: #0f1b47;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
 }
 
-.combo-card__old-price {
+.bogo-desc {
+  font-family: var(--font-body);
   font-size: 1rem;
-  color: #aaa;
-  text-decoration: line-through;
-  font-weight: 500;
+  color: rgba(15, 27, 71, 0.85);
+  line-height: 1.6;
+  margin-bottom: 2rem;
 }
 
-.combo-card__btn {
+.bogo-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.bogo-btn {
+  padding: 1.1rem 2.4rem;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 25px rgba(230, 57, 70, 0.4);
+}
+
+.bogo-btn:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 14px 35px rgba(230, 57, 70, 0.55);
+}
+
+/* Right Poster Visual */
+.bogo-card__visual {
+  flex: 0 0 380px;
+  display: flex;
+  justify-content: center;
+}
+
+.bogo-poster-frame {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(15, 27, 71, 0.25), 0 0 0 6px rgba(255, 255, 255, 0.6);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.bogo-poster-frame:hover {
+  transform: rotate(-1.5deg) scale(1.03);
+}
+
+.bogo-poster-img {
   width: 100%;
-  padding: 0.85rem 1.2rem;
-  font-size: 0.95rem;
-  border-radius: 100px;
+  max-width: 380px;
+  height: auto;
+  display: block;
+  object-fit: cover;
 }
 
 /* Responsive */
 @media (max-width: 992px) {
-  .combos-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .bogo-card__inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 2.5rem;
+  }
+
+  .bogo-card {
+    padding: 2.5rem 2rem;
+  }
+
+  .bogo-card__content {
+    max-width: 100%;
+  }
+
+  .bogo-actions {
+    justify-content: center;
+  }
+
+  .bogo-card__visual {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 380px;
   }
 }
 
-@media (max-width: 600px) {
-  .combos-grid {
-    grid-template-columns: 1fr;
+@media (max-width: 480px) {
+  .bogo-card {
+    padding: 2rem 1.4rem;
+    border-radius: 24px;
   }
-  
-  .combo-card {
-    padding: 1.8rem 1.4rem;
+
+  .bogo-title {
+    font-size: 2.5rem;
+  }
+
+  .bogo-btn {
+    width: 100%;
+    padding: 0.95rem 1.4rem;
+    font-size: 0.9rem;
   }
 }

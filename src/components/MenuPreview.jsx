@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './MenuPreview.css';
+
 const menuItems = [
   { name: 'Veggie Delight', price: '1,900', category: 'pizzas', tag: 'VEGGIE DECK', vegetarian: true },
   { name: 'Margherita', price: '2,000', category: 'pizzas', tag: 'VEGGIE DECK', vegetarian: true },
@@ -42,12 +43,23 @@ const MenuPreview = () => {
     <section id="menu" className="menu-section">
       <div className="menu-section__bg"></div>
 
+      {/* Elegant Hero to Menu Scroll Divider */}
+      <div className="menu-section__divider">
+        <div className="menu-section__divider-line"></div>
+        <div className="menu-section__divider-badge">
+          <span className="divider-badge__dot"></span>
+          CHOOSE YOUR FAVORITE
+          <span className="divider-badge__dot"></span>
+        </div>
+        <div className="menu-section__divider-line"></div>
+      </div>
+
       <div className="container menu-section__inner">
         {/* Header */}
         <div className="text-center menu-section__header">
-          <span className="menu-section__label">Our Menu</span>
-          <h2 className="section-title" style={{color: 'var(--blue-dark)'}}>Discover Our <span style={{color: '#ffb703'}}>Menu</span></h2>
-          <p className="section-subtitle" style={{color: 'rgba(26,45,109,0.6)'}}>Every item is handcrafted with premium ingredients and made fresh to order.</p>
+          <span className="menu-section__label">HANDCRAFTED CARGO MENU</span>
+          <h2 className="section-title" style={{color: 'var(--blue-dark)'}}>Discover Our <span style={{color: 'var(--red)'}}>Menu</span></h2>
+          <p className="section-subtitle" style={{color: '#0f1b47'}}>Every item is handcrafted with premium ingredients and made fresh to order.</p>
         </div>
 
         {/* Category Tabs */}
@@ -72,18 +84,22 @@ const MenuPreview = () => {
           ) : (
             filteredItems.map((item, i) => (
               <div key={item.id || i} className="menu-card">
-                <div className="menu-card__topline">
-                  <div className="menu-card__details">
+                <div className="menu-card__content">
+                  <div className="menu-card__header">
+                    {item.tag && <span className="menu-card__tag">{item.tag}</span>}
                     <h4 className="menu-card__name">
-                      {item.vegetarian && <span className="menu-card__veg-badge" aria-label="Vegetarian">V</span>}
+                      {item.vegetarian && <span className="menu-card__veg-badge" title="Vegetarian" aria-label="Vegetarian">V</span>}
                       {item.name}
                       {item.category === 'pizzas' && <span className="menu-card__size">12&quot;</span>}
                     </h4>
                     {item.description && <p className="menu-card__description">{item.description}</p>}
                   </div>
-                  <div className="menu-card__prices">
-                    {item.size9 ? <span><b>9&quot;</b> {item.size9}</span> : <span>Rs. {item.price}</span>}
-                    {item.size14 && <span><b>14&quot;</b> {item.size14}</span>}
+                  
+                  <div className="menu-card__action-row">
+                    <div className="menu-card__prices">
+                      {item.size9 ? <span><b>9&quot;</b> {item.size9}</span> : <span className="menu-card__price-val">Rs. {item.price}</span>}
+                      {item.size14 && <span><b>14&quot;</b> {item.size14}</span>}
+                    </div>
                   </div>
                 </div>
               </div>

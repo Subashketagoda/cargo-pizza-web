@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  /* Primary Brand Colors from Menu */
+  /* Official Cargo Pizza brand tokens (preserved exactly) */
   --yellow: #FFD700;
   --yellow-light: #FFF44F;
   --yellow-dark: #F5C400;
@@ -14,11 +14,21 @@
   --off-white: #FFD700;
   --dark: #111111;
 
+  /* Semantic aliases using the existing Cargo palette */
+  --primary: var(--yellow);
+  --secondary: var(--blue);
+  --background: var(--off-white);
+  --surface: var(--white);
+  --text: var(--dark);
+  --muted: #666666;
+  --border: rgba(15, 27, 71, 0.08);
+  --accent: var(--red);
+
   /* Typography */
   --font-display: 'Bangers', cursive;
   --font-heading: 'Fredoka', sans-serif;
   --font-body: 'Inter', sans-serif;
-  
+
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
   --shadow-md: 0 8px 24px rgba(0,0,0,0.12);
@@ -37,7 +47,7 @@ html {
 }
 
 body {
-  background-color: var(--off-white);
+  background: linear-gradient(180deg, rgba(255, 215, 0, 0.20) 0%, rgba(255, 255, 255, 0.96) 26%, rgba(255, 255, 255, 1) 100%);
   color: var(--dark);
   font-family: var(--font-body);
   line-height: 1.6;
@@ -68,7 +78,7 @@ img { max-width: 100%; display: block; }
 }
 
 .section {
-  padding: 6rem 0;
+  padding: clamp(4.5rem, 7vw, 7rem) 0;
 }
 
 .text-center { text-align: center; }

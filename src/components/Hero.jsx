@@ -34,18 +34,23 @@ const Hero = () => {
       <div className="container hero__inner">
         {/* Left: Text Content */}
         <div className="hero__content">
+          <div className="hero__eyebrow">
+            <span className="hero__eyebrow-dot"></span>
+            Freshly made • woodfired • everyday
+          </div>
+
           <div className="hero__badge">
             <span className="hero__badge-dot"></span>
             🍕 #1 Pizza in Town
           </div>
 
           <h1 className="hero__title">
-            It's Not Just A Pizza,<br />
-            <span className="hero__title--accent">An Experience.</span>
+            Your craving.<br />
+            <span className="hero__title--accent">Our pizza.</span>
           </h1>
 
           <p className="hero__desc">
-            Handcrafted with passion, served with love. Fresh dough, premium toppings, unforgettable taste — straight from our woodfire oven to your table.
+            Handcrafted with passion, served with love. Fresh dough, premium toppings, and woodfire flavour that turns every craving into a proper Cargo Pizza moment.
           </p>
 
           <div className="hero__actions">
@@ -57,6 +62,12 @@ const Hero = () => {
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
               <span>Order Now</span>
             </a>
+          </div>
+
+          <div className="hero__scroll" aria-label="Scroll to explore menu">
+            <span>Scroll to explore</span>
+            <div className="hero__scroll-line" aria-hidden="true"></div>
+            <a href="#menu" aria-label="Scroll to menu section">↓</a>
           </div>
 
           {/* Stats strip */}

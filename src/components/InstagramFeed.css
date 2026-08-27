@@ -18,16 +18,16 @@
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: #E1306C;
+  color: var(--red);
   margin-bottom: 0.75rem;
   padding: 0.4rem 1.2rem;
-  background: linear-gradient(135deg, rgba(225, 48, 108, 0.08), rgba(131, 58, 180, 0.08));
-  border: 1px solid rgba(225, 48, 108, 0.2);
+  background: rgba(230, 57, 70, 0.08);
+  border: 1px solid rgba(230, 57, 70, 0.2);
   border-radius: 100px;
 }
 
 .insta-badge svg {
-  stroke: #E1306C;
+  stroke: var(--red);
 }
 
 /* Elfsight Widget Container */
@@ -78,8 +78,8 @@
 }
 
 .insta-cta-strip:hover {
-  border-color: #E1306C;
-  box-shadow: 0 12px 35px rgba(225, 48, 108, 0.12);
+  border-color: var(--yellow);
+  box-shadow: 0 12px 35px rgba(255, 215, 0, 0.12);
 }
 
 .insta-cta-left {
@@ -92,7 +92,7 @@
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #833AB4, #E1306C, #F77737, #FCAF45);
+  background: linear-gradient(135deg, var(--blue-dark), var(--blue), var(--yellow));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -119,7 +119,7 @@
 
 .insta-profile-info p {
   font-size: 0.85rem;
-  color: #888;
+  color: rgba(15, 27, 71, 0.7);
   font-weight: 500;
 }
 
@@ -128,22 +128,22 @@
   align-items: center;
   gap: 0.6rem;
   padding: 0.8rem 1.8rem;
-  background: linear-gradient(135deg, #833AB4, #E1306C, #F77737);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--blue-dark), var(--blue), var(--yellow));
+  color: var(--white);
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 0.95rem;
   border-radius: 100px;
   text-decoration: none;
-  box-shadow: 0 6px 20px rgba(225, 48, 108, 0.35);
+  box-shadow: 0 6px 20px rgba(15, 27, 71, 0.35);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
 }
 
 .insta-follow-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(225, 48, 108, 0.5);
-  color: #ffffff;
+  box-shadow: 0 10px 30px rgba(15, 27, 71, 0.5);
+  color: var(--white);
 }
 
 .insta-follow-btn svg {
@@ -152,6 +152,12 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .insta-header .section-title {
+    font-size: clamp(2.2rem, 7vw, 3.2rem);
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
   .insta-cta-strip {
     flex-direction: column;
     gap: 1.2rem;
@@ -168,5 +174,16 @@
   .insta-follow-btn {
     width: 100%;
     justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .insta-header .section-title {
+    font-size: 2.1rem;
+    line-height: 1.1;
+  }
+  
+  .insta-header .section-subtitle {
+    font-size: 0.95rem;
   }
 }

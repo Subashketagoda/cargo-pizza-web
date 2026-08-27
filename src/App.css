@@ -1,1 +1,8 @@
-/* Empty for now as global styles are in index.css */
+.app {
+  background: linear-gradient(180deg, rgba(255, 215, 0, 0.12) 0%, rgba(255, 255, 255, 0.92) 34%, rgba(255, 255, 255, 0.96) 100%);
+}
+
+main {
+  position: relative;
+}
+

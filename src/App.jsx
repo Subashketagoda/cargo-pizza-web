@@ -21,8 +21,8 @@ const MainSite = ({ isLoading, setIsLoading, isUserInteracted }) => (
     <main>
       <Hero />
       <About audioUnlocked={!isLoading && isUserInteracted} />
-      <MenuPreview />
       <Combos />
+      <MenuPreview />
       <Reviews />
       <InstagramFeed />
     </main>
