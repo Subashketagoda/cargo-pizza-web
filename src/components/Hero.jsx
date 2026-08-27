@@ -44,10 +44,10 @@ const Hero = () => {
             🍕 #1 Pizza in Town
           </div>
 
-          <h1 className="hero__title">
-            Your craving.<br />
-            <span className="hero__title--accent">Our pizza.</span>
-          </h1>
+            <h1 className="hero__title">
+              <span className="hero__title--accent">It's Not Just A Pizza,</span><br />
+              An Experience.
+            </h1>
 
           <p className="hero__desc">
             Handcrafted with passion, served with love. Fresh dough, premium toppings, and woodfire flavour that turns every craving into a proper Cargo Pizza moment.

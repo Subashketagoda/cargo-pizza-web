@@ -142,11 +142,19 @@
 /* Logo */
 .cargo-splash__logo-area {
   margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cargo-splash__logo {
-  width: min(220px, 60vw);
+  width: min(300px, 75vw);
+  max-height: 120px;
   height: auto;
+  object-fit: contain;
+  background: #FFD700;
+  padding: 12px 24px;
+  border-radius: 16px;
   filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.5));
 }
 
