@@ -40,7 +40,7 @@ const MenuPreview = () => {
   const filteredItems = menuItems.filter(item => item.category === activeTab);
 
   return (
-    <section id="menu" className="menu-section" aria-label="Handcrafted Pizza Menu in Sri Jayawardenepura Kotte">
+    <section id="menu" className="menu-section" aria-label="Handcrafted Pizza Menu in Nawala">
       <div className="menu-section__bg"></div>
 
       {/* Elegant Hero to Menu Scroll Divider */}
@@ -59,7 +59,7 @@ const MenuPreview = () => {
         <div className="text-center menu-section__header">
           <span className="menu-section__label">HANDCRAFTED CARGO MENU</span>
           <h2 className="section-title" style={{color: 'var(--blue-dark)'}}>Discover Our <span style={{color: 'var(--red)'}}>Menu</span></h2>
-          <p className="section-subtitle" style={{color: '#0f1b47'}}>Every item is handcrafted with premium ingredients, real mozzarella, and made fresh to order in Sri Jayawardenepura Kotte.</p>
+          <p className="section-subtitle" style={{color: '#0f1b47'}}>Every item is handcrafted with premium ingredients, real mozzarella, and made fresh to order in Nawala.</p>
         </div>
 
         {/* Category Tabs */}

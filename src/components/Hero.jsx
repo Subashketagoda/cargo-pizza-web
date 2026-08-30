@@ -13,7 +13,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className={`hero ${isVisible ? 'hero--visible' : ''}`} ref={heroRef} aria-label="Cargo Pizza - Handcrafted Woodfired Pizza in Sri Jayawardenepura Kotte">
+    <section className={`hero ${isVisible ? 'hero--visible' : ''}`} ref={heroRef} aria-label="Cargo Pizza - Handcrafted Woodfired Pizza in Nawala">
       {/* Background */}
       <div className="hero__bg">
         <img
@@ -43,12 +43,12 @@ const Hero = () => {
         <div className="hero__content">
           <div className="hero__eyebrow">
             <span className="hero__eyebrow-dot"></span>
-            Freshly Made • Woodfired • Every Day in Kotte
+            Freshly Made • Woodfired • Every Day in Nawala
           </div>
 
           <div className="hero__badge">
             <span className="hero__badge-dot"></span>
-            🍕 #1 Woodfired Pizza in Sri Jayawardenepura
+            🍕 #1 Woodfired Pizza in Nawala
           </div>
 
           <h1 className="hero__title">
@@ -57,7 +57,7 @@ const Hero = () => {
           </h1>
 
           <p className="hero__desc">
-            Handcrafted with passion, served with love. Fresh daily dough, real mozzarella, and authentic stone-fired woodfire flavor in Sri Jayawardenepura Kotte. Big Heat, Small Bill!
+            Handcrafted with passion, served with love. Fresh daily dough, real mozzarella, and authentic stone-fired woodfire flavor in Nawala. Big Heat, Small Bill!
           </p>
 
           <div className="hero__actions">
@@ -100,7 +100,7 @@ const Hero = () => {
         <div className="hero__visual">
           <div className="hero__mascot-glow"></div>
           <div className="hero__mascot-wrapper">
-            <img src={mascot} alt="Cargo Pizza Chef Mascot - Best Pizza in Kotte" className="hero__mascot" width="380" height="380" />
+            <img src={mascot} alt="Cargo Pizza Chef Mascot - Best Pizza in Nawala" className="hero__mascot" width="380" height="380" />
           </div>
           {/* Floating price tag */}
           <div className="hero__float hero__float--price">

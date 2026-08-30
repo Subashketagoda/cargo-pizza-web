@@ -5,9 +5,9 @@ const reviewsData = [
   {
     id: 1,
     name: "Nimali Perera",
-    location: "Kotte",
+    location: "Nawala",
     rating: 5,
-    comment: "Best stone-fired pizza in Sri Jayawardenepura Kotte! The crust is insanely crispy and the toppings are so generous and fresh.",
+    comment: "Best stone-fired pizza in Nawala! The crust is insanely crispy and the toppings are so generous and fresh.",
     avatar: "👩‍🍳",
     date: "Verified Customer"
   },

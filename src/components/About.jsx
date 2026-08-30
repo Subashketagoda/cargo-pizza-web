@@ -67,13 +67,13 @@ const About = ({ audioUnlocked }) => {
   };
 
   return (
-    <section id="about" className="about section" aria-label="About Cargo Pizza Kotte">
+    <section id="about" className="about section" aria-label="About Cargo Pizza Nawala">
       <div className="container">
         {/* Section header */}
         <div className="about__header text-center">
           <span className="about__label">About Us</span>
           <h2 className="section-title">Why Choose <span style={{color: 'var(--red)'}}>Cargo?</span></h2>
-          <p className="section-subtitle">We're Sri Jayawardenepura Kotte's premier woodfired pizza destination. Fresh daily dough, bold artisan flavors, and unbeatable value in every slice.</p>
+          <p className="section-subtitle">We're Nawala's premier woodfired pizza destination. Fresh daily dough, bold artisan flavors, and unbeatable value in every slice.</p>
         </div>
 
         {/* Feature cards */}
@@ -105,7 +105,7 @@ const About = ({ audioUnlocked }) => {
           <div className="promo__content">
             <span className="promo__badge">🎉 Visit Our Pizzeria</span>
             <h3 className="promo__title">Come & Enjoy The Experience!</h3>
-            <p className="promo__desc">Walk in, sit back, and enjoy piping hot woodfired pizza right from our stone oven at 422A Nawala Road, Kotte. The ultimate hangout spot for family, friends, and late-night pizza lovers!</p>
+            <p className="promo__desc">Walk in, sit back, and enjoy piping hot woodfired pizza right from our stone oven at 422A Nawala Road, Nawala. The ultimate hangout spot for family, friends, and late-night pizza lovers!</p>
             <div className="promo__options">
               <div className="promo__option">
                 <div className="promo__option-icon-bg">

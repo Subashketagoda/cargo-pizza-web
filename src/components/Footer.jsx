@@ -13,7 +13,7 @@ const Footer = () => {
               <img src={logo} alt="Cargo Pizza Mascot Logo" className="footer__logo" loading="lazy" width="90" height="90" />
               <p className="footer__tagline">Big Heat, Small Bill 🍕🔥</p>
               <p style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.7)', marginTop: '0.5rem', lineHeight: '1.5' }}>
-                Handcrafted woodfired pizzas in Sri Jayawardenepura Kotte. Serving Nawala, Rajagiriya, Battaramulla, and Colombo with 20+ fresh artisan pizzas.
+                Handcrafted woodfired pizzas in Nawala. Serving Nawala, Rajagiriya, Battaramulla, and Colombo with 20+ fresh artisan pizzas.
               </p>
               <div className="footer__socials">
                 <a href="https://www.facebook.com/cargorestaurantbar/" target="_blank" rel="noopener noreferrer" className="footer__social" aria-label="Cargo Pizza on Facebook">
@@ -52,7 +52,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <a href="https://share.google/nEqIZkVHYV0SUUj1M" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
-                      📍 Cargo Pizzeria, 422A Nawala Rd, Sri Jayawardenepura Kotte 10107, Sri Lanka
+                      📍 Cargo Pizzeria, 422A Nawala Rd, Nawala 10107, Sri Lanka
                     </a>
                   </li>
                   <li>
@@ -66,14 +66,14 @@ const Footer = () => {
               {/* Google Maps Embed */}
               <div style={{ marginTop: '1.25rem' }}>
                 <iframe 
-                  src="https://maps.google.com/maps?q=Cargo+Pizzeria,+422A+Nawala+Rd,+Sri+Jayawardenepura+Kotte+10107&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                  src="https://maps.google.com/maps?q=Cargo+Pizzeria,+422A+Nawala+Rd,+Nawala+10107&t=&z=15&ie=UTF8&iwloc=&output=embed" 
                   width="100%" 
                   height="180" 
                   style={{ border: 0, borderRadius: '12px' }} 
                   allowFullScreen="" 
                   loading="lazy" 
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Cargo Pizza Sri Jayawardenepura Kotte Location Map"
+                  title="Cargo Pizza Nawala Location Map"
                 ></iframe>
               </div>
             </div>

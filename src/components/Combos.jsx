@@ -45,7 +45,7 @@ const Combos = () => {
               <div className="bogo-poster-frame">
                 <img
                   src={bogoImg}
-                  alt="Cargo Pizza Buy One Get One Free Pizza Deal in Kotte Colombo - Every Tuesday and Thursday"
+                  alt="Cargo Pizza Buy One Get One Free Pizza Deal in Nawala Colombo - Every Tuesday and Thursday"
                   className="bogo-poster-img"
                   loading="lazy"
                   decoding="async"

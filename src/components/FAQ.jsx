@@ -5,7 +5,7 @@ const faqList = [
   {
     id: 1,
     question: "Where is Cargo Pizza located?",
-    answer: "Cargo Pizza is conveniently located at 422A Nawala Road, Sri Jayawardenepura Kotte 10107, Sri Lanka — easily accessible from Nawala, Rajagiriya, Nugegoda, Battaramulla, and central Colombo.",
+    answer: "Cargo Pizza is conveniently located at 422A Nawala Road, Nawala 10107, Sri Lanka — easily accessible from Nawala, Rajagiriya, Nugegoda, Battaramulla, and central Colombo.",
     tag: "Location"
   },
   {

@@ -15,21 +15,21 @@
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://cargopizzeria.online/food.png</image:loc>
-      <image:title>Cargo Pizza Handcrafted Woodfired Pizzas</image:title>
-      <image:caption>Delicious artisanal stone-fired pizza in Sri Jayawardenepura Kotte</image:caption>
-      <image:geo_location>Sri Jayawardenepura Kotte, Sri Lanka</image:geo_location>
+      <image:title>Cargo Pizza Handcrafted Woodfired Pizzas Nawala</image:title>
+      <image:caption>Delicious artisanal stone-fired pizza in Nawala Colombo</image:caption>
+      <image:geo_location>Nawala, Colombo, Sri Lanka</image:geo_location>
     </image:image>
     <image:image>
       <image:loc>https://cargopizzeria.online/hero.png</image:loc>
-      <image:title>Cargo Pizza Woodfired Oven &amp; Dining Vibe</image:title>
-      <image:caption>Freshly made stone oven pizza everyday at Cargo Pizzeria</image:caption>
-      <image:geo_location>Sri Jayawardenepura Kotte, Sri Lanka</image:geo_location>
+      <image:title>Cargo Pizza Woodfired Oven &amp; Dining Vibe Nawala</image:title>
+      <image:caption>Freshly made stone oven pizza everyday at Cargo Pizzeria Nawala</image:caption>
+      <image:geo_location>Nawala, Colombo, Sri Lanka</image:geo_location>
     </image:image>
     <image:image>
       <image:loc>https://cargopizzeria.online/outdoor.png</image:loc>
-      <image:title>Cargo Pizza Outdoor Dining Experience</image:title>
-      <image:caption>Outdoor and dine-in seating at Cargo Pizzeria Kotte</image:caption>
-      <image:geo_location>Sri Jayawardenepura Kotte, Sri Lanka</image:geo_location>
+      <image:title>Cargo Pizza Outdoor Dining Experience Nawala</image:title>
+      <image:caption>Outdoor and dine-in seating at Cargo Pizzeria Nawala</image:caption>
+      <image:geo_location>Nawala, Colombo, Sri Lanka</image:geo_location>
     </image:image>
     <image:image>
       <image:loc>https://cargopizzeria.online/favicon.png</image:loc>

@@ -118,7 +118,7 @@ const Loading = ({ onLoadingComplete }) => {
               IT'S NOT JUST A PIZZA,<br />
               <span>AN EXPERIENCE.</span>
             </h2>
-            <p className="cargo-splash__sub">Sri Jayawardenepura Kotte's Favorite Pizza</p>
+            <p className="cargo-splash__sub">Nawala's Favorite Woodfired Pizza</p>
           </div>
 
           {/* Glass Card with Enter Cargo Button */}

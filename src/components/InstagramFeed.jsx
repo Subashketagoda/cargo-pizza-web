@@ -57,7 +57,7 @@ const InstagramFeed = () => {
             </div>
             <div className="insta-profile-info">
               <h4>@cargopizzeria</h4>
-              <p>Cargo Pizzeria • Sri Jayawardenepura Kotte</p>
+              <p>Cargo Pizzeria • Nawala</p>
             </div>
           </div>
           <a
