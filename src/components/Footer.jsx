@@ -10,11 +10,18 @@ const Footer = () => {
           <div className="footer-grid">
             {/* Brand */}
             <div className="footer-col footer-col--brand">
-              <img src={logo} alt="Cargo Pizza Mascot Logo" className="footer__logo" loading="lazy" width="90" height="90" />
-              <p className="footer__tagline">Big Heat, Small Bill 🍕🔥</p>
-              <p style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.7)', marginTop: '0.5rem', lineHeight: '1.5' }}>
-                Handcrafted woodfired pizzas in Nawala. Serving Nawala, Rajagiriya, Battaramulla, and Colombo with 20+ fresh artisan pizzas.
+              <div className="footer-logo-wrap">
+                <img src={logo} alt="Cargo Pizza Mascot Logo" className="footer__logo" loading="lazy" width="90" height="90" />
+                <div>
+                  <h3 className="footer__brand-title">CARGO PIZZERIA</h3>
+                  <p className="footer__tagline">Big Heat, Small Bill 🍕🔥</p>
+                </div>
+              </div>
+              
+              <p style={{ fontSize: '0.9rem', color: '#94a3b8', marginTop: '0.8rem', lineHeight: '1.6' }}>
+                Nawala's premier artisan woodfired pizzeria. Serving Nawala, Rajagiriya, Battaramulla, and Colombo with 20+ fresh stone-oven pizzas daily.
               </p>
+
               <div className="footer__socials">
                 <a href="https://www.facebook.com/cargorestaurantbar/" target="_blank" rel="noopener noreferrer" className="footer__social" aria-label="Cargo Pizza on Facebook">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
@@ -34,7 +41,8 @@ const Footer = () => {
               <ul>
                 <li><a href="#about">About Us</a></li>
                 <li><a href="#menu">Our Menu</a></li>
-                <li><a href="#combos">Weekly Deals</a></li>
+                <li><a href="#combos">Weekly BOGO Deals</a></li>
+                <li><a href="#instagram">Instagram Feed</a></li>
                 <li><a href="#faq">FAQ</a></li>
                 <li><a href="#location">Location & Contact</a></li>
               </ul>
@@ -46,18 +54,18 @@ const Footer = () => {
               <address style={{ fontStyle: 'normal' }}>
                 <ul>
                   <li>
-                    <a href="tel:0778817742" style={{ color: 'inherit' }}>
+                    <a href="tel:0778817742" style={{ color: 'inherit', fontWeight: '700' }}>
                       📞 077 881 77 42
                     </a>
                   </li>
                   <li>
                     <a href="https://share.google/nEqIZkVHYV0SUUj1M" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
-                      📍 Cargo Pizzeria, 422A Nawala Rd, Nawala 10107, Sri Lanka
+                      📍 422A Nawala Rd, Nawala 10107, Sri Lanka
                     </a>
                   </li>
                   <li>
-                    <a href="mailto:info@cargorestaurant.com.au" style={{ color: 'inherit' }}>
-                      📧 info@cargorestaurant.com.au
+                    <a href="mailto:info@cargopizzeria.online" style={{ color: 'inherit' }}>
+                      📧 info@cargopizzeria.online
                     </a>
                   </li>
                 </ul>
@@ -68,8 +76,8 @@ const Footer = () => {
                 <iframe 
                   src="https://maps.google.com/maps?q=Cargo+Pizzeria,+422A+Nawala+Rd,+Nawala+10107&t=&z=15&ie=UTF8&iwloc=&output=embed" 
                   width="100%" 
-                  height="180" 
-                  style={{ border: 0, borderRadius: '12px' }} 
+                  height="160" 
+                  style={{ border: '1px solid rgba(255, 215, 0, 0.3)', borderRadius: '14px' }} 
                   allowFullScreen="" 
                   loading="lazy" 
                   referrerPolicy="no-referrer-when-downgrade"
@@ -85,8 +93,14 @@ const Footer = () => {
                 <li><strong>Mon - Fri:</strong> 4.00 PM - 12.00 AM</li>
                 <li><strong>Sat - Sun:</strong> 12.00 PM - 12.00 AM</li>
               </ul>
-              <div style={{ marginTop: '1.25rem', padding: '0.75rem', background: 'rgba(255,215,0,0.1)', borderRadius: '10px', border: '1px solid rgba(255,215,0,0.25)' }}>
-                <p style={{ fontSize: '0.85rem', color: 'var(--yellow)', margin: 0, fontWeight: '600' }}>
+
+              <div className="footer-status-pill">
+                <span className="status-indicator"></span>
+                <span>Dine-In & Takeaway Available</span>
+              </div>
+
+              <div style={{ marginTop: '1rem', padding: '0.85rem', background: 'rgba(255,215,0,0.12)', borderRadius: '12px', border: '1px solid rgba(255,215,0,0.35)' }}>
+                <p style={{ fontSize: '0.85rem', color: 'var(--yellow)', margin: 0, fontWeight: '700' }}>
                   🔥 Buy 1 Get 1 Free: Every Tue & Thu
                 </p>
               </div>
@@ -98,7 +112,7 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="footer__bottom">
         <div className="container">
-          <p>&copy; {new Date().getFullYear()} Cargo Restaurant. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Cargo Pizzeria Nawala. All rights reserved.</p>
         </div>
       </div>
     </footer>
