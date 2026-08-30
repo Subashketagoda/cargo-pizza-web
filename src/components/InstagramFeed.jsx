@@ -120,14 +120,14 @@ const InstagramFeed = () => {
               <div className="insta-card__media">
                 {post.type === 'video' ? (
                   <div className="insta-video-wrapper">
-                    <video
-                      src={post.src}
-                      muted
-                      loop
-                      autoPlay
-                      playsInline
-                      className="insta-card__video"
-                      aria-label="Cargo Pizza Stone Oven Video"
+                    <img
+                      src={realOvenFire}
+                      alt={`Cargo Pizzeria Instagram Reel - ${post.title}`}
+                      className="insta-card__img"
+                      loading="lazy"
+                      decoding="async"
+                      width="400"
+                      height="400"
                     />
                     <div className="insta-card__video-badge">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
@@ -143,6 +143,8 @@ const InstagramFeed = () => {
                     className="insta-card__img"
                     loading="lazy"
                     decoding="async"
+                    width="400"
+                    height="400"
                   />
                 )}
 
@@ -238,6 +240,9 @@ const InstagramFeed = () => {
                         src={selectedPost.src}
                         controls
                         autoPlay
+                        muted
+                        playsInline
+                        preload="auto"
                         className="insta-modal-video-player"
                       />
                     </div>

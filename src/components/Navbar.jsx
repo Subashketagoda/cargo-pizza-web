@@ -30,12 +30,12 @@ const Navbar = () => {
     <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`} aria-label="Main navigation">
       <div className="container nav-container">
         <a href="/" className="nav-logo" aria-label="Cargo Pizza - Go to homepage">
-          <img src={logo} alt="Cargo Pizza Logo" className="nav-logo__img" />
+          <img src={logo} alt="Cargo Pizza Logo" className="nav-logo__img" width="160" height="50" decoding="async" />
         </a>
 
         <ul className={`nav-links ${menuOpen ? 'nav-links--open' : ''}`}>
           <div className="nav-mobile-header">
-            <img src={logo} alt="Cargo Pizza Logo" className="nav-mobile-logo" />
+            <img src={logo} alt="Cargo Pizza Logo" className="nav-mobile-logo" width="140" height="44" decoding="async" />
           </div>
 
           <li><a href="#about" onClick={() => setMenuOpen(false)}>About Us</a></li>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './About.css';
 import promoVideo from '../assets/promo-video.mp4';
 import realHeartPizza from '../assets/real-heart-pizza.jpg';
@@ -7,8 +7,68 @@ import realOvenFire from '../assets/real-oven-fire.jpg';
 import realTakeawayBoxes from '../assets/real-takeaway-boxes.jpg';
 
 const About = () => {
+  const sectionRef = useRef(null);
+  const videoRef = useRef(null);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+
+  // Lazy load video only when user scrolls near About section
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoadVideo(true);
+        }
+      },
+      { rootMargin: '250px' }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Bulletproof autoplay once video is loaded
+  useEffect(() => {
+    if (!shouldLoadVideo) return;
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.defaultMuted = true;
+    video.muted = true;
+    video.playsInline = true;
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
+
+    const playVideo = () => {
+      if (video && video.paused) {
+        video.play().catch(() => {});
+      }
+    };
+
+    playVideo();
+
+    const handleFirstInteraction = () => {
+      playVideo();
+      window.removeEventListener('touchstart', handleFirstInteraction);
+      window.removeEventListener('click', handleFirstInteraction);
+      window.removeEventListener('scroll', handleFirstInteraction);
+    };
+
+    window.addEventListener('touchstart', handleFirstInteraction, { once: true, passive: true });
+    window.addEventListener('click', handleFirstInteraction, { once: true, passive: true });
+    window.addEventListener('scroll', handleFirstInteraction, { once: true, passive: true });
+
+    return () => {
+      window.removeEventListener('touchstart', handleFirstInteraction);
+      window.removeEventListener('click', handleFirstInteraction);
+      window.removeEventListener('scroll', handleFirstInteraction);
+    };
+  }, [shouldLoadVideo]);
+
   return (
-    <section id="about" className="about section" aria-label="About Cargo Pizza Nawala">
+    <section id="about" className="about section" ref={sectionRef} aria-label="About Cargo Pizza Nawala">
       <div className="container">
         {/* Section header */}
         <div className="about__header text-center">
@@ -44,7 +104,7 @@ const About = () => {
         {/* Real Oven Craftsmanship Photo Strip */}
         <div className="about__gallery-strip">
           <div className="about__gallery-item">
-            <img src={realHeartPizza} alt="Handcrafted Heart Pizza with Cargo Sign" loading="lazy" />
+            <img src={realHeartPizza} alt="Handcrafted Heart Pizza with Cargo Sign" loading="lazy" decoding="async" width="400" height="300" />
             <div className="about__gallery-caption">
               <span>Heart-Shaped Pizza</span>
               <p>Special artisan crust baked under neon lights</p>
@@ -52,7 +112,7 @@ const About = () => {
           </div>
 
           <div className="about__gallery-item">
-            <img src={realCheesePull} alt="Irresistible 100% Mozzarella Cheese Pull" loading="lazy" />
+            <img src={realCheesePull} alt="Irresistible 100% Mozzarella Cheese Pull" loading="lazy" decoding="async" width="400" height="300" />
             <div className="about__gallery-caption">
               <span>100% Mozzarella Pull</span>
               <p>Thick stringy cheese on hot artisan slice</p>
@@ -60,7 +120,7 @@ const About = () => {
           </div>
 
           <div className="about__gallery-item">
-            <img src={realOvenFire} alt="Real Hardwood Woodfire Pizza Baking" loading="lazy" />
+            <img src={realOvenFire} alt="Real Hardwood Woodfire Pizza Baking" loading="lazy" decoding="async" width="400" height="300" />
             <div className="about__gallery-caption">
               <span>Real Hardwood Fire</span>
               <p>400°C stone hearth baking to perfection</p>
@@ -68,7 +128,7 @@ const About = () => {
           </div>
 
           <div className="about__gallery-item">
-            <img src={realTakeawayBoxes} alt="Cargo Pizza Fresh Takeaway Boxes" loading="lazy" />
+            <img src={realTakeawayBoxes} alt="Cargo Pizza Fresh Takeaway Boxes" loading="lazy" decoding="async" width="400" height="300" />
             <div className="about__gallery-caption">
               <span>Fresh Hot Takeaway</span>
               <p>Freshly sliced and boxed for pick-up</p>
@@ -117,15 +177,28 @@ const About = () => {
           </div>
 
           <div className="promo__visual">
-            <video
-              src={promoVideo}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="promo__video"
-              aria-label="Cargo Pizza Woodfire Oven Experience Video"
-            />
+            {shouldLoadVideo ? (
+              <video
+                ref={videoRef}
+                src={promoVideo}
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                poster={realOvenFire}
+                className="promo__video"
+                aria-label="Cargo Pizza Woodfire Oven Experience Video"
+              />
+            ) : (
+              <img
+                src={realOvenFire}
+                alt="Cargo Pizza Live Woodfire Oven"
+                className="promo__video"
+                loading="lazy"
+                decoding="async"
+              />
+            )}
           </div>
         </div>
       </div>
