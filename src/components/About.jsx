@@ -1,79 +1,19 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React from 'react';
 import './About.css';
 import promoVideo from '../assets/promo-video.mp4';
+import realHeartPizza from '../assets/real-heart-pizza.jpg';
+import realCheesePull from '../assets/real-cheese-pull.jpg';
 import realOvenFire from '../assets/real-oven-fire.jpg';
-import realOvenPeel from '../assets/real-oven-peel.jpg';
 import realTakeawayBoxes from '../assets/real-takeaway-boxes.jpg';
-import realDevilledChicken from '../assets/real-devilled-chicken.jpg';
 
-const About = ({ audioUnlocked }) => {
-  const videoRef = useRef(null);
-  const [isSoundOn, setIsSoundOn] = useState(false);
-
-  useEffect(() => {
-    const vid = videoRef.current;
-    if (!vid) return;
-
-    const attemptPlayAudio = () => {
-      vid.muted = false;
-      vid.volume = 0.5;
-      const playPromise = vid.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            setIsSoundOn(true);
-          })
-          .catch(() => {
-            vid.muted = true;
-            setIsSoundOn(false);
-          });
-      }
-    };
-
-    if (audioUnlocked) {
-      attemptPlayAudio();
-    }
-
-    const handleMobileTouch = () => {
-      if (vid && vid.muted) {
-        attemptPlayAudio();
-      }
-    };
-
-    window.addEventListener('touchstart', handleMobileTouch, { passive: true });
-    window.addEventListener('click', handleMobileTouch, { passive: true });
-
-    return () => {
-      window.removeEventListener('touchstart', handleMobileTouch);
-      window.removeEventListener('click', handleMobileTouch);
-    };
-  }, [audioUnlocked]);
-
-  const toggleSound = (e) => {
-    e.stopPropagation();
-    if (!videoRef.current) return;
-    const vid = videoRef.current;
-    if (isSoundOn) {
-      vid.muted = true;
-      setIsSoundOn(false);
-    } else {
-      vid.muted = false;
-      vid.volume = 0.65;
-      vid.play()
-        .then(() => setIsSoundOn(true))
-        .catch(() => {
-          setIsSoundOn(false);
-        });
-    }
-  };
-
+const About = () => {
   return (
     <section id="about" className="about section" aria-label="About Cargo Pizza Nawala">
       <div className="container">
         {/* Section header */}
         <div className="about__header text-center">
-          <span className="badge-glow">🔥 THE CARGO DIFFERENCE</span>
-          <h2 className="section-title">Why Choose <span style={{ color: 'var(--yellow)' }}>Cargo Pizzeria?</span></h2>
+          <span className="about__label">THE CARGO DIFFERENCE</span>
+          <h2 className="section-title">Why Choose <span style={{ color: 'var(--red)' }}>Cargo Pizzeria?</span></h2>
           <p className="section-subtitle">We're Nawala's premier artisan woodfired destination. Real hardwood fire, 400°C stone baking, and big heat for a small bill!</p>
         </div>
 
@@ -91,8 +31,8 @@ const About = ({ audioUnlocked }) => {
           </article>
           <article className="feature-card">
             <div className="feature-card__icon" aria-hidden="true">🧀</div>
-            <h3>Premium Toppings</h3>
-            <p>Only the finest ingredients — 100% real mozzarella, fresh local produce, and succulent spiced meats.</p>
+            <h3>100% Real Mozzarella</h3>
+            <p>Irresistible cheese pull moments with generous premium mozzarella and rich herb sauces.</p>
           </article>
           <article className="feature-card">
             <div className="feature-card__icon" aria-hidden="true">💰</div>
@@ -104,34 +44,34 @@ const About = ({ audioUnlocked }) => {
         {/* Real Oven Craftsmanship Photo Strip */}
         <div className="about__gallery-strip">
           <div className="about__gallery-item">
-            <img src={realOvenPeel} alt="Cargo Pizza Woodfire Stone Oven Peel" loading="lazy" />
+            <img src={realHeartPizza} alt="Handcrafted Heart Pizza with Cargo Sign" loading="lazy" />
             <div className="about__gallery-caption">
-              <span>🔥 400°C Stone Oven</span>
-              <p>Hand-stretched dough into the blazing hearth</p>
+              <span>Heart-Shaped Pizza</span>
+              <p>Special artisan crust baked under neon lights</p>
+            </div>
+          </div>
+
+          <div className="about__gallery-item">
+            <img src={realCheesePull} alt="Irresistible 100% Mozzarella Cheese Pull" loading="lazy" />
+            <div className="about__gallery-caption">
+              <span>100% Mozzarella Pull</span>
+              <p>Thick stringy cheese on hot artisan slice</p>
             </div>
           </div>
 
           <div className="about__gallery-item">
             <img src={realOvenFire} alt="Real Hardwood Woodfire Pizza Baking" loading="lazy" />
             <div className="about__gallery-caption">
-              <span>🪵 Real Hardwood Fire</span>
-              <p>Golden mozzarella melting over crispy crust</p>
+              <span>Real Hardwood Fire</span>
+              <p>400°C stone hearth baking to perfection</p>
             </div>
           </div>
 
           <div className="about__gallery-item">
             <img src={realTakeawayBoxes} alt="Cargo Pizza Fresh Takeaway Boxes" loading="lazy" />
             <div className="about__gallery-caption">
-              <span>🚗 Hot Takeaway & Pick-Up</span>
-              <p>Freshly sliced and boxed for friends & family</p>
-            </div>
-          </div>
-
-          <div className="about__gallery-item">
-            <img src={realDevilledChicken} alt="Sri Lankan Devilled Chicken Pizza" loading="lazy" />
-            <div className="about__gallery-caption">
-              <span>🌶️ Signature Devilled Pizza</span>
-              <p>Sri Lankan spice blend with 100% mozzarella</p>
+              <span>Fresh Hot Takeaway</span>
+              <p>Freshly sliced and boxed for pick-up</p>
             </div>
           </div>
         </div>
@@ -139,7 +79,7 @@ const About = ({ audioUnlocked }) => {
         {/* Dine-in Promo Banner */}
         <div className="about__promo">
           <div className="promo__content">
-            <span className="promo__badge">🎉 Visit Our Pizzeria</span>
+            <span className="promo__badge">Visit Our Pizzeria</span>
             <h3 className="promo__title">Come & Enjoy The Live Woodfire Experience!</h3>
             <p className="promo__desc">Walk in, sit back, and enjoy piping hot woodfired pizza right from our stone oven at 422A Nawala Road, Nawala. The ultimate hangout spot for family, friends, and late-night pizza lovers!</p>
             <div className="promo__options">
@@ -178,7 +118,6 @@ const About = ({ audioUnlocked }) => {
 
           <div className="promo__visual">
             <video
-              ref={videoRef}
               src={promoVideo}
               autoPlay
               loop
@@ -187,26 +126,6 @@ const About = ({ audioUnlocked }) => {
               className="promo__video"
               aria-label="Cargo Pizza Woodfire Oven Experience Video"
             />
-            <button
-              className={`video-sound-toggle ${isSoundOn ? 'video-sound-toggle--on' : ''}`}
-              onClick={toggleSound}
-              aria-label={isSoundOn ? 'Mute video' : 'Unmute video'}
-              title={isSoundOn ? 'Mute sound' : 'Turn on sound'}
-            >
-              {isSoundOn ? (
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
-                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
-                </svg>
-              ) : (
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-                  <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
-                </svg>
-              )}
-              <span>{isSoundOn ? 'Sound On' : 'Tap for Sound'}</span>
-            </button>
           </div>
         </div>
       </div>

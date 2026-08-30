@@ -21,7 +21,7 @@ const MainSite = ({ isLoading, setIsLoading, isUserInteracted }) => (
     <Navbar />
     <main>
       <Hero />
-      <About audioUnlocked={!isLoading && isUserInteracted} />
+      <About />
       <Combos />
       <MenuPreview />
       <Reviews />

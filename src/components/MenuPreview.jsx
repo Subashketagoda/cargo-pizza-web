@@ -187,11 +187,11 @@ const MenuPreview = () => {
       <div className="container menu-section__inner">
         {/* Header */}
         <div className="text-center menu-section__header">
-          <span className="badge-glow">🍕 HANDCRAFTED WOODFIRED MENU</span>
-          <h2 className="section-title">
-            Discover Our <span style={{ color: 'var(--yellow)' }}>Artisan Flavors</span>
+          <span className="menu-section__label">🍕 HANDCRAFTED WOODFIRED MENU</span>
+          <h2 className="section-title" style={{ color: 'var(--blue-dark)' }}>
+            Discover Our <span style={{ color: 'var(--red)' }}>Artisan Flavors</span>
           </h2>
-          <p className="section-subtitle">
+          <p className="section-subtitle" style={{ color: '#0f1b47', fontWeight: '500' }}>
             Every 12-inch pizza is hand-stretched from fresh daily dough, baked at 400°C in our stone oven, and topped with 100% real mozzarella.
           </p>
         </div>

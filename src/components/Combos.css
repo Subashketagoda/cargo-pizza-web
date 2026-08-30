@@ -1,124 +1,111 @@
 /* ==========================================================================
    BUY ONE GET ONE FREE (BOGO) SECTION — Cargo Pizzeria
-   Electrifying Molten Gold & Fire Accent
+   Original Golden Yellow & Navy Brand Theme
    ========================================================================== */
 
 .bogo-section {
-  padding: 6rem 0;
-  background: radial-gradient(circle at 50% 50%, rgba(255, 170, 0, 0.15) 0%, transparent 65%),
-              #080c1a;
+  padding: 5.5rem 0 6.5rem;
+  background: linear-gradient(180deg, #0a1128 0%, #0f1b47 50%, #070d1e 100%);
   position: relative;
   overflow: hidden;
 }
 
 .bogo-card {
-  background: linear-gradient(135deg, #180905 0%, #2a1005 40%, #150604 100%);
-  border-radius: 36px;
-  padding: 4rem;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 50px rgba(255, 170, 0, 0.2);
-  border: 2px solid rgba(255, 215, 0, 0.4);
+  background: linear-gradient(135deg, #FFD700 0%, #F5C400 100%);
+  border-radius: 32px;
+  padding: 3.5rem;
+  box-shadow: 0 20px 50px rgba(15, 27, 71, 0.12), 0 0 0 3px rgba(255, 255, 255, 0.8);
   position: relative;
   overflow: hidden;
 }
 
-/* Radiant animated border glow */
 .bogo-card::before {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255, 215, 0, 0.12) 0%, transparent 60%);
+  inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.3) 0%, transparent 60%);
   pointer-events: none;
-  animation: pulseGlow 6s infinite alternate;
 }
 
 .bogo-card__inner {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
+  display: flex;
   align-items: center;
-  gap: 4rem;
+  justify-content: space-between;
+  gap: 3.5rem;
   position: relative;
   z-index: 2;
 }
 
 /* Left Content */
 .bogo-card__content {
-  max-width: 600px;
+  flex: 1;
+  max-width: 580px;
 }
 
 .bogo-tag {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.5rem 1.4rem;
-  background: rgba(255, 56, 56, 0.2);
-  color: #FF7070;
-  border: 1px solid rgba(255, 56, 56, 0.5);
+  gap: 0.5rem;
+  padding: 0.45rem 1.2rem;
+  background: #0f1b47;
+  color: #FFD700;
   border-radius: 100px;
   font-family: var(--font-heading);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 2px;
   text-transform: uppercase;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 0 20px rgba(255, 56, 56, 0.3);
-  animation: pulseGlow 2.5s infinite;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 4px 15px rgba(15, 27, 71, 0.2);
 }
 
 .bogo-tag__fire {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
 }
 
 .bogo-eyebrow {
   display: block;
   font-family: var(--font-heading);
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 800;
-  color: var(--yellow);
-  letter-spacing: 2.5px;
+  color: #0f1b47;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  margin-bottom: 0.75rem;
-  text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  margin-bottom: 0.6rem;
 }
 
 .bogo-title {
-  font-family: var(--font-heading);
-  font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 4.5vw, 4.5rem);
   line-height: 0.95;
-  font-weight: 900;
-  color: #ffffff;
-  margin-bottom: 1.25rem;
-  letter-spacing: -1px;
+  color: #0f1b47;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
 }
 
 .bogo-title__highlight {
-  background: linear-gradient(135deg, #FFD700 0%, #FF8800 50%, #FF3838 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: block;
-  filter: drop-shadow(0 0 25px rgba(255, 170, 0, 0.4));
+  color: #e63946;
+  display: inline;
 }
 
 .bogo-subtitle {
   display: inline-block;
   font-family: var(--font-heading);
   font-size: 1.1rem;
-  font-weight: 800;
-  color: #FFE55C;
-  background: rgba(255, 215, 0, 0.1);
-  padding: 0.4rem 1rem;
+  font-weight: 700;
+  color: #0f1b47;
+  background: rgba(15, 27, 71, 0.08);
+  padding: 0.35rem 0.9rem;
   border-radius: 8px;
-  margin-bottom: 1.25rem;
-  border-left: 3px solid var(--yellow);
+  margin-bottom: 1rem;
+  border-left: 3px solid #0f1b47;
 }
 
 .bogo-desc {
   font-size: 1.05rem;
-  color: #cbd5e1;
-  line-height: 1.7;
-  margin-bottom: 2.5rem;
+  color: rgba(15, 27, 71, 0.85);
+  line-height: 1.6;
+  margin-bottom: 2rem;
 }
 
 .bogo-actions {
@@ -129,17 +116,18 @@
 }
 
 .bogo-btn {
-  padding: 1.1rem 2.6rem;
-  font-size: 1.1rem;
-  background: linear-gradient(135deg, #FFD700 0%, #FFAA00 100%);
-  color: #090f24;
-  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+  padding: 1rem 2.2rem;
+  font-size: 1.05rem;
+  background: #0f1b47;
+  color: #FFD700;
+  box-shadow: 0 8px 25px rgba(15, 27, 71, 0.3);
 }
 
 .bogo-btn:hover {
-  transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 16px 40px rgba(255, 215, 0, 0.6);
-  color: #090f24;
+  background: #1a2d6d;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(15, 27, 71, 0.45);
 }
 
 /* ── Right Poster Frame ── */
@@ -152,34 +140,32 @@
 
 .bogo-poster-frame {
   position: relative;
-  border-radius: 28px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(255, 170, 0, 0.25);
-  border: 3px solid rgba(255, 215, 0, 0.5);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border: 4px solid #0f1b47;
   transform: rotate(2deg);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  max-width: 420px;
+  transition: all 0.4s ease;
+  max-width: 380px;
 }
 
 .bogo-poster-frame:hover {
-  transform: rotate(0deg) scale(1.04);
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), 0 0 60px rgba(255, 170, 0, 0.4);
-  border-color: var(--yellow);
+  transform: rotate(0deg) scale(1.03);
+  box-shadow: 0 25px 50px rgba(15, 27, 71, 0.35);
 }
 
 .bogo-poster-img {
   width: 100%;
   height: auto;
   display: block;
-  transition: transform 0.6s ease;
 }
 
 /* Responsive */
 @media (max-width: 992px) {
   .bogo-card__inner {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     text-align: center;
-    gap: 3rem;
+    gap: 2.5rem;
   }
 
   .bogo-card {
@@ -188,7 +174,6 @@
 
   .bogo-card__content {
     max-width: 100%;
-    margin: 0 auto;
   }
 
   .bogo-actions {
@@ -196,19 +181,17 @@
   }
 
   .bogo-poster-frame {
-    margin: 0 auto;
     transform: rotate(0deg);
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 480px) {
   .bogo-card {
-    padding: 1.75rem;
-    border-radius: 24px;
+    padding: 1.5rem;
   }
 
   .bogo-title {
-    font-size: 2.5rem;
+    font-size: 2.6rem;
   }
 
   .bogo-btn {

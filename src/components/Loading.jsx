@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import './Loading.css';
 import logo from '../assets/logo.png';
 import mascot from '../assets/mascot.png';
+import initialPromoVideo from '../assets/initial-promo-video.mp4';
 
 const loadingPhrases = [
   "CRAFTING YOUR EXPERIENCE",
@@ -25,11 +26,11 @@ const Loading = ({ onLoadingComplete }) => {
     setHasStarted(true);
   };
 
-  // Smooth loading animation loop (duration ~3.2s)
+  // Smooth loading animation loop (duration ~5.5s)
   useEffect(() => {
     if (!hasStarted) return;
 
-    const DURATION = 3200; // ms
+    const DURATION = 5500; // ms
     startTimeRef.current = performance.now();
 
     const animateProgress = (now) => {
@@ -48,7 +49,7 @@ const Loading = ({ onLoadingComplete }) => {
           setTimeout(() => {
             if (onLoadingComplete) onLoadingComplete();
           }, 700); // match CSS fade transition duration
-        }, 500);
+        }, 600);
       }
     };
 
@@ -65,7 +66,7 @@ const Loading = ({ onLoadingComplete }) => {
 
     const interval = setInterval(() => {
       setPhraseIndex((prev) => (prev + 1) % (loadingPhrases.length - 1));
-    }, 900);
+    }, 1050);
 
     return () => clearInterval(interval);
   }, [hasStarted, isCompleted]);
@@ -83,6 +84,20 @@ const Loading = ({ onLoadingComplete }) => {
       aria-valuemin="0"
       aria-valuemax="100"
     >
+      {/* Background Video */}
+      <div className="cargo-loader__bg-wrap">
+        <video
+          src={initialPromoVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="cargo-loader__bg-video"
+          aria-label="Cargo Pizzeria Promo Background Video"
+        />
+        <div className="cargo-loader__bg-overlay"></div>
+      </div>
+
       {/* Deep radial ambient background glow */}
       <div className="cargo-loader__glow"></div>
       
@@ -99,7 +114,7 @@ const Loading = ({ onLoadingComplete }) => {
           {/* Top Badge */}
           <div className="cargo-splash__badge">
             <span className="badge-fire">🔥</span>
-            WOODFIRED CRAFT PIZZA
+            #1 WOODFIRED PIZZA IN NAWALA
           </div>
 
           {/* Logo */}
@@ -118,7 +133,7 @@ const Loading = ({ onLoadingComplete }) => {
               IT'S NOT JUST A PIZZA,<br />
               <span>AN EXPERIENCE.</span>
             </h2>
-            <p className="cargo-splash__sub">Nawala's Favorite Woodfired Pizza</p>
+            <p className="cargo-splash__sub">Freshly Made • Woodfired • Every Day in Nawala</p>
           </div>
 
           {/* Glass Card with Enter Cargo Button */}

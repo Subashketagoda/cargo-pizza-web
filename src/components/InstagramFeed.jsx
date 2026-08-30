@@ -1,80 +1,81 @@
 import React, { useState } from 'react';
 import './InstagramFeed.css';
 
-// Real authentic assets from Cargo Pizzeria
+// 100% Authentic Assets from Cargo Pizzeria
 import promoVideo from '../assets/promo-video.mp4';
 import bogoPromo from '../assets/bogo-promo.png';
+import realHeartPizza from '../assets/real-heart-pizza.jpg';
+import realCheesePull from '../assets/real-cheese-pull.jpg';
 import realDevilledChicken from '../assets/real-devilled-chicken.jpg';
 import realOvenFire from '../assets/real-oven-fire.jpg';
 import realTakeawayBoxes from '../assets/real-takeaway-boxes.jpg';
-import realOvenPeel from '../assets/real-oven-peel.jpg';
-import restaurantInterior from '../assets/restaurant-interior.png';
+import realOvenPan from '../assets/real-oven-pan.jpg';
 
 const instaPosts = [
   {
     id: 'reel-1',
     type: 'video',
     src: promoVideo,
-    title: 'Woodfired Stone Oven in Action 🔥',
+    title: 'Stone Oven in Action 🔥',
     caption: 'Nothing beats the aroma of freshly kneaded dough baking at 400°C inside our high-heat stone oven! Watch that crust rise to crispy perfection. 🍕🔥 #cargopizzeria #nawala #woodfiredpizza',
-    likes: '782',
-    comments: '46',
+    likes: '890',
+    comments: '58',
     tag: 'REEL 🎥',
     link: 'https://www.instagram.com/cargopizzeria/'
   },
   {
     id: 'post-1',
     type: 'image',
-    src: realDevilledChicken,
-    title: 'Sri Lankan Devilled Chicken Pizza 🔥',
-    caption: 'Our signature Devilled Chicken Pizza! Spicy marinated chicken chunks, crunchy capsicum, onion rings, and 100% real melted mozzarella on our artisan crust. Big Heat, Small Bill starting at Rs. 2,100! 🌶️🍕',
-    likes: '942',
-    comments: '88',
-    tag: 'TOP FAVORITE ⭐',
+    src: realHeartPizza,
+    title: 'Baked with Love at Cargo ❤️',
+    caption: 'When pizza is made with pure passion! Handcrafted heart-shaped woodfired crust topped with sweet basil and bubbling golden mozzarella under our neon lights. ✨🍕 #heartpizza #nawalafood',
+    likes: '1,240',
+    comments: '115',
+    tag: 'SPECIAL EDITION ❤️',
     link: 'https://www.instagram.com/cargopizzeria/'
   },
   {
     id: 'post-2',
     type: 'image',
-    src: realOvenFire,
-    title: 'Baking with Real Hardwood Fire 🪵',
-    caption: 'No gas, no shortcuts. Just real woodfire flames, stone heat, and authentic artisanal craftsmanship in every single slice. Dine in with us at 422A Nawala Road! ✨',
-    likes: '815',
-    comments: '53',
-    tag: 'STONE OVEN 🔥',
+    src: realCheesePull,
+    title: 'Ultimate Cheesy Pull Moment 🧀',
+    caption: 'That irresistible cheese stretch you dream about! 100% real mozzarella, spicy seasoned chicken chunks, and crispy woodfired crust. Who is sharing a slice with you today? 🤤🍕',
+    likes: '1,105',
+    comments: '92',
+    tag: 'CHEESE PULL 🧀',
     link: 'https://www.instagram.com/cargopizzeria/'
   },
   {
     id: 'post-3',
     type: 'image',
-    src: realTakeawayBoxes,
-    title: 'Fresh Hot Takeaway Ready to Go! 🚗',
-    caption: 'Piping hot, freshly sliced, and boxed straight from our woodfire oven. Grab your favorite pizzas for friends & family on the way home! 🍕📦',
-    likes: '690',
-    comments: '39',
-    tag: 'TAKEAWAY 🍕',
+    src: realDevilledChicken,
+    title: 'Sri Lankan Devilled Chicken 🔥',
+    caption: 'Our top customer favorite! Spicy marinated devilled chicken, fresh capsicum, red onion rings, and gooey cheese on our signature crust. Big Heat, Small Bill starting at Rs. 2,100! 🌶️',
+    likes: '978',
+    comments: '74',
+    tag: 'CROWD FAVORITE ⭐',
     link: 'https://www.instagram.com/cargopizzeria/'
   },
   {
     id: 'post-4',
     type: 'image',
-    src: realOvenPeel,
-    title: 'Mastering the Pizza Peel 👨‍🍳',
-    caption: 'Freshly stretched dough loaded with gourmet toppings sliding smoothly into the blazing stone hearth. Listen to that crackle! 🔥🍕',
-    likes: '625',
-    comments: '31',
-    tag: 'HANDCRAFTED',
+    src: realOvenFire,
+    title: 'Real Woodfire Hearth Flames 🪵',
+    caption: 'No gas burners, no shortcuts. Just real glowing hardwood logs, stone heat, and artisan baking. Come smell the fire at 422A Nawala Road! 🔥🍕',
+    likes: '845',
+    comments: '46',
+    tag: 'STONE OVEN 🔥',
     link: 'https://www.instagram.com/cargopizzeria/'
   },
   {
     id: 'post-5',
     type: 'image',
-    src: bogoPromo,
-    title: 'Buy 1 Get 1 Free Every Tue & Thu 🏷️',
-    caption: 'Double the pizza, double the joy! 🍕🍕 Buy 1 Get 1 FREE every Tuesday & Thursday from 4:00 PM to Midnight. Tag your pizza buddy who is joining you today!',
-    likes: '1,120',
-    comments: '164',
-    tag: 'BOGO OFFER 🏷️',
+    src: realTakeawayBoxes,
+    title: 'Hot & Fresh Takeaway Slices 🚗',
+    caption: 'Freshly sliced straight out of the stone oven and packed into our signature boxes. Perfect for party nights, family dinners, and late-night cravings! 🍕📦',
+    likes: '730',
+    comments: '41',
+    tag: 'TAKEAWAY 🚗',
     link: 'https://www.instagram.com/cargopizzeria/'
   }
 ];
@@ -99,11 +100,11 @@ const InstagramFeed = () => {
             Fresh Slices & <span style={{ color: 'var(--yellow)' }}>Woodfire Moments</span>
           </h2>
           <p className="section-subtitle">
-            Directly from our stone oven in Nawala. Follow along for daily oven action, new menu releases, and weekly deals! 🍕📸
+            Every photo and video is 100% authentic from our stone oven in Nawala. Click any post to view details and open on Instagram! 🍕📸
           </p>
         </div>
 
-        {/* Instagram Grid of Real Photos & Videos */}
+        {/* Instagram Grid */}
         <div className="insta-grid">
           {instaPosts.map((post) => (
             <div
@@ -168,7 +169,7 @@ const InstagramFeed = () => {
                 </div>
               </div>
 
-              {/* Card Footer / Caption summary */}
+              {/* Card Footer */}
               <div className="insta-card__footer">
                 <div className="insta-card__user">
                   <div className="insta-user-avatar">🍕</div>
@@ -220,7 +221,6 @@ const InstagramFeed = () => {
               className="insta-modal-card"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Close Button */}
               <button
                 type="button"
                 className="insta-modal-close"
@@ -231,7 +231,6 @@ const InstagramFeed = () => {
               </button>
 
               <div className="insta-modal-body">
-                {/* Media Side */}
                 <div className="insta-modal-media">
                   {selectedPost.type === 'video' ? (
                     <div className="insta-modal-video-box">
@@ -251,7 +250,6 @@ const InstagramFeed = () => {
                   )}
                 </div>
 
-                {/* Details Side */}
                 <div className="insta-modal-details">
                   <div className="insta-modal-user-bar">
                     <div className="insta-modal-avatar">🍕</div>
