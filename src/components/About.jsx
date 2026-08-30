@@ -1,12 +1,15 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './About.css';
 import promoVideo from '../assets/promo-video.mp4';
+import realOvenFire from '../assets/real-oven-fire.jpg';
+import realOvenPeel from '../assets/real-oven-peel.jpg';
+import realTakeawayBoxes from '../assets/real-takeaway-boxes.jpg';
+import realDevilledChicken from '../assets/real-devilled-chicken.jpg';
 
 const About = ({ audioUnlocked }) => {
   const videoRef = useRef(null);
   const [isSoundOn, setIsSoundOn] = useState(false);
 
-  // Auto-play video sound when loading completes / user interacts on mobile
   useEffect(() => {
     const vid = videoRef.current;
     if (!vid) return;
@@ -21,7 +24,6 @@ const About = ({ audioUnlocked }) => {
             setIsSoundOn(true);
           })
           .catch(() => {
-            // Mobile browser fallback: keep video playing muted until user taps sound button or screen
             vid.muted = true;
             setIsSoundOn(false);
           });
@@ -32,7 +34,6 @@ const About = ({ audioUnlocked }) => {
       attemptPlayAudio();
     }
 
-    // Mobile touch listener fallback to unlock audio on first touch if autoplay was restricted
     const handleMobileTouch = () => {
       if (vid && vid.muted) {
         attemptPlayAudio();
@@ -71,9 +72,9 @@ const About = ({ audioUnlocked }) => {
       <div className="container">
         {/* Section header */}
         <div className="about__header text-center">
-          <span className="about__label">About Us</span>
-          <h2 className="section-title">Why Choose <span style={{color: 'var(--red)'}}>Cargo?</span></h2>
-          <p className="section-subtitle">We're Nawala's premier woodfired pizza destination. Fresh daily dough, bold artisan flavors, and unbeatable value in every slice.</p>
+          <span className="badge-glow">🔥 THE CARGO DIFFERENCE</span>
+          <h2 className="section-title">Why Choose <span style={{ color: 'var(--yellow)' }}>Cargo Pizzeria?</span></h2>
+          <p className="section-subtitle">We're Nawala's premier artisan woodfired destination. Real hardwood fire, 400°C stone baking, and big heat for a small bill!</p>
         </div>
 
         {/* Feature cards */}
@@ -81,7 +82,7 @@ const About = ({ audioUnlocked }) => {
           <article className="feature-card feature-card--accent">
             <div className="feature-card__icon" aria-hidden="true">🍕</div>
             <h3>Fresh Dough Daily</h3>
-            <p>Our pizza dough is crafted fresh every single morning — 100% natural, never frozen, always crispy.</p>
+            <p>Our pizza dough is handcrafted fresh every single morning — 100% natural, never frozen, always crispy.</p>
           </article>
           <article className="feature-card">
             <div className="feature-card__icon" aria-hidden="true">🔥</div>
@@ -91,20 +92,55 @@ const About = ({ audioUnlocked }) => {
           <article className="feature-card">
             <div className="feature-card__icon" aria-hidden="true">🧀</div>
             <h3>Premium Toppings</h3>
-            <p>Only the finest ingredients — 100% real mozzarella, fresh local produce, and succulent meats.</p>
+            <p>Only the finest ingredients — 100% real mozzarella, fresh local produce, and succulent spiced meats.</p>
           </article>
           <article className="feature-card">
             <div className="feature-card__icon" aria-hidden="true">💰</div>
-            <h3>Best Prices in Colombo</h3>
+            <h3>Best Value in Town</h3>
             <p>Big Heat, Small Bill — 20+ woodfired pizza varieties starting from just Rs. 1,800.</p>
           </article>
+        </div>
+
+        {/* Real Oven Craftsmanship Photo Strip */}
+        <div className="about__gallery-strip">
+          <div className="about__gallery-item">
+            <img src={realOvenPeel} alt="Cargo Pizza Woodfire Stone Oven Peel" loading="lazy" />
+            <div className="about__gallery-caption">
+              <span>🔥 400°C Stone Oven</span>
+              <p>Hand-stretched dough into the blazing hearth</p>
+            </div>
+          </div>
+
+          <div className="about__gallery-item">
+            <img src={realOvenFire} alt="Real Hardwood Woodfire Pizza Baking" loading="lazy" />
+            <div className="about__gallery-caption">
+              <span>🪵 Real Hardwood Fire</span>
+              <p>Golden mozzarella melting over crispy crust</p>
+            </div>
+          </div>
+
+          <div className="about__gallery-item">
+            <img src={realTakeawayBoxes} alt="Cargo Pizza Fresh Takeaway Boxes" loading="lazy" />
+            <div className="about__gallery-caption">
+              <span>🚗 Hot Takeaway & Pick-Up</span>
+              <p>Freshly sliced and boxed for friends & family</p>
+            </div>
+          </div>
+
+          <div className="about__gallery-item">
+            <img src={realDevilledChicken} alt="Sri Lankan Devilled Chicken Pizza" loading="lazy" />
+            <div className="about__gallery-caption">
+              <span>🌶️ Signature Devilled Pizza</span>
+              <p>Sri Lankan spice blend with 100% mozzarella</p>
+            </div>
+          </div>
         </div>
 
         {/* Dine-in Promo Banner */}
         <div className="about__promo">
           <div className="promo__content">
             <span className="promo__badge">🎉 Visit Our Pizzeria</span>
-            <h3 className="promo__title">Come & Enjoy The Experience!</h3>
+            <h3 className="promo__title">Come & Enjoy The Live Woodfire Experience!</h3>
             <p className="promo__desc">Walk in, sit back, and enjoy piping hot woodfired pizza right from our stone oven at 422A Nawala Road, Nawala. The ultimate hangout spot for family, friends, and late-night pizza lovers!</p>
             <div className="promo__options">
               <div className="promo__option">
@@ -126,19 +162,20 @@ const About = ({ audioUnlocked }) => {
                     <path d="M16 10a4 4 0 0 1-8 0"/>
                   </svg>
                 </div>
-                <span>Takeaway</span>
+                <span>Takeaway / Pick-Up</span>
               </div>
 
               <div className="promo__option">
                 <div className="promo__option-icon-bg">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="m5.8 11.3 2.9 2.9m-2.9-2.9 8.5-8.5a2.12 2.12 0 1 1 3 3l-8.5 8.5m-3-3L3 17l4 1 1 4 2.7-2.8m8.5-12.7 1.4-1.4m-12.7 8.5-1.4 1.4"/>
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
                   </svg>
                 </div>
-                <span>Events</span>
+                <span>Late Night Hangout</span>
               </div>
             </div>
           </div>
+
           <div className="promo__visual">
             <video
               ref={videoRef}
