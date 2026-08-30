@@ -29,7 +29,7 @@ const Navbar = () => {
   return (
     <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`} aria-label="Main navigation">
       <div className="container nav-container">
-        <a href="/cargo-pizza-web/" className="nav-logo" aria-label="Cargo Pizza - Go to homepage">
+        <a href="/" className="nav-logo" aria-label="Cargo Pizza - Go to homepage">
           <img src={logo} alt="Cargo Pizza Logo" className="nav-logo__img" />
         </a>
 
@@ -40,6 +40,7 @@ const Navbar = () => {
 
           <li><a href="#about" onClick={() => setMenuOpen(false)}>About Us</a></li>
           <li><a href="#menu" onClick={() => setMenuOpen(false)}>Our Menu</a></li>
+          <li><a href="#faq" onClick={() => setMenuOpen(false)}>FAQ</a></li>
           <li><a href="#location" onClick={() => setMenuOpen(false)}>Location & Contact</a></li>
 
           <div className="nav-mobile-cta">

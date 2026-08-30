@@ -1,11 +1,11 @@
 # Cargo Pizza - robots.txt
-# https://subashketagoda.github.io/cargo-pizza-web/
+# Website: https://cargopizzeria.online/
 
 User-agent: *
 Allow: /
 
-# Sitemap location
-Sitemap: https://subashketagoda.github.io/cargo-pizza-web/sitemap.xml
+# Disallow administrative and private areas from indexing
+Disallow: /admin
 
-# Disallow admin area from indexing
-Disallow: /cargo-pizza-web/admin
+# Official Sitemap
+Sitemap: https://cargopizzeria.online/sitemap.xml

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './Hero.css';
-import logo from '../assets/logo.png';
 import mascot from '../assets/mascot.png';
 import pizzaHero from '../assets/pizza-hero.png';
 
@@ -14,17 +13,25 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className={`hero ${isVisible ? 'hero--visible' : ''}`} ref={heroRef} aria-label="Cargo Pizza - Best Pizza in Sri Jayawardenepura Kotte">
+    <section className={`hero ${isVisible ? 'hero--visible' : ''}`} ref={heroRef} aria-label="Cargo Pizza - Handcrafted Woodfired Pizza in Sri Jayawardenepura Kotte">
       {/* Background */}
       <div className="hero__bg">
-        <img src={pizzaHero} alt="Fresh handcrafted Cargo Pizza with premium toppings" className="hero__bg-img" role="presentation" />
+        <img
+          src={pizzaHero}
+          alt="Fresh handcrafted Cargo Pizza woodfired in stone oven with premium toppings"
+          className="hero__bg-img"
+          loading="eager"
+          fetchPriority="high"
+          width="1920"
+          height="1080"
+        />
         <div className="hero__overlay"></div>
         {/* Animated grain texture */}
         <div className="hero__grain"></div>
       </div>
 
       {/* Decorative floating elements */}
-      <div className="hero__decor">
+      <div className="hero__decor" aria-hidden="true">
         <span className="hero__decor-emoji d1">🍕</span>
         <span className="hero__decor-emoji d2">🧀</span>
         <span className="hero__decor-emoji d3">🌶️</span>
@@ -36,21 +43,21 @@ const Hero = () => {
         <div className="hero__content">
           <div className="hero__eyebrow">
             <span className="hero__eyebrow-dot"></span>
-            Freshly made • woodfired • everyday
+            Freshly Made • Woodfired • Every Day in Kotte
           </div>
 
           <div className="hero__badge">
             <span className="hero__badge-dot"></span>
-            🍕 #1 Pizza in Town
+            🍕 #1 Woodfired Pizza in Sri Jayawardenepura
           </div>
 
-            <h1 className="hero__title">
-              <span className="hero__title--accent">It's Not Just A Pizza,</span><br />
-              An Experience.
-            </h1>
+          <h1 className="hero__title">
+            <span className="hero__title--accent">It's Not Just A Pizza,</span><br />
+            An Experience.
+          </h1>
 
           <p className="hero__desc">
-            Handcrafted with passion, served with love. Fresh dough, premium toppings, and woodfire flavour that turns every craving into a proper Cargo Pizza moment.
+            Handcrafted with passion, served with love. Fresh daily dough, real mozzarella, and authentic stone-fired woodfire flavor in Sri Jayawardenepura Kotte. Big Heat, Small Bill!
           </p>
 
           <div className="hero__actions">
@@ -93,7 +100,7 @@ const Hero = () => {
         <div className="hero__visual">
           <div className="hero__mascot-glow"></div>
           <div className="hero__mascot-wrapper">
-            <img src={mascot} alt="Cargo Pizza Mascot" className="hero__mascot" />
+            <img src={mascot} alt="Cargo Pizza Chef Mascot - Best Pizza in Kotte" className="hero__mascot" width="380" height="380" />
           </div>
           {/* Floating price tag */}
           <div className="hero__float hero__float--price">

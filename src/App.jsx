@@ -7,6 +7,7 @@ import MenuPreview from './components/MenuPreview';
 import Combos from './components/Combos';
 import Reviews from './components/Reviews';
 import InstagramFeed from './components/InstagramFeed';
+import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import OrderPopup from './components/OrderPopup';
 import Loading from './components/Loading';
@@ -24,6 +25,7 @@ const MainSite = ({ isLoading, setIsLoading, isUserInteracted }) => (
       <Combos />
       <MenuPreview />
       <Reviews />
+      <FAQ />
       <InstagramFeed />
     </main>
     <Footer />
@@ -59,25 +61,39 @@ function App() {
     };
   }, []);
 
-  return (
-    <Router basename="/cargo-pizza-web">
-      <div className="app">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <MainSite
-                isLoading={isLoading}
-                setIsLoading={setIsLoading}
-                isUserInteracted={isUserInteracted}
-              />
-            }
-          />
-          <Route path="/admin" element={<Admin />} />
-        </Routes>
-      </div>
-    </Router>
-  );
+    const basename = window.location.pathname.startsWith('/cargo-pizza-web')
+      ? '/cargo-pizza-web'
+      : '/';
+
+    return (
+      <Router basename={basename}>
+        <div className="app">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <MainSite
+                  isLoading={isLoading}
+                  setIsLoading={setIsLoading}
+                  isUserInteracted={isUserInteracted}
+                />
+              }
+            />
+            <Route path="/admin" element={<Admin />} />
+            <Route
+              path="*"
+              element={
+                <MainSite
+                  isLoading={isLoading}
+                  setIsLoading={setIsLoading}
+                  isUserInteracted={isUserInteracted}
+                />
+              }
+            />
+          </Routes>
+        </div>
+      </Router>
+    );
 }
 
 export default App;

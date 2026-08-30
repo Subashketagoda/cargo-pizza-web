@@ -67,45 +67,45 @@ const About = ({ audioUnlocked }) => {
   };
 
   return (
-    <section id="about" className="about section">
+    <section id="about" className="about section" aria-label="About Cargo Pizza Kotte">
       <div className="container">
         {/* Section header */}
         <div className="about__header text-center">
           <span className="about__label">About Us</span>
           <h2 className="section-title">Why Choose <span style={{color: 'var(--red)'}}>Cargo?</span></h2>
-          <p className="section-subtitle">We're not just a pizza place — we're a vibe. Fresh ingredients, bold flavors, and a whole lot of love in every slice.</p>
+          <p className="section-subtitle">We're Sri Jayawardenepura Kotte's premier woodfired pizza destination. Fresh daily dough, bold artisan flavors, and unbeatable value in every slice.</p>
         </div>
 
         {/* Feature cards */}
         <div className="about__features">
-          <div className="feature-card feature-card--accent">
-            <div className="feature-card__icon">🍕</div>
+          <article className="feature-card feature-card--accent">
+            <div className="feature-card__icon" aria-hidden="true">🍕</div>
             <h3>Fresh Dough Daily</h3>
-            <p>Our dough is made fresh every single day — never frozen, always perfect.</p>
-          </div>
-          <div className="feature-card">
-            <div className="feature-card__icon">🔥</div>
-            <h3>Stone-Fired</h3>
-            <p>Cooked in our stone oven for that authentic crispy, smoky flavor.</p>
-          </div>
-          <div className="feature-card">
-            <div className="feature-card__icon">🧀</div>
+            <p>Our pizza dough is crafted fresh every single morning — 100% natural, never frozen, always crispy.</p>
+          </article>
+          <article className="feature-card">
+            <div className="feature-card__icon" aria-hidden="true">🔥</div>
+            <h3>Stone-Fired Woodfire</h3>
+            <p>Baked in our high-heat stone oven for that authentic crispy crust and smoky woodfire aroma.</p>
+          </article>
+          <article className="feature-card">
+            <div className="feature-card__icon" aria-hidden="true">🧀</div>
             <h3>Premium Toppings</h3>
-            <p>Only the finest ingredients — real mozzarella, fresh veggies, and quality meats.</p>
-          </div>
-          <div className="feature-card">
-            <div className="feature-card__icon">💰</div>
-            <h3>Best Prices</h3>
-            <p>Big Heat, Small Bill — quality pizza that won't break the bank.</p>
-          </div>
+            <p>Only the finest ingredients — 100% real mozzarella, fresh local produce, and succulent meats.</p>
+          </article>
+          <article className="feature-card">
+            <div className="feature-card__icon" aria-hidden="true">💰</div>
+            <h3>Best Prices in Colombo</h3>
+            <p>Big Heat, Small Bill — 20+ woodfired pizza varieties starting from just Rs. 1,800.</p>
+          </article>
         </div>
 
         {/* Dine-in Promo Banner */}
         <div className="about__promo">
           <div className="promo__content">
-            <span className="promo__badge">🎉 Visit Us</span>
-            <h3 className="promo__title">Come & Enjoy the Experience!</h3>
-            <p className="promo__desc">Walk in, sit back, and enjoy freshly made pizza right from our stone oven. The perfect spot for family, friends, and good vibes!</p>
+            <span className="promo__badge">🎉 Visit Our Pizzeria</span>
+            <h3 className="promo__title">Come & Enjoy The Experience!</h3>
+            <p className="promo__desc">Walk in, sit back, and enjoy piping hot woodfired pizza right from our stone oven at 422A Nawala Road, Kotte. The ultimate hangout spot for family, friends, and late-night pizza lovers!</p>
             <div className="promo__options">
               <div className="promo__option">
                 <div className="promo__option-icon-bg">

@@ -40,7 +40,7 @@ const MenuPreview = () => {
   const filteredItems = menuItems.filter(item => item.category === activeTab);
 
   return (
-    <section id="menu" className="menu-section">
+    <section id="menu" className="menu-section" aria-label="Handcrafted Pizza Menu in Sri Jayawardenepura Kotte">
       <div className="menu-section__bg"></div>
 
       {/* Elegant Hero to Menu Scroll Divider */}
@@ -59,14 +59,16 @@ const MenuPreview = () => {
         <div className="text-center menu-section__header">
           <span className="menu-section__label">HANDCRAFTED CARGO MENU</span>
           <h2 className="section-title" style={{color: 'var(--blue-dark)'}}>Discover Our <span style={{color: 'var(--red)'}}>Menu</span></h2>
-          <p className="section-subtitle" style={{color: '#0f1b47'}}>Every item is handcrafted with premium ingredients and made fresh to order.</p>
+          <p className="section-subtitle" style={{color: '#0f1b47'}}>Every item is handcrafted with premium ingredients, real mozzarella, and made fresh to order in Sri Jayawardenepura Kotte.</p>
         </div>
 
         {/* Category Tabs */}
-        <div className="menu-tabs">
+        <div className="menu-tabs" role="tablist" aria-label="Menu categories">
           {tabs.map(tab => (
             <button
               key={tab.id}
+              role="tab"
+              aria-selected={activeTab === tab.id}
               className={`menu-tab ${activeTab === tab.id ? 'menu-tab--active' : ''}`}
               onClick={() => setActiveTab(tab.id)}
             >
@@ -83,15 +85,15 @@ const MenuPreview = () => {
             </div>
           ) : (
             filteredItems.map((item, i) => (
-              <div key={item.id || i} className="menu-card">
+              <article key={item.id || i} className="menu-card" aria-label={`${item.name} - Rs. ${item.price}`}>
                 <div className="menu-card__content">
                   <div className="menu-card__header">
                     {item.tag && <span className="menu-card__tag">{item.tag}</span>}
-                    <h4 className="menu-card__name">
+                    <h3 className="menu-card__name">
                       {item.vegetarian && <span className="menu-card__veg-badge" title="Vegetarian" aria-label="Vegetarian">V</span>}
                       {item.name}
                       {item.category === 'pizzas' && <span className="menu-card__size">12&quot;</span>}
-                    </h4>
+                    </h3>
                     {item.description && <p className="menu-card__description">{item.description}</p>}
                   </div>
                   
@@ -102,7 +104,7 @@ const MenuPreview = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </article>
             ))
           )}
         </div>

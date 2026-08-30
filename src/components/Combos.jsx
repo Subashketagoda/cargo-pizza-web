@@ -43,7 +43,15 @@ const Combos = () => {
             {/* Right Poster Visual */}
             <div className="bogo-card__visual">
               <div className="bogo-poster-frame">
-                <img src={bogoImg} alt="Cargo Pizza Buy One Get One Free Offer" className="bogo-poster-img" />
+                <img
+                  src={bogoImg}
+                  alt="Cargo Pizza Buy One Get One Free Pizza Deal in Kotte Colombo - Every Tuesday and Thursday"
+                  className="bogo-poster-img"
+                  loading="lazy"
+                  decoding="async"
+                  width="500"
+                  height="600"
+                />
               </div>
             </div>
           </div>

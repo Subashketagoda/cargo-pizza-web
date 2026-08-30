@@ -51,23 +51,27 @@ const Reviews = () => {
         {/* Reviews Grid */}
         <div className="reviews-grid">
           {reviewsData.map((rev) => (
-            <div key={rev.id} className="review-card">
+            <article key={rev.id} className="review-card" aria-label={`Review by ${rev.name}`}>
               <div className="review-card__header">
-                <div className="review-card__avatar">{rev.avatar}</div>
+                <div className="review-card__avatar" aria-hidden="true">{rev.avatar}</div>
                 <div className="review-card__meta">
-                  <h4 className="review-card__name">{rev.name}</h4>
+                  <h3 className="review-card__name">{rev.name}</h3>
                   <span className="review-card__loc">📍 {rev.location}</span>
                 </div>
               </div>
 
-              <div className="review-card__stars">{"⭐".repeat(rev.rating)}</div>
+              <div className="review-card__stars" aria-label={`${rev.rating} out of 5 stars`}>
+                {"⭐".repeat(rev.rating)}
+              </div>
 
-              <p className="review-card__comment">"{rev.comment}"</p>
+              <blockquote className="review-card__comment">
+                <p>"{rev.comment}"</p>
+              </blockquote>
 
               <div className="review-card__footer">
                 <span className="review-card__badge">✓ {rev.date}</span>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>
