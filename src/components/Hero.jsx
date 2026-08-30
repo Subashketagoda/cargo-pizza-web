@@ -56,7 +56,21 @@ const Hero = () => {
       {/* Cinematic Background Video */}
       <div className="hero__bg">
         <video
-          ref={videoRef}
+          ref={(el) => {
+            videoRef.current = el;
+            if (el) {
+              el.muted = true;
+              el.defaultMuted = true;
+              el.playsInline = true;
+              el.setAttribute('muted', '');
+              el.setAttribute('autoplay', '');
+              el.setAttribute('playsinline', '');
+              el.setAttribute('webkit-playsinline', '');
+              el.setAttribute('loop', '');
+              const p = el.play();
+              if (p !== undefined) p.catch(() => {});
+            }
+          }}
           autoPlay
           loop
           muted

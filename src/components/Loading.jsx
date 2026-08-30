@@ -14,7 +14,7 @@ const loadingPhrases = [
 ];
 
 const Loading = ({ onLoadingComplete }) => {
-  const [hasStarted, setHasStarted] = useState(false);
+  const [hasStarted, setHasStarted] = useState(true);
   const [progress, setProgress] = useState(0);
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [isFadingOut, setIsFadingOut] = useState(false);
@@ -126,7 +126,21 @@ const Loading = ({ onLoadingComplete }) => {
       {/* Background Video */}
       <div className="cargo-loader__bg-wrap">
         <video
-          ref={videoRef}
+          ref={(el) => {
+            videoRef.current = el;
+            if (el) {
+              el.muted = true;
+              el.defaultMuted = true;
+              el.playsInline = true;
+              el.setAttribute('muted', '');
+              el.setAttribute('autoplay', '');
+              el.setAttribute('playsinline', '');
+              el.setAttribute('webkit-playsinline', '');
+              el.setAttribute('loop', '');
+              const p = el.play();
+              if (p !== undefined) p.catch(() => {});
+            }
+          }}
           autoPlay
           loop
           muted
