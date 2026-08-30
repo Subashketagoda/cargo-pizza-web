@@ -21,6 +21,45 @@ const Loading = ({ onLoadingComplete }) => {
   const [isCompleted, setIsCompleted] = useState(false);
   const animFrameRef = useRef(null);
   const startTimeRef = useRef(null);
+  const videoRef = useRef(null);
+
+  // Bulletproof video autoplay for all browsers and mobile devices
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.defaultMuted = true;
+    video.muted = true;
+    video.playsInline = true;
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
+
+    const playVideo = () => {
+      if (video && video.paused) {
+        video.play().catch(() => {});
+      }
+    };
+
+    playVideo();
+
+    // Fallback on first user interaction if blocked by browser power saving
+    const handleFirstInteraction = () => {
+      playVideo();
+      window.removeEventListener('touchstart', handleFirstInteraction);
+      window.removeEventListener('click', handleFirstInteraction);
+      window.removeEventListener('scroll', handleFirstInteraction);
+    };
+
+    window.addEventListener('touchstart', handleFirstInteraction, { once: true, passive: true });
+    window.addEventListener('click', handleFirstInteraction, { once: true, passive: true });
+    window.addEventListener('scroll', handleFirstInteraction, { once: true, passive: true });
+
+    return () => {
+      window.removeEventListener('touchstart', handleFirstInteraction);
+      window.removeEventListener('click', handleFirstInteraction);
+      window.removeEventListener('scroll', handleFirstInteraction);
+    };
+  }, []);
 
   const handleEnterCargo = () => {
     setHasStarted(true);
@@ -87,11 +126,13 @@ const Loading = ({ onLoadingComplete }) => {
       {/* Background Video */}
       <div className="cargo-loader__bg-wrap">
         <video
+          ref={videoRef}
           src={initialPromoVideo}
           autoPlay
           loop
           muted
           playsInline
+          preload="auto"
           className="cargo-loader__bg-video"
           aria-label="Cargo Pizzeria Promo Background Video"
         />

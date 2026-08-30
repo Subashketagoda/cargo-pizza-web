@@ -7,10 +7,48 @@ import realOvenFire from '../assets/real-oven-fire.jpg';
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
   const heroRef = useRef(null);
+  const videoRef = useRef(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 80);
     return () => clearTimeout(timer);
+  }, []);
+
+  // Bulletproof video autoplay across all mobile and desktop browsers
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.defaultMuted = true;
+    video.muted = true;
+    video.playsInline = true;
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
+
+    const playVideo = () => {
+      if (video && video.paused) {
+        video.play().catch(() => {});
+      }
+    };
+
+    playVideo();
+
+    const handleFirstInteraction = () => {
+      playVideo();
+      window.removeEventListener('touchstart', handleFirstInteraction);
+      window.removeEventListener('click', handleFirstInteraction);
+      window.removeEventListener('scroll', handleFirstInteraction);
+    };
+
+    window.addEventListener('touchstart', handleFirstInteraction, { once: true, passive: true });
+    window.addEventListener('click', handleFirstInteraction, { once: true, passive: true });
+    window.addEventListener('scroll', handleFirstInteraction, { once: true, passive: true });
+
+    return () => {
+      window.removeEventListener('touchstart', handleFirstInteraction);
+      window.removeEventListener('click', handleFirstInteraction);
+      window.removeEventListener('scroll', handleFirstInteraction);
+    };
   }, []);
 
   return (
@@ -18,11 +56,13 @@ const Hero = () => {
       {/* Cinematic Background Video */}
       <div className="hero__bg">
         <video
+          ref={videoRef}
           src={heroVideo}
           autoPlay
           loop
           muted
           playsInline
+          preload="auto"
           poster={realOvenFire}
           className="hero__bg-video"
           aria-label="Cargo Pizzeria Live Woodfire Oven Background Video"
