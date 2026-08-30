@@ -1,0 +1,266 @@
+/* ==========================================================================
+   MENU PREVIEW SECTION — Cargo Pizzeria
+   Vibrant Cargo Yellow Theme with Deep Navy Foodie Cards
+   ========================================================================== */
+
+.menu-section {
+  position: relative;
+  padding: 5.5rem 0 6.5rem;
+  background: #FFD700;
+  overflow: hidden;
+}
+
+.menu-section__bg {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.menu-section__inner {
+  position: relative;
+  z-index: 2;
+}
+
+.menu-section__header {
+  max-width: 760px;
+  margin: 0 auto 3rem;
+}
+
+.menu-section__label {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #FFD700;
+  margin-bottom: 0.75rem;
+  padding: 0.45rem 1.3rem;
+  background: #0f1b47;
+  border-radius: 100px;
+  box-shadow: 0 4px 14px rgba(15, 27, 71, 0.25);
+}
+
+.menu-section .section-title {
+  color: #0f1b47;
+}
+
+.menu-section .section-subtitle {
+  color: #0f1b47;
+  font-weight: 600;
+}
+
+/* ── Category Pill Switcher ── */
+.menu-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto 3.5rem;
+  padding: 0.45rem;
+  background: #0f1b47;
+  border: 2px solid #0f1b47;
+  border-radius: 100px;
+  box-shadow: 0 10px 30px rgba(15, 27, 71, 0.3);
+  flex-wrap: wrap;
+}
+
+.menu-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.6rem;
+  background: transparent;
+  border: none;
+  border-radius: 100px;
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.5px;
+}
+
+.menu-tab:hover {
+  color: var(--yellow);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.menu-tab--active {
+  background: #FFD700;
+  color: #0f1b47;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.menu-tab--active:hover {
+  color: #0f1b47;
+  background: #FFD700;
+}
+
+/* ── Menu Grid ── */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.75rem;
+}
+
+/* ── Foodie Card ── */
+.menu-card {
+  background: #0f1b47;
+  border-radius: 22px;
+  border: 2px solid #0f1b47;
+  padding: 1.75rem;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 12px 32px rgba(15, 27, 71, 0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  color: #ffffff;
+}
+
+.menu-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--red), var(--yellow));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.menu-card:hover {
+  transform: translateY(-8px);
+  border-color: #FFD700;
+  background: #14245c;
+  box-shadow: 0 20px 45px rgba(15, 27, 71, 0.35);
+}
+
+.menu-card:hover::before {
+  transform: scaleX(1);
+}
+
+.menu-card__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.menu-card__header {
+  margin-bottom: 1.25rem;
+}
+
+.menu-card__tag {
+  display: inline-block;
+  padding: 0.3rem 0.85rem;
+  background: rgba(230, 57, 70, 0.2);
+  border: 1px solid rgba(230, 57, 70, 0.4);
+  border-radius: 100px;
+  color: #ff858d;
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.menu-card__name {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #FFD700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.menu-card__veg-badge {
+  font-size: 1rem;
+}
+
+.menu-card__size-badge {
+  font-size: 0.75rem;
+  background: rgba(255, 215, 0, 0.15);
+  color: #FFD700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  font-weight: 800;
+}
+
+.menu-card__description {
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.6;
+}
+
+/* Action & Price Row */
+.menu-card__action-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu-card__price-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-card__price-label {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.menu-card__price-val {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: #FFD700;
+}
+
+.menu-card__order-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1.3rem;
+  background: var(--red);
+  border-radius: 100px;
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+}
+
+.menu-card__order-btn:hover {
+  background: var(--red-dark);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(230, 57, 70, 0.55);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-tabs {
+    border-radius: 20px;
+  }
+}

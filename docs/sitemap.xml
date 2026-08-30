@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
+        http://www.google.com/schemas/sitemap-image/1.1
+        http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
+
+  <!-- Main Homepage -->
+  <url>
+    <loc>https://cargopizzeria.online/</loc>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://cargopizzeria.online/food.png</image:loc>
+      <image:title>Cargo Pizza Handcrafted Woodfired Pizzas Nawala</image:title>
+      <image:caption>Delicious artisanal stone-fired pizza in Nawala Colombo</image:caption>
+      <image:geo_location>Nawala, Colombo, Sri Lanka</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://cargopizzeria.online/hero.png</image:loc>
+      <image:title>Cargo Pizza Woodfired Oven &amp; Dining Vibe Nawala</image:title>
+      <image:caption>Freshly made stone oven pizza everyday at Cargo Pizzeria Nawala</image:caption>
+      <image:geo_location>Nawala, Colombo, Sri Lanka</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://cargopizzeria.online/outdoor.png</image:loc>
+      <image:title>Cargo Pizza Outdoor Dining Experience Nawala</image:title>
+      <image:caption>Outdoor and dine-in seating at Cargo Pizzeria Nawala</image:caption>
+      <image:geo_location>Nawala, Colombo, Sri Lanka</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://cargopizzeria.online/favicon.png</image:loc>
+      <image:title>Cargo Pizza Logo</image:title>
+      <image:caption>Cargo Pizza Brand Mascot and Logo</image:caption>
+    </image:image>
+  </url>
+
+</urlset>

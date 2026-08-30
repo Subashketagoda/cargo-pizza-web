@@ -1,0 +1,166 @@
+/* ==========================================================================
+   REVIEWS SECTION — Cargo Pizzeria
+   Original Brand Navy Blue Theme
+   ========================================================================== */
+
+.reviews-section {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, var(--blue-dark, #0f1b47), var(--blue, #1a2d6d));
+  position: relative;
+  overflow: hidden;
+}
+
+.reviews-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -15%;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: rgba(255, 215, 0, 0.06);
+  pointer-events: none;
+}
+
+.reviews-header {
+  margin-bottom: 3.5rem;
+}
+
+.reviews-badge {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--yellow);
+  margin-bottom: 0.75rem;
+  padding: 0.4rem 1.2rem;
+  background: rgba(255, 215, 0, 0.12);
+  border: 1px solid rgba(255, 215, 0, 0.25);
+  border-radius: 100px;
+}
+
+.reviews-section .section-title {
+  color: var(--white);
+}
+
+.reviews-rating-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.rating-num {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--yellow);
+}
+
+.rating-stars {
+  font-size: 1.4rem;
+  color: var(--yellow);
+  letter-spacing: 2px;
+}
+
+.rating-count {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  font-family: var(--font-heading);
+  font-weight: 500;
+}
+
+/* Review Cards */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8rem;
+}
+
+.review-card {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 2rem 1.8rem;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.review-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 215, 0, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.review-card__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.review-card__avatar {
+  font-size: 2rem;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.review-card__name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.15rem;
+}
+
+.review-card__loc {
+  font-size: 0.8rem;
+  color: var(--yellow);
+  font-weight: 500;
+}
+
+.review-card__stars {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.review-card__comment {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 1.2rem;
+  flex: 1;
+}
+
+.review-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.review-card__badge {
+  font-size: 0.75rem;
+  color: #4ade80;
+  font-weight: 600;
+}
+
+@media (max-width: 992px) {
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+}

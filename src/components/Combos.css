@@ -1,0 +1,200 @@
+/* ==========================================================================
+   BUY ONE GET ONE FREE (BOGO) SECTION — Cargo Pizzeria
+   Original Golden Yellow & Navy Brand Theme
+   ========================================================================== */
+
+.bogo-section {
+  padding: 5.5rem 0 6.5rem;
+  background: linear-gradient(180deg, #0a1128 0%, #0f1b47 50%, #070d1e 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.bogo-card {
+  background: linear-gradient(135deg, #FFD700 0%, #F5C400 100%);
+  border-radius: 32px;
+  padding: 3.5rem;
+  box-shadow: 0 20px 50px rgba(15, 27, 71, 0.12), 0 0 0 3px rgba(255, 255, 255, 0.8);
+  position: relative;
+  overflow: hidden;
+}
+
+.bogo-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.3) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.bogo-card__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Left Content */
+.bogo-card__content {
+  flex: 1;
+  max-width: 580px;
+}
+
+.bogo-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1.2rem;
+  background: #0f1b47;
+  color: #FFD700;
+  border-radius: 100px;
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 4px 15px rgba(15, 27, 71, 0.2);
+}
+
+.bogo-tag__fire {
+  font-size: 0.95rem;
+}
+
+.bogo-eyebrow {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0f1b47;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+
+.bogo-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 4.5vw, 4.5rem);
+  line-height: 0.95;
+  color: #0f1b47;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.bogo-title__highlight {
+  color: #e63946;
+  display: inline;
+}
+
+.bogo-subtitle {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0f1b47;
+  background: rgba(15, 27, 71, 0.08);
+  padding: 0.35rem 0.9rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border-left: 3px solid #0f1b47;
+}
+
+.bogo-desc {
+  font-size: 1.05rem;
+  color: rgba(15, 27, 71, 0.85);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.bogo-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.bogo-btn {
+  padding: 1rem 2.2rem;
+  font-size: 1.05rem;
+  background: #0f1b47;
+  color: #FFD700;
+  box-shadow: 0 8px 25px rgba(15, 27, 71, 0.3);
+}
+
+.bogo-btn:hover {
+  background: #1a2d6d;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(15, 27, 71, 0.45);
+}
+
+/* ── Right Poster Frame ── */
+.bogo-card__visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bogo-poster-frame {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border: 4px solid #0f1b47;
+  transform: rotate(2deg);
+  transition: all 0.4s ease;
+  max-width: 380px;
+}
+
+.bogo-poster-frame:hover {
+  transform: rotate(0deg) scale(1.03);
+  box-shadow: 0 25px 50px rgba(15, 27, 71, 0.35);
+}
+
+.bogo-poster-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .bogo-card__inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 2.5rem;
+  }
+
+  .bogo-card {
+    padding: 2.5rem;
+  }
+
+  .bogo-card__content {
+    max-width: 100%;
+  }
+
+  .bogo-actions {
+    justify-content: center;
+  }
+
+  .bogo-poster-frame {
+    transform: rotate(0deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .bogo-card {
+    padding: 1.5rem;
+  }
+
+  .bogo-title {
+    font-size: 2.6rem;
+  }
+
+  .bogo-btn {
+    width: 100%;
+  }
+}

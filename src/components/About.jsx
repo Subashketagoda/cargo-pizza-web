@@ -1,0 +1,136 @@
+import React from 'react';
+import './About.css';
+import promoVideo from '../assets/promo-video.mp4';
+import realHeartPizza from '../assets/real-heart-pizza.jpg';
+import realCheesePull from '../assets/real-cheese-pull.jpg';
+import realOvenFire from '../assets/real-oven-fire.jpg';
+import realTakeawayBoxes from '../assets/real-takeaway-boxes.jpg';
+
+const About = () => {
+  return (
+    <section id="about" className="about section" aria-label="About Cargo Pizza Nawala">
+      <div className="container">
+        {/* Section header */}
+        <div className="about__header text-center">
+          <span className="about__label">THE CARGO DIFFERENCE</span>
+          <h2 className="section-title">Why Choose <span style={{ color: 'var(--red)' }}>Cargo Pizzeria?</span></h2>
+          <p className="section-subtitle">We're Nawala's premier artisan woodfired destination. Real hardwood fire, 400°C stone baking, and big heat for a small bill!</p>
+        </div>
+
+        {/* Feature cards */}
+        <div className="about__features">
+          <article className="feature-card feature-card--accent">
+            <div className="feature-card__icon" aria-hidden="true">🍕</div>
+            <h3>Fresh Dough Daily</h3>
+            <p>Our pizza dough is handcrafted fresh every single morning — 100% natural, never frozen, always crispy.</p>
+          </article>
+          <article className="feature-card">
+            <div className="feature-card__icon" aria-hidden="true">🔥</div>
+            <h3>Stone-Fired Woodfire</h3>
+            <p>Baked in our high-heat stone oven for that authentic crispy crust and smoky woodfire aroma.</p>
+          </article>
+          <article className="feature-card">
+            <div className="feature-card__icon" aria-hidden="true">🧀</div>
+            <h3>100% Real Mozzarella</h3>
+            <p>Irresistible cheese pull moments with generous premium mozzarella and rich herb sauces.</p>
+          </article>
+          <article className="feature-card">
+            <div className="feature-card__icon" aria-hidden="true">💰</div>
+            <h3>Best Value in Town</h3>
+            <p>Big Heat, Small Bill — 20+ woodfired pizza varieties starting from just Rs. 1,800.</p>
+          </article>
+        </div>
+
+        {/* Real Oven Craftsmanship Photo Strip */}
+        <div className="about__gallery-strip">
+          <div className="about__gallery-item">
+            <img src={realHeartPizza} alt="Handcrafted Heart Pizza with Cargo Sign" loading="lazy" />
+            <div className="about__gallery-caption">
+              <span>Heart-Shaped Pizza</span>
+              <p>Special artisan crust baked under neon lights</p>
+            </div>
+          </div>
+
+          <div className="about__gallery-item">
+            <img src={realCheesePull} alt="Irresistible 100% Mozzarella Cheese Pull" loading="lazy" />
+            <div className="about__gallery-caption">
+              <span>100% Mozzarella Pull</span>
+              <p>Thick stringy cheese on hot artisan slice</p>
+            </div>
+          </div>
+
+          <div className="about__gallery-item">
+            <img src={realOvenFire} alt="Real Hardwood Woodfire Pizza Baking" loading="lazy" />
+            <div className="about__gallery-caption">
+              <span>Real Hardwood Fire</span>
+              <p>400°C stone hearth baking to perfection</p>
+            </div>
+          </div>
+
+          <div className="about__gallery-item">
+            <img src={realTakeawayBoxes} alt="Cargo Pizza Fresh Takeaway Boxes" loading="lazy" />
+            <div className="about__gallery-caption">
+              <span>Fresh Hot Takeaway</span>
+              <p>Freshly sliced and boxed for pick-up</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Dine-in Promo Banner */}
+        <div className="about__promo">
+          <div className="promo__content">
+            <span className="promo__badge">Visit Our Pizzeria</span>
+            <h3 className="promo__title">Come & Enjoy The Live Woodfire Experience!</h3>
+            <p className="promo__desc">Walk in, sit back, and enjoy piping hot woodfired pizza right from our stone oven at 422A Nawala Road, Nawala. The ultimate hangout spot for family, friends, and late-night pizza lovers!</p>
+            <div className="promo__options">
+              <div className="promo__option">
+                <div className="promo__option-icon-bg">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" />
+                    <path d="M7 2v20" />
+                    <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" />
+                  </svg>
+                </div>
+                <span>Dine-In</span>
+              </div>
+
+              <div className="promo__option">
+                <div className="promo__option-icon-bg">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <path d="M16 10a4 4 0 0 1-8 0"/>
+                  </svg>
+                </div>
+                <span>Takeaway / Pick-Up</span>
+              </div>
+
+              <div className="promo__option">
+                <div className="promo__option-icon-bg">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                  </svg>
+                </div>
+                <span>Late Night Hangout</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="promo__visual">
+            <video
+              src={promoVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="promo__video"
+              aria-label="Cargo Pizza Woodfire Oven Experience Video"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default About;
