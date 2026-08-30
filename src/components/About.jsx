@@ -177,28 +177,29 @@ const About = () => {
           </div>
 
           <div className="promo__visual">
-            {shouldLoadVideo ? (
-              <video
-                ref={videoRef}
-                src={promoVideo}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
-                poster={realOvenFire}
-                className="promo__video"
-                aria-label="Cargo Pizza Woodfire Oven Experience Video"
-              />
-            ) : (
-              <img
-                src={realOvenFire}
-                alt="Cargo Pizza Live Woodfire Oven"
-                className="promo__video"
-                loading="lazy"
-                decoding="async"
-              />
-            )}
+            <video
+              ref={videoRef}
+              autoPlay
+              loop
+              muted
+              playsInline
+              webkit-playsinline="true"
+              x5-playsinline="true"
+              preload="auto"
+              poster={realOvenFire}
+              onLoadedData={(e) => {
+                e.target.muted = true;
+                e.target.play().catch(() => {});
+              }}
+              onCanPlay={(e) => {
+                e.target.muted = true;
+                e.target.play().catch(() => {});
+              }}
+              className="promo__video"
+              aria-label="Cargo Pizza Woodfire Oven Experience Video"
+            >
+              <source src={promoVideo} type="video/mp4" />
+            </video>
           </div>
         </div>
       </div>

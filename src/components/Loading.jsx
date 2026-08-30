@@ -127,15 +127,26 @@ const Loading = ({ onLoadingComplete }) => {
       <div className="cargo-loader__bg-wrap">
         <video
           ref={videoRef}
-          src={initialPromoVideo}
           autoPlay
           loop
           muted
           playsInline
+          webkit-playsinline="true"
+          x5-playsinline="true"
           preload="auto"
+          onLoadedData={(e) => {
+            e.target.muted = true;
+            e.target.play().catch(() => {});
+          }}
+          onCanPlay={(e) => {
+            e.target.muted = true;
+            e.target.play().catch(() => {});
+          }}
           className="cargo-loader__bg-video"
           aria-label="Cargo Pizzeria Promo Background Video"
-        />
+        >
+          <source src={initialPromoVideo} type="video/mp4" />
+        </video>
         <div className="cargo-loader__bg-overlay"></div>
       </div>
 

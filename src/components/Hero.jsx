@@ -57,16 +57,27 @@ const Hero = () => {
       <div className="hero__bg">
         <video
           ref={videoRef}
-          src={heroVideo}
           autoPlay
           loop
           muted
           playsInline
+          webkit-playsinline="true"
+          x5-playsinline="true"
           preload="auto"
           poster={realOvenFire}
+          onLoadedData={(e) => {
+            e.target.muted = true;
+            e.target.play().catch(() => {});
+          }}
+          onCanPlay={(e) => {
+            e.target.muted = true;
+            e.target.play().catch(() => {});
+          }}
           className="hero__bg-video"
           aria-label="Cargo Pizzeria Live Woodfire Oven Background Video"
-        />
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
         <div className="hero__overlay"></div>
         <div className="hero__ambient-glow"></div>
       </div>
