@@ -14,7 +14,7 @@ const loadingPhrases = [
 ];
 
 const Loading = ({ onLoadingComplete }) => {
-  const [hasStarted, setHasStarted] = useState(true);
+  const [hasStarted, setHasStarted] = useState(false);
   const [progress, setProgress] = useState(0);
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [isFadingOut, setIsFadingOut] = useState(false);

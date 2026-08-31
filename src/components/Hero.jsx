@@ -1,99 +1,33 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './Hero.css';
 import mascot from '../assets/mascot.png';
-import heroVideo from '../assets/hero-video.mp4';
-import realOvenFire from '../assets/real-oven-fire.jpg';
+import pizzaHero from '../assets/pizza-hero.png';
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
   const heroRef = useRef(null);
-  const videoRef = useRef(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 80);
     return () => clearTimeout(timer);
   }, []);
 
-  // Bulletproof video autoplay across all mobile and desktop browsers
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    video.defaultMuted = true;
-    video.muted = true;
-    video.playsInline = true;
-    video.setAttribute('playsinline', '');
-    video.setAttribute('webkit-playsinline', '');
-
-    const playVideo = () => {
-      if (video && video.paused) {
-        video.play().catch(() => {});
-      }
-    };
-
-    playVideo();
-
-    const handleFirstInteraction = () => {
-      playVideo();
-      window.removeEventListener('touchstart', handleFirstInteraction);
-      window.removeEventListener('click', handleFirstInteraction);
-      window.removeEventListener('scroll', handleFirstInteraction);
-    };
-
-    window.addEventListener('touchstart', handleFirstInteraction, { once: true, passive: true });
-    window.addEventListener('click', handleFirstInteraction, { once: true, passive: true });
-    window.addEventListener('scroll', handleFirstInteraction, { once: true, passive: true });
-
-    return () => {
-      window.removeEventListener('touchstart', handleFirstInteraction);
-      window.removeEventListener('click', handleFirstInteraction);
-      window.removeEventListener('scroll', handleFirstInteraction);
-    };
-  }, []);
-
   return (
     <section className={`hero ${isVisible ? 'hero--visible' : ''}`} ref={heroRef} aria-label="Cargo Pizza - Handcrafted Woodfired Pizza in Nawala">
-      {/* Cinematic Background Video */}
+      {/* Background Image */}
       <div className="hero__bg">
-        <video
-          ref={(el) => {
-            videoRef.current = el;
-            if (el) {
-              el.muted = true;
-              el.defaultMuted = true;
-              el.playsInline = true;
-              el.setAttribute('muted', '');
-              el.setAttribute('autoplay', '');
-              el.setAttribute('playsinline', '');
-              el.setAttribute('webkit-playsinline', '');
-              el.setAttribute('loop', '');
-              const p = el.play();
-              if (p !== undefined) p.catch(() => {});
-            }
-          }}
-          autoPlay
-          loop
-          muted
-          playsInline
-          webkit-playsinline="true"
-          x5-playsinline="true"
-          preload="auto"
-          poster={realOvenFire}
-          onLoadedData={(e) => {
-            e.target.muted = true;
-            e.target.play().catch(() => {});
-          }}
-          onCanPlay={(e) => {
-            e.target.muted = true;
-            e.target.play().catch(() => {});
-          }}
-          className="hero__bg-video"
-          aria-label="Cargo Pizzeria Live Woodfire Oven Background Video"
-        >
-          <source src={heroVideo} type="video/mp4" />
-        </video>
+        <img
+          src={pizzaHero}
+          alt="Fresh handcrafted Cargo Pizza woodfired in stone oven with premium toppings"
+          className="hero__bg-img"
+          loading="eager"
+          fetchPriority="high"
+          width="1920"
+          height="1080"
+        />
         <div className="hero__overlay"></div>
         <div className="hero__ambient-glow"></div>
+        <div className="hero__grain"></div>
       </div>
 
       <div className="container hero__inner">
