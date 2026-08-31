@@ -61,13 +61,15 @@
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
   border: 2px solid rgba(255, 215, 0, 0.3);
   cursor: pointer;
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
   display: flex;
   flex-direction: column;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .insta-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-6px) translateZ(0);
   box-shadow: 0 20px 40px rgba(255, 215, 0, 0.25);
   border-color: #FFD700;
 }

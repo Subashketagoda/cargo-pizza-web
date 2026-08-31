@@ -6,6 +6,14 @@ export default defineConfig({
   plugins: [react()],
   base: './',
   build: {
-    outDir: 'docs'
+    outDir: 'docs',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'firebase-vendor': ['firebase/app', 'firebase/firestore']
+        }
+      }
+    }
   }
 })

@@ -53,53 +53,21 @@ const Loading = ({ onLoadingComplete }) => {
 
     tryPlay();
 
-    // Event-based playback triggers
-    video.addEventListener('loadedmetadata', tryPlay);
-    video.addEventListener('loadeddata', tryPlay);
-    video.addEventListener('canplay', tryPlay);
-    video.addEventListener('canplaythrough', tryPlay);
+    video.addEventListener('loadedmetadata', tryPlay, { once: true });
+    video.addEventListener('canplay', tryPlay, { once: true });
 
-    // Periodic retry for initial 4 seconds in case network buffer delays initial playback
-    const interval = setInterval(() => {
-      if (video && video.paused) {
-        tryPlay();
-      }
-    }, 250);
-
-    const stopIntervalTimer = setTimeout(() => {
-      clearInterval(interval);
-    }, 4000);
-
-    // Fallback on first user interaction (touch/click/pointer/scroll)
     const handleFirstInteraction = () => {
       tryPlay();
-      window.removeEventListener('touchstart', handleFirstInteraction);
-      window.removeEventListener('touchend', handleFirstInteraction);
-      window.removeEventListener('pointerdown', handleFirstInteraction);
-      window.removeEventListener('click', handleFirstInteraction);
-      window.removeEventListener('scroll', handleFirstInteraction);
     };
 
-    window.addEventListener('touchstart', handleFirstInteraction, { passive: true });
-    window.addEventListener('touchend', handleFirstInteraction, { passive: true });
-    window.addEventListener('pointerdown', handleFirstInteraction, { passive: true });
-    window.addEventListener('click', handleFirstInteraction, { passive: true });
-    window.addEventListener('scroll', handleFirstInteraction, { passive: true });
+    window.addEventListener('touchstart', handleFirstInteraction, { passive: true, once: true });
+    window.addEventListener('pointerdown', handleFirstInteraction, { passive: true, once: true });
+    window.addEventListener('click', handleFirstInteraction, { passive: true, once: true });
 
     return () => {
-      clearInterval(interval);
-      clearTimeout(stopIntervalTimer);
-      if (video) {
-        video.removeEventListener('loadedmetadata', tryPlay);
-        video.removeEventListener('loadeddata', tryPlay);
-        video.removeEventListener('canplay', tryPlay);
-        video.removeEventListener('canplaythrough', tryPlay);
-      }
       window.removeEventListener('touchstart', handleFirstInteraction);
-      window.removeEventListener('touchend', handleFirstInteraction);
       window.removeEventListener('pointerdown', handleFirstInteraction);
       window.removeEventListener('click', handleFirstInteraction);
-      window.removeEventListener('scroll', handleFirstInteraction);
     };
   }, []);
 
@@ -125,30 +93,35 @@ const Loading = ({ onLoadingComplete }) => {
     setHasStarted(true);
   };
 
-  // Smooth loading animation loop (duration ~5.5s)
+  // Smooth, snappy loading animation loop (optimized duration ~1.4s)
   useEffect(() => {
     if (!hasStarted) return;
 
-    const DURATION = 5500; // ms
+    const DURATION = 1400; // ms (fast & silky smooth)
     startTimeRef.current = performance.now();
 
     const animateProgress = (now) => {
       const elapsed = now - startTimeRef.current;
-      const rawProgress = Math.min(100, Math.floor((elapsed / DURATION) * 100));
+      const progressRatio = Math.min(1, elapsed / DURATION);
+      // Cubic easing for silky smooth acceleration and soft landing
+      const eased = progressRatio < 0.5 
+        ? 4 * progressRatio * progressRatio * progressRatio 
+        : 1 - Math.pow(-2 * progressRatio + 2, 3) / 2;
+      const rawProgress = Math.min(100, Math.floor(eased * 100));
 
       setProgress(rawProgress);
 
-      if (rawProgress < 100) {
+      if (progressRatio < 1) {
         animFrameRef.current = requestAnimationFrame(animateProgress);
       } else {
         setIsCompleted(true);
-        // Hold completion state briefly, then fade out
+        // Quick, crisp fade out
         setTimeout(() => {
           setIsFadingOut(true);
           setTimeout(() => {
             if (onLoadingComplete) onLoadingComplete();
-          }, 700); // match CSS fade transition duration
-        }, 600);
+          }, 450);
+        }, 250);
       }
     };
 
@@ -165,7 +138,7 @@ const Loading = ({ onLoadingComplete }) => {
 
     const interval = setInterval(() => {
       setPhraseIndex((prev) => (prev + 1) % (loadingPhrases.length - 1));
-    }, 1050);
+    }, 450);
 
     return () => clearInterval(interval);
   }, [hasStarted, isCompleted]);
@@ -283,7 +256,7 @@ const Loading = ({ onLoadingComplete }) => {
             <button
               className="cargo-splash__enter-btn"
               onTouchStart={handleTouchUnlock}
-              onClick={(e) => {
+              onClick={() => {
                 handleTouchUnlock();
                 handleEnterCargo();
               }}

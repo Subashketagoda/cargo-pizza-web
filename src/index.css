@@ -44,6 +44,8 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -53,6 +55,28 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ─── GPU & Compositing Acceleration Helpers ─── */
+.gpu-layer {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* ─── Offscreen Rendering Performance Boost ─── */
+.about,
+.bogo-section,
+.menu-section,
+.reviews-section,
+.faq-section,
+.insta-section,
+.footer {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 700px;
 }
 
 h1, h2, h3, h4, h5, h6 {

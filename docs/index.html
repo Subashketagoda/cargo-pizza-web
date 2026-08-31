@@ -217,7 +217,7 @@
       ]
     }
     </script>
-    <!-- Global Mobile Video Autoplay & Low Power Mode Unlocker -->
+    <!-- Global Mobile Video Autoplay & Low Power Mode Unlocker (Optimized for 60/120 FPS) -->
     <script>
       (function() {
         function prepareVideo(v) {
@@ -242,17 +242,21 @@
             prepareVideo(vids[i]);
           }
         }
-        window.addEventListener('DOMContentLoaded', unlockAll);
-        window.addEventListener('load', unlockAll);
-        var events = ['touchstart', 'touchend', 'pointerdown', 'click', 'scroll'];
-        for (var j = 0; j < events.length; j++) {
-          window.addEventListener(events[j], unlockAll, { capture: true, passive: true });
-          document.addEventListener(events[j], unlockAll, { capture: true, passive: true });
+        if (document.readyState === 'loading') {
+          window.addEventListener('DOMContentLoaded', unlockAll, { once: true });
+        } else {
+          unlockAll();
+        }
+        window.addEventListener('load', unlockAll, { once: true });
+        var oneTimeEvents = ['touchstart', 'pointerdown', 'click'];
+        for (var j = 0; j < oneTimeEvents.length; j++) {
+          window.addEventListener(oneTimeEvents[j], unlockAll, { capture: true, passive: true, once: true });
         }
       })();
     </script>
-    <script type="module" crossorigin src="./assets/index-wyZGE8eH.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-ce2cj07k.css">
+    <script type="module" crossorigin src="./assets/index-CTkCENAA.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/react-vendor-CXg56VsP.js">
+    <link rel="stylesheet" crossorigin href="./assets/index-wGTI2XHA.css">
   </head>
   <body>
     <div id="root"></div>

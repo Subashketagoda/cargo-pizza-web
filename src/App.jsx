@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -11,11 +11,51 @@ import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import OrderPopup from './components/OrderPopup';
 import Loading from './components/Loading';
-import Admin from './components/Admin';
 import PromoPopup from './components/PromoPopup';
 import './App.css';
 
-const MainSite = ({ isLoading, setIsLoading, isUserInteracted }) => (
+const Admin = lazy(() => import('./components/Admin'));
+
+const ScrollToTop = () => {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setVisible(window.scrollY > 450);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  if (!visible) return null;
+
+  return (
+    <button
+      type="button"
+      className="scroll-to-top"
+      onClick={scrollToTop}
+      aria-label="Scroll back to top"
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M18 15l-6-6-6 6"/>
+      </svg>
+    </button>
+  );
+};
+
+const MainSite = ({ isLoading, setIsLoading }) => (
   <>
     {isLoading && <Loading onLoadingComplete={() => setIsLoading(false)} />}
     <Navbar />
@@ -31,14 +71,14 @@ const MainSite = ({ isLoading, setIsLoading, isUserInteracted }) => (
     <Footer />
     <OrderPopup />
     <PromoPopup />
+    <ScrollToTop />
   </>
 );
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [isUserInteracted, setIsUserInteracted] = useState(false);
 
-  // Global Video Playback & Autoplay Unlocker for all mobile & desktop browsers
+  // Optimized Global Video Playback & Autoplay Unlocker
   useEffect(() => {
     const playAllVideos = () => {
       document.querySelectorAll('video').forEach((video) => {
@@ -53,43 +93,36 @@ function App() {
       });
     };
 
-    // Run on mount and with brief interval to catch buffering videos
     playAllVideos();
-    const interval = setInterval(playAllVideos, 400);
-    const timer = setTimeout(() => clearInterval(interval), 5000);
 
     const handleUserInteraction = () => {
       setIsUserInteracted(true);
       playAllVideos();
     };
 
-    window.addEventListener('touchstart', handleUserInteraction, { passive: true });
-    window.addEventListener('touchend', handleUserInteraction, { passive: true });
-    window.addEventListener('pointerdown', handleUserInteraction, { passive: true });
-    window.addEventListener('click', handleUserInteraction, { passive: true });
-    window.addEventListener('scroll', handleUserInteraction, { passive: true });
+    // Attach single-trigger listeners without continuous scroll events
+    window.addEventListener('touchstart', handleUserInteraction, { passive: true, once: true });
+    window.addEventListener('pointerdown', handleUserInteraction, { passive: true, once: true });
+    window.addEventListener('click', handleUserInteraction, { passive: true, once: true });
 
     return () => {
-      clearInterval(interval);
-      clearTimeout(timer);
       window.removeEventListener('touchstart', handleUserInteraction);
-      window.removeEventListener('touchend', handleUserInteraction);
       window.removeEventListener('pointerdown', handleUserInteraction);
       window.removeEventListener('click', handleUserInteraction);
-      window.removeEventListener('scroll', handleUserInteraction);
     };
   }, []);
 
   // When loading finishes, ensure hero and content videos play immediately
   useEffect(() => {
     if (!isLoading) {
-      setTimeout(() => {
+      const raf = requestAnimationFrame(() => {
         document.querySelectorAll('video').forEach((v) => {
           v.muted = true;
           v.defaultMuted = true;
           if (v.paused) v.play().catch(() => {});
         });
-      }, 100);
+      });
+      return () => cancelAnimationFrame(raf);
     }
   }, [isLoading]);
 
@@ -109,18 +142,23 @@ function App() {
               <MainSite
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
-                isUserInteracted={isUserInteracted}
               />
             }
           />
-          <Route path="/admin" element={<Admin />} />
+          <Route
+            path="/admin"
+            element={
+              <Suspense fallback={<div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0a1128', color: '#FFD700' }}>Loading Admin...</div>}>
+                <Admin />
+              </Suspense>
+            }
+          />
           <Route
             path="*"
             element={
               <MainSite
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
-                isUserInteracted={isUserInteracted}
               />
             }
           />

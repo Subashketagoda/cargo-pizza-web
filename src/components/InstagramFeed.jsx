@@ -3,13 +3,11 @@ import './InstagramFeed.css';
 
 // 100% Authentic Assets from Cargo Pizzeria
 import promoVideo from '../assets/promo-video.mp4';
-import bogoPromo from '../assets/bogo-promo.png';
 import realHeartPizza from '../assets/real-heart-pizza.jpg';
 import realCheesePull from '../assets/real-cheese-pull.jpg';
 import realDevilledChicken from '../assets/real-devilled-chicken.jpg';
 import realOvenFire from '../assets/real-oven-fire.jpg';
 import realTakeawayBoxes from '../assets/real-takeaway-boxes.jpg';
-import realOvenPan from '../assets/real-oven-pan.jpg';
 
 const instaPosts = [
   {

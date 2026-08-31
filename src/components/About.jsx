@@ -11,15 +11,23 @@ const About = () => {
   const videoRef = useRef(null);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
 
-  // Lazy load video only when user scrolls near About section
+  // Lazy load and pause/play video based on section visibility
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setShouldLoadVideo(true);
+          if (videoRef.current && videoRef.current.paused) {
+            videoRef.current.play().catch(() => {});
+          }
+        } else {
+          // Pause when user scrolls past About section to save CPU/GPU
+          if (videoRef.current && !videoRef.current.paused) {
+            videoRef.current.pause();
+          }
         }
       },
-      { rootMargin: '250px' }
+      { rootMargin: '200px 0px 200px 0px', threshold: 0.1 }
     );
 
     if (sectionRef.current) {
@@ -60,48 +68,21 @@ const About = () => {
 
     tryPlay();
 
-    video.addEventListener('loadedmetadata', tryPlay);
-    video.addEventListener('loadeddata', tryPlay);
-    video.addEventListener('canplay', tryPlay);
-    video.addEventListener('canplaythrough', tryPlay);
-
-    const interval = setInterval(() => {
-      if (video && video.paused) {
-        tryPlay();
-      }
-    }, 300);
-
-    const timer = setTimeout(() => clearInterval(interval), 4000);
+    video.addEventListener('loadedmetadata', tryPlay, { once: true });
+    video.addEventListener('canplay', tryPlay, { once: true });
 
     const handleFirstInteraction = () => {
       tryPlay();
-      window.removeEventListener('touchstart', handleFirstInteraction);
-      window.removeEventListener('touchend', handleFirstInteraction);
-      window.removeEventListener('pointerdown', handleFirstInteraction);
-      window.removeEventListener('click', handleFirstInteraction);
-      window.removeEventListener('scroll', handleFirstInteraction);
     };
 
-    window.addEventListener('touchstart', handleFirstInteraction, { passive: true });
-    window.addEventListener('touchend', handleFirstInteraction, { passive: true });
-    window.addEventListener('pointerdown', handleFirstInteraction, { passive: true });
-    window.addEventListener('click', handleFirstInteraction, { passive: true });
-    window.addEventListener('scroll', handleFirstInteraction, { passive: true });
+    window.addEventListener('touchstart', handleFirstInteraction, { passive: true, once: true });
+    window.addEventListener('pointerdown', handleFirstInteraction, { passive: true, once: true });
+    window.addEventListener('click', handleFirstInteraction, { passive: true, once: true });
 
     return () => {
-      clearInterval(interval);
-      clearTimeout(timer);
-      if (video) {
-        video.removeEventListener('loadedmetadata', tryPlay);
-        video.removeEventListener('loadeddata', tryPlay);
-        video.removeEventListener('canplay', tryPlay);
-        video.removeEventListener('canplaythrough', tryPlay);
-      }
       window.removeEventListener('touchstart', handleFirstInteraction);
-      window.removeEventListener('touchend', handleFirstInteraction);
       window.removeEventListener('pointerdown', handleFirstInteraction);
       window.removeEventListener('click', handleFirstInteraction);
-      window.removeEventListener('scroll', handleFirstInteraction);
     };
   }, [shouldLoadVideo]);
 

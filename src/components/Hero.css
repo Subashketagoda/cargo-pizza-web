@@ -258,22 +258,26 @@
   background: radial-gradient(circle, rgba(255, 215, 0, 0.28) 0%, rgba(230, 57, 70, 0.15) 50%, transparent 70%);
   filter: blur(35px);
   animation: auraPulse 4s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+  transform: translateZ(0);
 }
 
 @keyframes auraPulse {
-  0% { transform: scale(0.9); opacity: 0.7; }
-  100% { transform: scale(1.1); opacity: 1; }
+  0% { transform: scale(0.9) translateZ(0); opacity: 0.7; }
+  100% { transform: scale(1.1) translateZ(0); opacity: 1; }
 }
 
 .hero__mascot-wrapper {
   position: relative;
   z-index: 2;
   animation: floatMascot 4.5s ease-in-out infinite alternate;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 @keyframes floatMascot {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-14px); }
+  0% { transform: translateY(0) translateZ(0); }
+  100% { transform: translateY(-14px) translateZ(0); }
 }
 
 .hero__mascot {
@@ -281,6 +285,7 @@
   max-width: 360px;
   height: auto;
   filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.6));
+  transform: translateZ(0);
 }
 
 /* Floating Badges */
