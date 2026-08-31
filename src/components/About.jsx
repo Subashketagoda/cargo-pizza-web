@@ -29,7 +29,7 @@ const About = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Bulletproof autoplay once video is loaded
+  // Robust autoplay once video is loaded
   useEffect(() => {
     if (!shouldLoadVideo) return;
     const video = videoRef.current;
@@ -40,28 +40,63 @@ const About = () => {
     video.playsInline = true;
     video.setAttribute('playsinline', '');
     video.setAttribute('webkit-playsinline', '');
+    video.setAttribute('muted', '');
+    video.setAttribute('autoplay', '');
 
-    const playVideo = () => {
-      if (video && video.paused) {
-        video.play().catch(() => {});
+    const tryPlay = () => {
+      if (video) {
+        video.muted = true;
+        video.defaultMuted = true;
+        video.playsInline = true;
+        const p = video.play();
+        if (p !== undefined) {
+          p.catch(() => {});
+        }
       }
     };
 
-    playVideo();
+    tryPlay();
+
+    video.addEventListener('loadedmetadata', tryPlay);
+    video.addEventListener('loadeddata', tryPlay);
+    video.addEventListener('canplay', tryPlay);
+    video.addEventListener('canplaythrough', tryPlay);
+
+    const interval = setInterval(() => {
+      if (video && video.paused) {
+        tryPlay();
+      }
+    }, 300);
+
+    const timer = setTimeout(() => clearInterval(interval), 4000);
 
     const handleFirstInteraction = () => {
-      playVideo();
+      tryPlay();
       window.removeEventListener('touchstart', handleFirstInteraction);
+      window.removeEventListener('touchend', handleFirstInteraction);
+      window.removeEventListener('pointerdown', handleFirstInteraction);
       window.removeEventListener('click', handleFirstInteraction);
       window.removeEventListener('scroll', handleFirstInteraction);
     };
 
-    window.addEventListener('touchstart', handleFirstInteraction, { once: true, passive: true });
-    window.addEventListener('click', handleFirstInteraction, { once: true, passive: true });
-    window.addEventListener('scroll', handleFirstInteraction, { once: true, passive: true });
+    window.addEventListener('touchstart', handleFirstInteraction, { passive: true });
+    window.addEventListener('touchend', handleFirstInteraction, { passive: true });
+    window.addEventListener('pointerdown', handleFirstInteraction, { passive: true });
+    window.addEventListener('click', handleFirstInteraction, { passive: true });
+    window.addEventListener('scroll', handleFirstInteraction, { passive: true });
 
     return () => {
+      clearInterval(interval);
+      clearTimeout(timer);
+      if (video) {
+        video.removeEventListener('loadedmetadata', tryPlay);
+        video.removeEventListener('loadeddata', tryPlay);
+        video.removeEventListener('canplay', tryPlay);
+        video.removeEventListener('canplaythrough', tryPlay);
+      }
       window.removeEventListener('touchstart', handleFirstInteraction);
+      window.removeEventListener('touchend', handleFirstInteraction);
+      window.removeEventListener('pointerdown', handleFirstInteraction);
       window.removeEventListener('click', handleFirstInteraction);
       window.removeEventListener('scroll', handleFirstInteraction);
     };
@@ -193,6 +228,7 @@ const About = () => {
                   if (p !== undefined) p.catch(() => {});
                 }
               }}
+              src={promoVideo}
               autoPlay
               loop
               muted
@@ -201,12 +237,19 @@ const About = () => {
               x5-playsinline="true"
               preload="auto"
               poster={realOvenFire}
+              onLoadedMetadata={(e) => {
+                e.target.muted = true;
+                e.target.defaultMuted = true;
+                e.target.play().catch(() => {});
+              }}
               onLoadedData={(e) => {
                 e.target.muted = true;
+                e.target.defaultMuted = true;
                 e.target.play().catch(() => {});
               }}
               onCanPlay={(e) => {
                 e.target.muted = true;
+                e.target.defaultMuted = true;
                 e.target.play().catch(() => {});
               }}
               className="promo__video"

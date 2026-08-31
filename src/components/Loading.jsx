@@ -23,7 +23,7 @@ const Loading = ({ onLoadingComplete }) => {
   const startTimeRef = useRef(null);
   const videoRef = useRef(null);
 
-  // Bulletproof video autoplay for all browsers and mobile devices
+  // Robust video autoplay across all browsers and devices
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -33,29 +33,68 @@ const Loading = ({ onLoadingComplete }) => {
     video.playsInline = true;
     video.setAttribute('playsinline', '');
     video.setAttribute('webkit-playsinline', '');
+    video.setAttribute('muted', '');
+    video.setAttribute('autoplay', '');
 
-    const playVideo = () => {
-      if (video && video.paused) {
-        video.play().catch(() => {});
+    const tryPlay = () => {
+      if (video) {
+        video.muted = true;
+        video.defaultMuted = true;
+        video.playsInline = true;
+        const p = video.play();
+        if (p !== undefined) {
+          p.catch(() => {});
+        }
       }
     };
 
-    playVideo();
+    tryPlay();
 
-    // Fallback on first user interaction if blocked by browser power saving
+    // Event-based playback triggers
+    video.addEventListener('loadedmetadata', tryPlay);
+    video.addEventListener('loadeddata', tryPlay);
+    video.addEventListener('canplay', tryPlay);
+    video.addEventListener('canplaythrough', tryPlay);
+
+    // Periodic retry for initial 4 seconds in case network buffer delays initial playback
+    const interval = setInterval(() => {
+      if (video && video.paused) {
+        tryPlay();
+      }
+    }, 250);
+
+    const stopIntervalTimer = setTimeout(() => {
+      clearInterval(interval);
+    }, 4000);
+
+    // Fallback on first user interaction (touch/click/pointer/scroll)
     const handleFirstInteraction = () => {
-      playVideo();
+      tryPlay();
       window.removeEventListener('touchstart', handleFirstInteraction);
+      window.removeEventListener('touchend', handleFirstInteraction);
+      window.removeEventListener('pointerdown', handleFirstInteraction);
       window.removeEventListener('click', handleFirstInteraction);
       window.removeEventListener('scroll', handleFirstInteraction);
     };
 
-    window.addEventListener('touchstart', handleFirstInteraction, { once: true, passive: true });
-    window.addEventListener('click', handleFirstInteraction, { once: true, passive: true });
-    window.addEventListener('scroll', handleFirstInteraction, { once: true, passive: true });
+    window.addEventListener('touchstart', handleFirstInteraction, { passive: true });
+    window.addEventListener('touchend', handleFirstInteraction, { passive: true });
+    window.addEventListener('pointerdown', handleFirstInteraction, { passive: true });
+    window.addEventListener('click', handleFirstInteraction, { passive: true });
+    window.addEventListener('scroll', handleFirstInteraction, { passive: true });
 
     return () => {
+      clearInterval(interval);
+      clearTimeout(stopIntervalTimer);
+      if (video) {
+        video.removeEventListener('loadedmetadata', tryPlay);
+        video.removeEventListener('loadeddata', tryPlay);
+        video.removeEventListener('canplay', tryPlay);
+        video.removeEventListener('canplaythrough', tryPlay);
+      }
       window.removeEventListener('touchstart', handleFirstInteraction);
+      window.removeEventListener('touchend', handleFirstInteraction);
+      window.removeEventListener('pointerdown', handleFirstInteraction);
       window.removeEventListener('click', handleFirstInteraction);
       window.removeEventListener('scroll', handleFirstInteraction);
     };
@@ -141,6 +180,7 @@ const Loading = ({ onLoadingComplete }) => {
               if (p !== undefined) p.catch(() => {});
             }
           }}
+          src={initialPromoVideo}
           autoPlay
           loop
           muted
@@ -148,12 +188,19 @@ const Loading = ({ onLoadingComplete }) => {
           webkit-playsinline="true"
           x5-playsinline="true"
           preload="auto"
+          onLoadedMetadata={(e) => {
+            e.target.muted = true;
+            e.target.defaultMuted = true;
+            e.target.play().catch(() => {});
+          }}
           onLoadedData={(e) => {
             e.target.muted = true;
+            e.target.defaultMuted = true;
             e.target.play().catch(() => {});
           }}
           onCanPlay={(e) => {
             e.target.muted = true;
+            e.target.defaultMuted = true;
             e.target.play().catch(() => {});
           }}
           className="cargo-loader__bg-video"

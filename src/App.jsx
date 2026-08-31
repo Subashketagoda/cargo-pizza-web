@@ -53,8 +53,10 @@ function App() {
       });
     };
 
-    // Run on mount
+    // Run on mount and with brief interval to catch buffering videos
     playAllVideos();
+    const interval = setInterval(playAllVideos, 400);
+    const timer = setTimeout(() => clearInterval(interval), 5000);
 
     const handleUserInteraction = () => {
       setIsUserInteracted(true);
@@ -62,12 +64,16 @@ function App() {
     };
 
     window.addEventListener('touchstart', handleUserInteraction, { passive: true });
+    window.addEventListener('touchend', handleUserInteraction, { passive: true });
     window.addEventListener('pointerdown', handleUserInteraction, { passive: true });
     window.addEventListener('click', handleUserInteraction, { passive: true });
     window.addEventListener('scroll', handleUserInteraction, { passive: true });
 
     return () => {
+      clearInterval(interval);
+      clearTimeout(timer);
       window.removeEventListener('touchstart', handleUserInteraction);
+      window.removeEventListener('touchend', handleUserInteraction);
       window.removeEventListener('pointerdown', handleUserInteraction);
       window.removeEventListener('click', handleUserInteraction);
       window.removeEventListener('scroll', handleUserInteraction);
