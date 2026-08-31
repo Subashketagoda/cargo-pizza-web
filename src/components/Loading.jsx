@@ -81,18 +81,6 @@ const Loading = ({ onLoadingComplete }) => {
     }, 300);
   };
 
-  // Auto-progress if left unattended (~2.5s smooth auto entry)
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsFadingOut(true);
-      setTimeout(() => {
-        if (onLoadingComplete) onLoadingComplete();
-      }, 300);
-    }, 2500);
-
-    return () => clearTimeout(timer);
-  }, [onLoadingComplete]);
-
   return (
     <div
       className={`cargo-loader ${isFadingOut ? 'cargo-loader--exit' : ''}`}
