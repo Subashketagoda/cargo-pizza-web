@@ -15,7 +15,7 @@ main {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: #0f1b47;
+  background: #1b2f73;
   color: #FFD700;
   border: 2px solid #FFD700;
   display: flex;
@@ -31,7 +31,7 @@ main {
 
 .scroll-to-top:hover {
   background: #FFD700;
-  color: #0f1b47;
+  color: #1b2f73;
   transform: translateY(-3px) scale(1.08);
   box-shadow: 0 10px 25px rgba(255, 215, 0, 0.5);
 }

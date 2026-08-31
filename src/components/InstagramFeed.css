@@ -5,7 +5,7 @@
 
 .insta-section {
   padding: 6rem 0;
-  background: linear-gradient(180deg, #070d1e 0%, #0f1b47 50%, #0a122e 100%);
+  background: linear-gradient(180deg, #142252 0%, #1c3072 50%, #13204e 100%);
   position: relative;
   overflow: hidden;
 }
@@ -55,10 +55,10 @@
 
 /* Card */
 .insta-card {
-  background: #0f1b47;
+  background: #1b2f73;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
   border: 2px solid rgba(255, 215, 0, 0.3);
   cursor: pointer;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
@@ -331,13 +331,13 @@
 
 .insta-modal-card {
   position: relative;
-  background: #0f1b47;
+  background: #1b2f73;
   border: 2px solid rgba(255, 215, 0, 0.4);
   border-radius: 20px;
   overflow: hidden;
   max-width: 960px;
   width: 100%;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
   color: #ffffff;
 }
 

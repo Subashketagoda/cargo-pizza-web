@@ -2,7 +2,7 @@
 .promo-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(15, 27, 71, 0.75);
+  background: rgba(27, 47, 115, 0.75);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: 10000;
@@ -31,11 +31,11 @@
   transform: translate(-50%, -50%) scale(0.85);
   z-index: 10001;
   width: min(90vw, 420px);
-  background: var(--blue-dark, #0f1b47);
+  background: var(--blue-dark, #1b2f73);
   border: 3px solid var(--yellow, #FFD700);
   border-radius: 28px;
   overflow: hidden;
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.65), 0 0 35px rgba(255, 215, 0, 0.35);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55), 0 0 35px rgba(255, 215, 0, 0.35);
   animation: popupIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
@@ -68,7 +68,7 @@
 /* ── Header Badge ── */
 .promo-popup__header-badge {
   background: linear-gradient(135deg, var(--yellow, #FFD700), var(--yellow-dark, #F5C400));
-  color: var(--blue-dark, #0f1b47);
+  color: var(--blue-dark, #162862);
   font-family: var(--font-heading, 'Fredoka', sans-serif);
   font-weight: 700;
   font-size: 0.95rem;
@@ -87,7 +87,7 @@
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: rgba(15, 27, 71, 0.85);
+  background: rgba(27, 47, 115, 0.85);
   border: 1.5px solid var(--yellow, #FFD700);
   cursor: pointer;
   display: flex;
@@ -127,7 +127,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
-  background: var(--blue-dark, #0f1b47);
+  background: var(--blue-dark, #1b2f73);
   align-items: center;
 }
 

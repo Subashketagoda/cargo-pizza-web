@@ -37,17 +37,17 @@
   color: #FFD700;
   margin-bottom: 0.75rem;
   padding: 0.45rem 1.3rem;
-  background: #0f1b47;
+  background: #1b2f73;
   border-radius: 100px;
-  box-shadow: 0 4px 14px rgba(15, 27, 71, 0.25);
+  box-shadow: 0 4px 14px rgba(27, 47, 115, 0.25);
 }
 
 .menu-section .section-title {
-  color: #0f1b47;
+  color: #162862;
 }
 
 .menu-section .section-subtitle {
-  color: #0f1b47;
+  color: #1b2f73;
   font-weight: 600;
 }
 
@@ -60,10 +60,10 @@
   max-width: 100%;
   margin: 0 auto 3.5rem;
   padding: 0.45rem;
-  background: #0f1b47;
-  border: 2px solid #0f1b47;
+  background: #1b2f73;
+  border: 2px solid #1b2f73;
   border-radius: 100px;
-  box-shadow: 0 10px 30px rgba(15, 27, 71, 0.3);
+  box-shadow: 0 10px 30px rgba(27, 47, 115, 0.3);
   flex-wrap: wrap;
 }
 
@@ -91,12 +91,12 @@
 
 .menu-tab--active {
   background: #FFD700;
-  color: #0f1b47;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  color: #162862;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
 }
 
 .menu-tab--active:hover {
-  color: #0f1b47;
+  color: #162862;
   background: #FFD700;
 }
 
@@ -109,12 +109,12 @@
 
 /* ── Foodie Card ── */
 .menu-card {
-  background: #0f1b47;
+  background: #1b2f73;
   border-radius: 22px;
-  border: 2px solid #0f1b47;
+  border: 2px solid #1b2f73;
   padding: 1.75rem;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 12px 32px rgba(15, 27, 71, 0.25);
+  box-shadow: 0 12px 32px rgba(27, 47, 115, 0.25);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -141,8 +141,8 @@
 .menu-card:hover {
   transform: translateY(-6px) translateZ(0);
   border-color: #FFD700;
-  background: #14245c;
-  box-shadow: 0 20px 45px rgba(15, 27, 71, 0.35);
+  background: #233c8f;
+  box-shadow: 0 20px 45px rgba(27, 47, 115, 0.35);
 }
 
 .menu-card:hover::before {

@@ -6,7 +6,7 @@
 .faq-section {
   position: relative;
   padding: clamp(5rem, 7vw, 6.5rem) 0;
-  background: linear-gradient(180deg, #0a1128 0%, #0f1b47 50%, #080d22 100%);
+  background: linear-gradient(180deg, #13204e 0%, #1c3072 50%, #142252 100%);
   overflow: hidden;
 }
 
@@ -56,25 +56,25 @@
 
 /* FAQ Item Card */
 .faq-item {
-  background: rgba(15, 27, 71, 0.85);
-  border: 2px solid rgba(255, 215, 0, 0.25);
+  background: rgba(27, 47, 115, 0.9);
+  border: 2px solid rgba(255, 215, 0, 0.28);
   border-radius: 18px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
 }
 
 .faq-item:hover {
   border-color: #FFD700;
-  background: rgba(26, 45, 109, 0.95);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  background: rgba(36, 64, 148, 0.95);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
   transform: translateY(-2px);
 }
 
 .faq-item--open {
   border-color: #FFD700;
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45);
-  background: rgba(26, 45, 109, 0.95);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.4);
+  background: rgba(36, 64, 148, 0.95);
 }
 
 /* Question Header Button */
@@ -156,10 +156,10 @@
   max-width: 860px;
   margin: 0 auto;
   padding: 1.6rem 2.2rem;
-  background: linear-gradient(135deg, #0f1b47, #1a2d6d);
+  background: linear-gradient(135deg, #1b2f73, #2847a4);
   border: 2px solid rgba(255, 215, 0, 0.4);
   border-radius: 20px;
-  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.35);
   display: flex;
   align-items: center;
   justify-content: space-between;

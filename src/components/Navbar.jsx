@@ -37,6 +37,21 @@ const Navbar = () => {
     };
   }, [menuOpen]);
 
+  const handleScrollTo = (e, targetId) => {
+    e.preventDefault();
+    setMenuOpen(false);
+    const target = document.getElementById(targetId);
+    if (target) {
+      const navOffset = window.innerWidth <= 768 ? 75 : 85;
+      const targetPos = target.getBoundingClientRect().top + window.pageYOffset - navOffset;
+      window.scrollTo({
+        top: Math.max(0, targetPos),
+        behavior: 'smooth'
+      });
+      window.history.pushState(null, '', `#${targetId}`);
+    }
+  };
+
   return (
     <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`} aria-label="Main navigation">
       <div className="container nav-container">
@@ -49,10 +64,10 @@ const Navbar = () => {
             <img src={logo} alt="Cargo Pizza Logo" className="nav-mobile-logo" width="140" height="44" decoding="async" />
           </div>
 
-          <li><a href="#about" onClick={() => setMenuOpen(false)}>About Us</a></li>
-          <li><a href="#menu" onClick={() => setMenuOpen(false)}>Our Menu</a></li>
-          <li><a href="#faq" onClick={() => setMenuOpen(false)}>FAQ</a></li>
-          <li><a href="#location" onClick={() => setMenuOpen(false)}>Location & Contact</a></li>
+          <li><a href="#about" onClick={(e) => handleScrollTo(e, 'about')}>About Us</a></li>
+          <li><a href="#menu" onClick={(e) => handleScrollTo(e, 'menu')}>Our Menu</a></li>
+          <li><a href="#faq" onClick={(e) => handleScrollTo(e, 'faq')}>FAQ</a></li>
+          <li><a href="#location" onClick={(e) => handleScrollTo(e, 'location')}>Location & Contact</a></li>
 
           <div className="nav-mobile-cta">
             <a href="tel:0778817742" className="nav-mobile-btn" onClick={() => setMenuOpen(false)}>

@@ -11,7 +11,7 @@
   height: 100vh;
   z-index: 999999;
   overflow: hidden;
-  background: radial-gradient(circle at 50% 45%, #0e1a3a 0%, #080f24 55%, #030612 100%);
+  background: radial-gradient(circle at 50% 45%, #182d68 0%, #132252 55%, #0d173c 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -235,17 +235,17 @@
 .cargo-splash__card {
   width: 100%;
   max-width: 360px;
-  background: rgba(15, 27, 71, 0.65);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  background: rgba(27, 47, 115, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
   border-radius: 20px;
   padding: 1.5rem 1.4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.8rem;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
 }
 
 /* ENTER CARGO Yellow CTA Button */
@@ -257,7 +257,7 @@
   gap: 0.6rem;
   padding: 1rem 1.8rem;
   background: linear-gradient(135deg, #FFD700 0%, #F5C400 100%);
-  color: #0f1b47;
+  color: #162862;
   font-family: var(--font-heading, 'Fredoka', sans-serif);
   font-weight: 800;
   font-size: 1.1rem;
@@ -327,8 +327,8 @@
 /* ── Brand & Circular Ring Section ── */
 .cargo-loader__brand-wrap {
   position: relative;
-  width: 170px;
-  height: 170px;
+  width: 190px;
+  height: 190px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -345,38 +345,36 @@
 
 .ring-track {
   fill: none;
-  stroke: rgba(255, 255, 255, 0.07);
+  stroke: rgba(255, 255, 255, 0.1);
   stroke-width: 3.5;
 }
 
 .ring-bar {
   fill: none;
   stroke: #FFD700;
-  stroke-width: 4.5;
+  stroke-width: 5;
   stroke-linecap: round;
   transition: stroke-dashoffset 0.08s linear;
-  filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.7));
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
 }
 
 .cargo-loader__logo-box {
   position: relative;
   z-index: 2;
-  width: 125px;
-  height: 125px;
+  width: 145px;
+  height: 145px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: #FFD700;
-  border: 2px solid #0f1b47;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 215, 0, 0.6);
+  background: transparent;
+  filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.5));
 }
 
 .cargo-loader__logo {
-  width: 95px;
-  height: auto;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
   animation: logoBreath 3s ease-in-out infinite alternate;
 }
 
@@ -505,17 +503,18 @@
   }
 
   .cargo-loader__brand-wrap {
-    width: 145px;
-    height: 145px;
+    width: 165px;
+    height: 165px;
   }
 
   .cargo-loader__logo-box {
-    width: 105px;
-    height: 105px;
+    width: 130px;
+    height: 130px;
   }
 
   .cargo-loader__logo {
-    width: 80px;
+    width: 100%;
+    height: 100%;
   }
 
   .cargo-loader__percentage {

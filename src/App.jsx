@@ -96,7 +96,6 @@ function App() {
     playAllVideos();
 
     const handleUserInteraction = () => {
-      setIsUserInteracted(true);
       playAllVideos();
     };
 
@@ -148,7 +147,7 @@ function App() {
           <Route
             path="/admin"
             element={
-              <Suspense fallback={<div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0a1128', color: '#FFD700' }}>Loading Admin...</div>}>
+              <Suspense fallback={<div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#13204e', color: '#FFD700' }}>Loading Admin...</div>}>
                 <Admin />
               </Suspense>
             }

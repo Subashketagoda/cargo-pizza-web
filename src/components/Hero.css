@@ -10,7 +10,7 @@
   align-items: center;
   overflow: hidden;
   padding: 6.5rem 0 5rem;
-  background: #080d22;
+  background: #111d46;
 }
 
 /* ── Background Image ── */
@@ -39,8 +39,8 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(8, 13, 34, 0.42) 0%, rgba(8, 13, 34, 0.28) 40%, rgba(8, 13, 34, 0.8) 100%),
-    linear-gradient(90deg, rgba(8, 13, 34, 0.68) 0%, rgba(8, 13, 34, 0.35) 55%, rgba(8, 13, 34, 0.15) 100%);
+    linear-gradient(180deg, rgba(17, 29, 70, 0.42) 0%, rgba(17, 29, 70, 0.25) 40%, rgba(17, 29, 70, 0.8) 100%),
+    linear-gradient(90deg, rgba(17, 29, 70, 0.65) 0%, rgba(17, 29, 70, 0.32) 55%, rgba(17, 29, 70, 0.12) 100%);
 }
 
 .hero__ambient-glow {
@@ -76,10 +76,12 @@
 .hero__tagline-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.5rem 1.25rem;
-  background: rgba(15, 27, 71, 0.75);
-  border: 1.5px solid rgba(255, 215, 0, 0.45);
+  gap: 0.65rem;
+  padding: 0.55rem 1.4rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-top-color: rgba(255, 255, 255, 0.5);
+  border-bottom-color: rgba(255, 215, 0, 0.4);
   border-radius: 100px;
   font-family: var(--font-heading);
   font-size: 0.82rem;
@@ -88,9 +90,9 @@
   letter-spacing: 1.8px;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.4), 0 0 20px rgba(255, 215, 0, 0.15);
   transform: translateZ(0);
 }
 
@@ -194,19 +196,21 @@
   color: #0f1b47;
 }
 
-/* Stats Bar */
+/* Stats Bar - Luxury Frosted Glassmorphism */
 .hero__stats {
   display: flex;
   align-items: center;
-  gap: 1.6rem;
-  padding: 1rem 1.8rem;
-  background: rgba(15, 27, 71, 0.85);
-  border: 1.5px solid rgba(255, 215, 0, 0.3);
-  border-radius: 18px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  gap: 1.8rem;
+  padding: 1.1rem 2.2rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-top-color: rgba(255, 255, 255, 0.5);
+  border-bottom-color: rgba(255, 215, 0, 0.4);
+  border-radius: 20px;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   width: fit-content;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.4), inset 0 -1px 2px rgba(0, 0, 0, 0.2), 0 0 25px rgba(255, 215, 0, 0.12);
   transform: translateZ(0);
 }
 
@@ -217,24 +221,27 @@
 
 .hero__stat strong {
   font-family: var(--font-heading);
-  font-size: 1.35rem;
+  font-size: 1.45rem;
   font-weight: 800;
   color: #FFD700;
   line-height: 1.1;
+  text-shadow: 0 0 16px rgba(255, 215, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
 .hero__stat span {
-  font-size: 0.74rem;
-  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.76rem;
+  color: #ffffff;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  opacity: 0.92;
 }
 
 .hero__stat-divider {
-  width: 1px;
-  height: 28px;
-  background: rgba(255, 255, 255, 0.18);
+  width: 1.5px;
+  height: 32px;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.45), transparent);
 }
 
 /* ── Right Visual Area ── */
@@ -288,13 +295,15 @@
 .hero__float {
   position: absolute;
   z-index: 4;
-  padding: 0.65rem 1.15rem;
-  background: rgba(15, 27, 71, 0.88);
-  border: 1.5px solid rgba(255, 215, 0, 0.4);
+  padding: 0.65rem 1.25rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-top-color: rgba(255, 255, 255, 0.5);
+  border-bottom-color: rgba(255, 215, 0, 0.4);
   border-radius: 16px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.35);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   transform: translateZ(0);
 }
@@ -314,7 +323,7 @@
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.85);
   letter-spacing: 0.5px;
 }
 
@@ -323,6 +332,7 @@
   font-size: 1.35rem;
   font-weight: 800;
   color: #FFD700;
+  text-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
 }
 
 .hero__float--tag {
@@ -332,9 +342,9 @@
   font-size: 0.95rem;
   font-weight: 800;
   color: #ffffff;
-  border-color: rgba(230, 57, 70, 0.5);
-  background: rgba(230, 57, 70, 0.9);
-  box-shadow: 0 8px 25px rgba(230, 57, 70, 0.4);
+  border-color: rgba(230, 57, 70, 0.6);
+  background: rgba(230, 57, 70, 0.75);
+  box-shadow: 0 8px 25px rgba(230, 57, 70, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.4);
 }
 
 /* Wavy bottom divider */
@@ -420,7 +430,44 @@
     justify-content: space-around;
   }
 
+  .hero__visual {
+    max-width: 260px;
+    margin: 0 auto;
+  }
+
+  /* Floating badges visible and optimized on mobile */
   .hero__float {
-    display: none;
+    display: flex;
+    padding: 0.4rem 0.75rem;
+    border-radius: 12px;
+  }
+
+  .hero__float--price {
+    top: 5%;
+    left: -8%;
+  }
+
+  .hero__float--price strong {
+    font-size: 1rem;
+  }
+
+  .hero__float--price span {
+    font-size: 0.62rem;
+  }
+
+  .hero__float--tag {
+    bottom: 5%;
+    right: -8%;
+    font-size: 0.75rem;
+    padding: 0.4rem 0.75rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero__float--price {
+    left: -4%;
+  }
+  .hero__float--tag {
+    right: -4%;
   }
 }

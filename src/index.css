@@ -1,11 +1,11 @@
 :root {
-  /* Official Cargo Pizza brand tokens (Original Brand Colors) */
+  /* Official Cargo Pizza brand tokens (Vibrant & Lighter Royal Blue Palette) */
   --yellow: #FFD700;
   --yellow-light: #FFF44F;
   --yellow-dark: #F5C400;
-  --blue: #1a2d6d;
-  --blue-light: #2a3f8f;
-  --blue-dark: #0f1b47;
+  --blue: #244094;
+  --blue-light: #3657b8;
+  --blue-dark: #1b2f73;
   --red: #e63946;
   --red-dark: #c1282e;
   --white: #ffffff;
@@ -19,7 +19,7 @@
   --surface: var(--white);
   --text: var(--dark);
   --muted: #666666;
-  --border: rgba(15, 27, 71, 0.08);
+  --border: rgba(27, 47, 115, 0.12);
   --accent: var(--red);
 
   /* Typography */
@@ -47,7 +47,7 @@ html {
 }
 
 body {
-  background: #0a1128;
+  background: #13204e;
   color: #ffffff;
   font-family: var(--font-body);
   line-height: 1.6;
@@ -65,16 +65,31 @@ body {
   backface-visibility: hidden;
 }
 
-/* ─── Offscreen Rendering Performance Boost ─── */
-.about,
-.bogo-section,
-.menu-section,
-.reviews-section,
-.faq-section,
-.insta-section,
-.footer {
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 700px;
+/* ─── Exact Anchor Section Scroll Offsets ─── */
+#about,
+#menu,
+#combos,
+#reviews,
+#faq,
+#instagram,
+#location,
+section[id],
+footer[id] {
+  scroll-margin-top: 85px;
+}
+
+@media (max-width: 768px) {
+  #about,
+  #menu,
+  #combos,
+  #reviews,
+  #faq,
+  #instagram,
+  #location,
+  section[id],
+  footer[id] {
+    scroll-margin-top: 75px;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Footer.css';
 import logo from '../assets/mascot.png';
+import studioLogo from '../assets/69studio-logo.png';
 
 const Footer = () => {
   const [loadMap, setLoadMap] = useState(false);
@@ -23,6 +24,20 @@ const Footer = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  const handleScrollTo = (e, targetId) => {
+    e.preventDefault();
+    const target = document.getElementById(targetId);
+    if (target) {
+      const navOffset = window.innerWidth <= 768 ? 75 : 85;
+      const targetPos = target.getBoundingClientRect().top + window.pageYOffset - navOffset;
+      window.scrollTo({
+        top: Math.max(0, targetPos),
+        behavior: 'smooth'
+      });
+      window.history.pushState(null, '', `#${targetId}`);
+    }
+  };
 
   return (
     <footer id="location" className="footer" ref={footerRef}>
@@ -60,12 +75,12 @@ const Footer = () => {
             <div className="footer-col">
               <h4 className="footer-col__title">Quick Links</h4>
               <ul>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#menu">Our Menu</a></li>
-                <li><a href="#combos">Weekly BOGO Deals</a></li>
-                <li><a href="#instagram">Instagram Feed</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#location">Location & Contact</a></li>
+                <li><a href="#about" onClick={(e) => handleScrollTo(e, 'about')}>About Us</a></li>
+                <li><a href="#menu" onClick={(e) => handleScrollTo(e, 'menu')}>Our Menu</a></li>
+                <li><a href="#combos" onClick={(e) => handleScrollTo(e, 'combos')}>Weekly BOGO Deals</a></li>
+                <li><a href="#instagram" onClick={(e) => handleScrollTo(e, 'instagram')}>Instagram Feed</a></li>
+                <li><a href="#faq" onClick={(e) => handleScrollTo(e, 'faq')}>FAQ</a></li>
+                <li><a href="#location" onClick={(e) => handleScrollTo(e, 'location')}>Location & Contact</a></li>
               </ul>
             </div>
 
@@ -138,8 +153,37 @@ const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="footer__bottom">
-        <div className="container">
-          <p>© {new Date().getFullYear()} Cargo Pizzeria Nawala. All rights reserved.</p>
+        <div className="container footer__bottom-inner">
+          <p className="footer__copyright">
+            © {new Date().getFullYear()} Cargo Pizzeria Nawala. All rights reserved.
+          </p>
+          <a
+            href="https://69studiobysubash.online/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer__studio-card"
+            aria-label="Website Designed & Developed by 69 Studio"
+          >
+            <div className="studio-card__glow"></div>
+            <div className="studio-card__content">
+              <div className="studio-card__logo-wrap">
+                <img
+                  src={studioLogo}
+                  alt="69 Studio"
+                  className="studio-card__logo"
+                  width="28"
+                  height="28"
+                />
+                <span className="studio-card__pulse"></span>
+              </div>
+              <div className="studio-card__info">
+                <span className="studio-card__label">DESIGNED & DEVELOPED BY</span>
+                <span className="studio-card__brand">
+                  69 STUDIO <span className="studio-card__arrow">↗</span>
+                </span>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </footer>
