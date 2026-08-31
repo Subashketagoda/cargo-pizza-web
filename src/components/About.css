@@ -184,7 +184,7 @@
 /* ── Cinema Promo Banner with Live Video ── */
 .about__promo {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1.25fr 0.75fr;
   align-items: center;
   background: linear-gradient(135deg, #0f1b47, #1a2d6d);
   border-radius: 28px;
@@ -265,14 +265,17 @@
   justify-content: center;
 }
 
-/* ── Video Player Container ── */
+/* ── Video Player Container (9:16 Vertical Reel/Short Format) ── */
 .promo__visual {
   position: relative;
-  border-radius: 20px;
+  border-radius: 22px;
   overflow: hidden;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
   border: 3px solid rgba(255, 215, 0, 0.5);
-  aspect-ratio: 16 / 11;
+  aspect-ratio: 9 / 16;
+  max-width: 320px;
+  width: 100%;
+  justify-self: center;
   background: #000000;
 }
 
@@ -296,6 +299,12 @@
   .about__promo {
     grid-template-columns: 1fr;
     padding: 2.5rem;
+    gap: 2.5rem;
+  }
+
+  .promo__visual {
+    max-width: 280px;
+    margin: 0 auto;
   }
 }
 
