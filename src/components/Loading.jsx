@@ -30,9 +30,11 @@ const Loading = ({ onLoadingComplete }) => {
 
     video.defaultMuted = true;
     video.muted = true;
+    video.volume = 0;
     video.playsInline = true;
     video.setAttribute('playsinline', '');
     video.setAttribute('webkit-playsinline', '');
+    video.setAttribute('x5-playsinline', '');
     video.setAttribute('muted', '');
     video.setAttribute('autoplay', '');
 
@@ -40,6 +42,7 @@ const Loading = ({ onLoadingComplete }) => {
       if (video) {
         video.muted = true;
         video.defaultMuted = true;
+        video.volume = 0;
         video.playsInline = true;
         const p = video.play();
         if (p !== undefined) {
@@ -100,7 +103,25 @@ const Loading = ({ onLoadingComplete }) => {
     };
   }, []);
 
+  const handleTouchUnlock = () => {
+    const video = videoRef.current;
+    if (video) {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.volume = 0;
+      video.playsInline = true;
+      video.setAttribute('muted', '');
+      video.setAttribute('playsinline', '');
+      video.setAttribute('webkit-playsinline', '');
+      video.setAttribute('x5-playsinline', '');
+      if (video.paused) {
+        video.play().catch(() => {});
+      }
+    }
+  };
+
   const handleEnterCargo = () => {
+    handleTouchUnlock();
     setHasStarted(true);
   };
 
@@ -161,6 +182,9 @@ const Loading = ({ onLoadingComplete }) => {
       aria-valuenow={progress}
       aria-valuemin="0"
       aria-valuemax="100"
+      onTouchStart={handleTouchUnlock}
+      onPointerDown={handleTouchUnlock}
+      onClick={handleTouchUnlock}
     >
       {/* Background Video */}
       <div className="cargo-loader__bg-wrap">
@@ -170,11 +194,13 @@ const Loading = ({ onLoadingComplete }) => {
             if (el) {
               el.muted = true;
               el.defaultMuted = true;
+              el.volume = 0;
               el.playsInline = true;
               el.setAttribute('muted', '');
               el.setAttribute('autoplay', '');
               el.setAttribute('playsinline', '');
               el.setAttribute('webkit-playsinline', '');
+              el.setAttribute('x5-playsinline', '');
               el.setAttribute('loop', '');
               const p = el.play();
               if (p !== undefined) p.catch(() => {});
@@ -191,16 +217,19 @@ const Loading = ({ onLoadingComplete }) => {
           onLoadedMetadata={(e) => {
             e.target.muted = true;
             e.target.defaultMuted = true;
+            e.target.volume = 0;
             e.target.play().catch(() => {});
           }}
           onLoadedData={(e) => {
             e.target.muted = true;
             e.target.defaultMuted = true;
+            e.target.volume = 0;
             e.target.play().catch(() => {});
           }}
           onCanPlay={(e) => {
             e.target.muted = true;
             e.target.defaultMuted = true;
+            e.target.volume = 0;
             e.target.play().catch(() => {});
           }}
           className="cargo-loader__bg-video"
@@ -223,7 +252,7 @@ const Loading = ({ onLoadingComplete }) => {
 
       {!hasStarted ? (
         /* ═══════════════ SPLASH / WELCOME SCREEN (IMAGE MATCH) ═══════════════ */
-        <div className="cargo-splash">
+        <div className="cargo-splash" onTouchStart={handleTouchUnlock} onClick={handleTouchUnlock}>
           {/* Top Badge */}
           <div className="cargo-splash__badge">
             <span className="badge-fire">🔥</span>
@@ -251,7 +280,14 @@ const Loading = ({ onLoadingComplete }) => {
 
           {/* Glass Card with Enter Cargo Button */}
           <div className="cargo-splash__card">
-            <button className="cargo-splash__enter-btn" onClick={handleEnterCargo}>
+            <button
+              className="cargo-splash__enter-btn"
+              onTouchStart={handleTouchUnlock}
+              onClick={(e) => {
+                handleTouchUnlock();
+                handleEnterCargo();
+              }}
+            >
               <span className="enter-btn__icon">🍕</span>
               <span className="enter-btn__text">ENTER CARGO</span>
               <span className="enter-btn__arrow">

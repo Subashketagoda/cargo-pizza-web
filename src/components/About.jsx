@@ -37,9 +37,11 @@ const About = () => {
 
     video.defaultMuted = true;
     video.muted = true;
+    video.volume = 0;
     video.playsInline = true;
     video.setAttribute('playsinline', '');
     video.setAttribute('webkit-playsinline', '');
+    video.setAttribute('x5-playsinline', '');
     video.setAttribute('muted', '');
     video.setAttribute('autoplay', '');
 
@@ -47,6 +49,7 @@ const About = () => {
       if (video) {
         video.muted = true;
         video.defaultMuted = true;
+        video.volume = 0;
         video.playsInline = true;
         const p = video.play();
         if (p !== undefined) {
@@ -101,6 +104,23 @@ const About = () => {
       window.removeEventListener('scroll', handleFirstInteraction);
     };
   }, [shouldLoadVideo]);
+
+  const handleTouchUnlock = () => {
+    const video = videoRef.current;
+    if (video) {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.volume = 0;
+      video.playsInline = true;
+      video.setAttribute('muted', '');
+      video.setAttribute('playsinline', '');
+      video.setAttribute('webkit-playsinline', '');
+      video.setAttribute('x5-playsinline', '');
+      if (video.paused) {
+        video.play().catch(() => {});
+      }
+    }
+  };
 
   return (
     <section id="about" className="about section" ref={sectionRef} aria-label="About Cargo Pizza Nawala">
@@ -211,18 +231,20 @@ const About = () => {
             </div>
           </div>
 
-          <div className="promo__visual">
+          <div className="promo__visual" onTouchStart={handleTouchUnlock} onClick={handleTouchUnlock}>
             <video
               ref={(el) => {
                 videoRef.current = el;
                 if (el) {
                   el.muted = true;
                   el.defaultMuted = true;
+                  el.volume = 0;
                   el.playsInline = true;
                   el.setAttribute('muted', '');
                   el.setAttribute('autoplay', '');
                   el.setAttribute('playsinline', '');
                   el.setAttribute('webkit-playsinline', '');
+                  el.setAttribute('x5-playsinline', '');
                   el.setAttribute('loop', '');
                   const p = el.play();
                   if (p !== undefined) p.catch(() => {});
