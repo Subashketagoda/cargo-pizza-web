@@ -16,45 +16,6 @@ import './App.css';
 
 const Admin = lazy(() => import('./components/Admin'));
 
-const ScrollToTop = () => {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          setVisible(window.scrollY > 450);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  if (!visible) return null;
-
-  return (
-    <button
-      type="button"
-      className="scroll-to-top"
-      onClick={scrollToTop}
-      aria-label="Scroll back to top"
-    >
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M18 15l-6-6-6 6"/>
-      </svg>
-    </button>
-  );
-};
-
 const MainSite = ({ isLoading, setIsLoading }) => (
   <>
     {isLoading && <Loading onLoadingComplete={() => setIsLoading(false)} />}
@@ -71,7 +32,6 @@ const MainSite = ({ isLoading, setIsLoading }) => (
     <Footer />
     <OrderPopup />
     <PromoPopup />
-    <ScrollToTop />
   </>
 );
 
