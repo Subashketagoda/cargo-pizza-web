@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Footer.css';
 import logo from '../assets/mascot.png';
 
 const Footer = () => {
+  const [loadMap, setLoadMap] = useState(false);
+  const footerRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setLoadMap(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '300px' }
+    );
+
+    if (footerRef.current) {
+      observer.observe(footerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <footer id="location" className="footer">
+    <footer id="location" className="footer" ref={footerRef}>
       <div className="footer__main">
         <div className="container">
           <div className="footer-grid">
@@ -72,17 +93,23 @@ const Footer = () => {
               </address>
               
               {/* Google Maps Embed */}
-              <div style={{ marginTop: '1.25rem' }}>
-                <iframe 
-                  src="https://maps.google.com/maps?q=Cargo+Pizzeria,+422A+Nawala+Rd,+Nawala+10107&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-                  width="100%" 
-                  height="160" 
-                  style={{ border: '1px solid rgba(255, 215, 0, 0.3)', borderRadius: '14px' }} 
-                  allowFullScreen="" 
-                  loading="lazy" 
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Cargo Pizza Nawala Location Map"
-                ></iframe>
+              <div style={{ marginTop: '1.25rem', minHeight: '160px', borderRadius: '14px', overflow: 'hidden', background: '#070d1e' }}>
+                {loadMap ? (
+                  <iframe 
+                    src="https://maps.google.com/maps?q=Cargo+Pizzeria,+422A+Nawala+Rd,+Nawala+10107&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                    width="100%" 
+                    height="160" 
+                    style={{ border: '1px solid rgba(255, 215, 0, 0.3)', borderRadius: '14px' }} 
+                    allowFullScreen="" 
+                    loading="lazy" 
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Cargo Pizza Nawala Location Map"
+                  ></iframe>
+                ) : (
+                  <div style={{ width: '100%', height: '160px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255, 215, 0, 0.6)', border: '1px dashed rgba(255, 215, 0, 0.3)', borderRadius: '14px' }}>
+                    📍 Loading Map...
+                  </div>
+                )}
               </div>
             </div>
 

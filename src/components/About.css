@@ -49,8 +49,9 @@
 }
 
 .feature-card {
-  background: rgba(15, 27, 71, 0.85);
-  backdrop-filter: blur(12px);
+  background: rgba(15, 27, 71, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-radius: 22px;
   padding: 2rem 1.5rem;
   text-align: center;

@@ -27,7 +27,6 @@ const Hero = () => {
         />
         <div className="hero__overlay"></div>
         <div className="hero__ambient-glow"></div>
-        <div className="hero__grain"></div>
       </div>
 
       <div className="container hero__inner">
