@@ -88,17 +88,6 @@ const MenuPreview = () => {
                   <div className="menu-card__price-box">
                     <span className="menu-card__price-val">Rs. {item.price}</span>
                   </div>
-
-                  <a
-                    href={`https://wa.me/94778817742?text=Hi%20Cargo%20Pizza,%20I'd%20like%20to%20order%20the%20${encodeURIComponent(item.name)}%20(Rs.${item.price})`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="menu-card__order-btn"
-                    aria-label={`Order ${item.name} on WhatsApp`}
-                  >
-                    <span>Order Now</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                  </a>
                 </div>
               </div>
             </article>

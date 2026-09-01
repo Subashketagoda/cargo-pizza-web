@@ -208,14 +208,15 @@
 .menu-card__action-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding-top: 1.25rem;
+  justify-content: flex-start;
+  padding-top: 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .menu-card__price-box {
   display: flex;
-  flex-direction: column;
+  align-items: baseline;
+  gap: 0.35rem;
 }
 
 .menu-card__price-label {
