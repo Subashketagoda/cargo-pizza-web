@@ -4,8 +4,9 @@ import bogoImg from '../assets/bogo-promo.png';
 
 const Combos = () => {
   return (
-    <section id="combos" className="bogo-section">
+    <section id="combos" className="bogo-section" aria-label="Cargo Pizzeria Weekly Offers & Specials">
       <div className="container">
+        {/* Main BOGO Weekly Offer Card */}
         <div className="bogo-card">
           <div className="bogo-card__inner">
             {/* Left Content */}
@@ -27,7 +28,7 @@ const Combos = () => {
               </p>
 
               <p className="bogo-desc">
-                Double the pizza, double the joy! Order your favorite handcrafted pizza every Tuesday & Thursday and get another one absolutely FREE.
+                Double the pizza, double the joy! Order your favorite handcrafted pizza every Tuesday & Thursday and get another one absolutely FREE. Big Heat, Small Bill!
               </p>
 
               <div className="bogo-actions">

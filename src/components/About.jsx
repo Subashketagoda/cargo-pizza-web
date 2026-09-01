@@ -1,15 +1,74 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './About.css';
 import promoVideo from '../assets/promo-video.mp4';
-import realHeartPizza from '../assets/real-heart-pizza.jpg';
-import realCheesePull from '../assets/real-cheese-pull.jpg';
-import realOvenFire from '../assets/real-oven-fire.jpg';
-import realTakeawayBoxes from '../assets/real-takeaway-boxes.jpg';
+import cargoPizzaSlices from '../assets/cargo-pizza-slices.jpg';
+import cargoFreshBaked from '../assets/cargo-fresh-baked.jpg';
+import cargoOvenFire from '../assets/cargo-oven-fire.jpg';
+import cargoTakeawayBox from '../assets/cargo-takeaway-box.jpg';
+import cargoOvenDuo from '../assets/cargo-oven-duo.jpg';
+import cargoOutdoorDining from '../assets/cargo-outdoor-dining.jpg';
+import cargoOvenSlide from '../assets/cargo-oven-slide.jpg';
+
+const galleryCards = [
+  {
+    id: 'slices',
+    img: cargoPizzaSlices,
+    alt: 'Handcrafted Pizza Slices with Basil on Wooden Board',
+    tag: 'HANDCRAFTED 🍃',
+    title: 'Fresh Artisan Slices',
+    desc: 'Handcrafted dough with sweet basil & melted mozzarella'
+  },
+  {
+    id: 'fresh-baked',
+    img: cargoFreshBaked,
+    alt: 'Whole Loaded Pizza Fresh from 400°C Stone Oven',
+    tag: '400°C STONE HEARTH 🔥',
+    title: 'Fresh From Stone Hearth',
+    desc: 'Baked at 400°C with crisp woodfired crust'
+  },
+  {
+    id: 'oven-fire',
+    img: cargoOvenFire,
+    alt: 'Real Hardwood Woodfire Pizza Baking in Stone Hearth',
+    tag: 'REAL WOODFIRE 🪵',
+    title: 'Real Hardwood Fire',
+    desc: '400°C stone hearth baking with glowing hardwood embers'
+  },
+  {
+    id: 'takeaway-box',
+    img: cargoTakeawayBox,
+    alt: 'Cargo Pizza Fresh Branded Takeaway Box',
+    tag: 'SIGNATURE BOX 📦',
+    title: 'Signature Cargo Boxes',
+    desc: 'Freshly baked, boxed and ready to go in Nawala'
+  },
+  {
+    id: 'outdoor-dining',
+    img: cargoOutdoorDining,
+    alt: 'Open-Air Garden Dining Patio at Nawala',
+    tag: 'GARDEN DINE-IN 🌿',
+    title: 'Open-Air Garden Dining',
+    desc: 'Relaxed cane seating under the evening lights in Nawala'
+  },
+  {
+    id: 'oven-slide',
+    img: cargoOvenSlide,
+    alt: 'Master pizzaiolo sliding fresh dough onto 400°C hearth',
+    tag: 'LIVE CRAFT 👨‍🍳',
+    title: 'Live Peel Craft',
+    desc: 'Pizzaiolo sliding fresh dough onto 400°C glowing stone hearth'
+  }
+];
 
 const About = () => {
   const sectionRef = useRef(null);
   const videoRef = useRef(null);
+  const sliderRef = useRef(null);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeftState, setScrollLeftState] = useState(0);
 
   // Lazy load and pause/play video based on section visibility
   useEffect(() => {
@@ -103,6 +162,81 @@ const About = () => {
     }
   };
 
+  // Card Swipe / Carousel Controls
+  const handleSliderScroll = () => {
+    if (!sliderRef.current) return;
+    const track = sliderRef.current;
+    const cardEl = track.querySelector('.about__gallery-card');
+    if (!cardEl) return;
+    const cardWidth = cardEl.offsetWidth + 24; // card width + gap
+    const index = Math.round(track.scrollLeft / cardWidth);
+    setActiveSlide(Math.max(0, Math.min(index, galleryCards.length - 1)));
+  };
+
+  const scrollToIndex = (index) => {
+    if (!sliderRef.current) return;
+    const track = sliderRef.current;
+    const cardEls = track.querySelectorAll('.about__gallery-card');
+    if (cardEls && cardEls[index]) {
+      const targetLeft = cardEls[index].offsetLeft - track.offsetLeft;
+      track.scrollTo({ left: targetLeft, behavior: 'smooth' });
+      setActiveSlide(index);
+    }
+  };
+
+  const scrollPrev = () => {
+    const target = activeSlide === 0 ? galleryCards.length - 1 : activeSlide - 1;
+    scrollToIndex(target);
+  };
+
+  const scrollNext = () => {
+    const target = (activeSlide + 1) % galleryCards.length;
+    scrollToIndex(target);
+  };
+
+  // 1-second auto-swipe interval
+  useEffect(() => {
+    if (isDragging) return;
+
+    const interval = setInterval(() => {
+      if (!sliderRef.current) return;
+      setActiveSlide((prev) => {
+        const next = (prev + 1) % galleryCards.length;
+        const track = sliderRef.current;
+        if (track) {
+          const cardEls = track.querySelectorAll('.about__gallery-card');
+          if (cardEls && cardEls[next]) {
+            const targetLeft = cardEls[next].offsetLeft - track.offsetLeft;
+            track.scrollTo({ left: targetLeft, behavior: 'smooth' });
+          }
+        }
+        return next;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [isDragging]);
+
+  // Mouse Drag Support
+  const handleMouseDown = (e) => {
+    if (!sliderRef.current) return;
+    setIsDragging(true);
+    setStartX(e.pageX - sliderRef.current.offsetLeft);
+    setScrollLeftState(sliderRef.current.scrollLeft);
+  };
+
+  const handleMouseLeaveOrUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging || !sliderRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - sliderRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    sliderRef.current.scrollLeft = scrollLeftState - walk;
+  };
+
   return (
     <section id="about" className="about section" ref={sectionRef} aria-label="About Cargo Pizza Nawala">
       <div className="container">
@@ -137,38 +271,83 @@ const About = () => {
           </article>
         </div>
 
-        {/* Real Oven Craftsmanship Photo Strip */}
-        <div className="about__gallery-strip">
-          <div className="about__gallery-item">
-            <img src={realHeartPizza} alt="Handcrafted Heart Pizza with Cargo Sign" loading="lazy" decoding="async" width="400" height="300" />
-            <div className="about__gallery-caption">
-              <span>Heart-Shaped Pizza</span>
-              <p>Special artisan crust baked under neon lights</p>
+        {/* Interactive Swipeable Card Carousel (Auto-Swipes) */}
+        <div className="about__carousel-wrapper">
+          <div className="about__carousel-header">
+            <div className="about__carousel-nav">
+              <button
+                type="button"
+                className="about__carousel-btn about__carousel-btn--prev"
+                onClick={scrollPrev}
+                aria-label="Previous card"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                className="about__carousel-btn about__carousel-btn--next"
+                onClick={scrollNext}
+                aria-label="Next card"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
             </div>
           </div>
 
-          <div className="about__gallery-item">
-            <img src={realCheesePull} alt="Irresistible 100% Mozzarella Cheese Pull" loading="lazy" decoding="async" width="400" height="300" />
-            <div className="about__gallery-caption">
-              <span>100% Mozzarella Pull</span>
-              <p>Thick stringy cheese on hot artisan slice</p>
-            </div>
+          <div
+            className={`about__gallery-track ${isDragging ? 'about__gallery-track--dragging' : ''}`}
+            ref={sliderRef}
+            onScroll={handleSliderScroll}
+            onMouseDown={handleMouseDown}
+            onMouseLeave={handleMouseLeaveOrUp}
+            onMouseUp={handleMouseLeaveOrUp}
+            onMouseMove={handleMouseMove}
+            tabIndex={0}
+            role="region"
+            aria-label="Swipeable Craftsmanship Cards"
+          >
+            {galleryCards.map((card, idx) => (
+              <div
+                key={card.id}
+                className={`about__gallery-card ${activeSlide === idx ? 'about__gallery-card--active' : ''}`}
+                onClick={() => scrollToIndex(idx)}
+              >
+                <div className="about__gallery-card-img-wrap">
+                  <img
+                    src={card.img}
+                    alt={card.alt}
+                    loading="lazy"
+                    decoding="async"
+                    width="420"
+                    height="320"
+                    draggable="false"
+                  />
+                  <span className="about__gallery-card-tag">{card.tag}</span>
+                </div>
+                <div className="about__gallery-caption">
+                  <span>{card.title}</span>
+                  <p>{card.desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
 
-          <div className="about__gallery-item">
-            <img src={realOvenFire} alt="Real Hardwood Woodfire Pizza Baking" loading="lazy" decoding="async" width="400" height="300" />
-            <div className="about__gallery-caption">
-              <span>Real Hardwood Fire</span>
-              <p>400°C stone hearth baking to perfection</p>
-            </div>
-          </div>
-
-          <div className="about__gallery-item">
-            <img src={realTakeawayBoxes} alt="Cargo Pizza Fresh Takeaway Boxes" loading="lazy" decoding="async" width="400" height="300" />
-            <div className="about__gallery-caption">
-              <span>Fresh Hot Takeaway</span>
-              <p>Freshly sliced and boxed for pick-up</p>
-            </div>
+          {/* Dots Indicator */}
+          <div className="about__carousel-dots" role="tablist" aria-label="Card gallery slides">
+            {galleryCards.map((card, idx) => (
+              <button
+                key={`dot-${card.id}`}
+                type="button"
+                className={`about__carousel-dot ${activeSlide === idx ? 'about__carousel-dot--active' : ''}`}
+                onClick={() => scrollToIndex(idx)}
+                aria-label={`Go to slide ${idx + 1}: ${card.title}`}
+                aria-selected={activeSlide === idx}
+              />
+            ))}
           </div>
         </div>
 
@@ -239,7 +418,7 @@ const About = () => {
               webkit-playsinline="true"
               x5-playsinline="true"
               preload="auto"
-              poster={realOvenFire}
+              poster={cargoOvenDuo}
               onLoadedMetadata={(e) => {
                 e.target.muted = true;
                 e.target.defaultMuted = true;

@@ -2,9 +2,37 @@ import React, { useEffect, useRef, useState } from 'react';
 import './Hero.css';
 import mascot from '../assets/mascot.png';
 import pizzaHero from '../assets/pizza-hero.png';
+import cargoTakeawayBox from '../assets/cargo-takeaway-box.jpg';
+import cargoPizzaPoster from '../assets/cargo-pizza-poster.jpg';
+import cargoFreshBaked from '../assets/cargo-fresh-baked.jpg';
+import cargoOvenSlide from '../assets/cargo-oven-slide.jpg';
+
+const heroBgImages = [
+  {
+    src: pizzaHero,
+    alt: 'Fresh handcrafted Cargo Pizza woodfired in stone oven with premium toppings'
+  },
+  {
+    src: cargoTakeawayBox,
+    alt: 'Cargo Pizza fresh in signature branded takeaway box'
+  },
+  {
+    src: cargoPizzaPoster,
+    alt: 'Cargo Pizza artisan woodfire poster in vibrant red'
+  },
+  {
+    src: cargoFreshBaked,
+    alt: 'Freshly baked whole pizza from 400°C stone oven'
+  },
+  {
+    src: cargoOvenSlide,
+    alt: 'Chef peel sliding fresh pizza into roaring woodfire oven'
+  }
+];
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [currentBgIndex, setCurrentBgIndex] = useState(0);
   const heroRef = useRef(null);
 
   useEffect(() => {
@@ -12,19 +40,34 @@ const Hero = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // 1-second auto-slide / crossfade interval
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentBgIndex((prev) => (prev + 1) % heroBgImages.length);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className={`hero ${isVisible ? 'hero--visible' : ''}`} ref={heroRef} aria-label="Cargo Pizza - Handcrafted Woodfired Pizza in Nawala">
-      {/* Background Image */}
+      {/* Background Images Carousel (3s Auto-Swipe) */}
       <div className="hero__bg">
-        <img
-          src={pizzaHero}
-          alt="Fresh handcrafted Cargo Pizza woodfired in stone oven with premium toppings"
-          className="hero__bg-img"
-          loading="eager"
-          fetchPriority="high"
-          width="1920"
-          height="1080"
-        />
+        {heroBgImages.map((imgObj, idx) => (
+          <div
+            key={idx}
+            className={`hero__bg-slide ${currentBgIndex === idx ? 'hero__bg-slide--active' : ''}`}
+          >
+            <img
+              src={imgObj.src}
+              alt={imgObj.alt}
+              className="hero__bg-img"
+              loading={idx === 0 ? 'eager' : 'lazy'}
+              fetchPriority={idx === 0 ? 'high' : 'auto'}
+              width="1920"
+              height="1080"
+            />
+          </div>
+        ))}
         <div className="hero__overlay"></div>
         <div className="hero__ambient-glow"></div>
       </div>
@@ -109,6 +152,20 @@ const Hero = () => {
             🔥 Big Heat Small Bill
           </div>
         </div>
+      </div>
+
+      {/* Hero Background Slide Indicators */}
+      <div className="hero__bg-dots" role="tablist" aria-label="Hero background slide controls">
+        {heroBgImages.map((_, idx) => (
+          <button
+            key={`hero-bg-dot-${idx}`}
+            type="button"
+            className={`hero__bg-dot ${currentBgIndex === idx ? 'hero__bg-dot--active' : ''}`}
+            onClick={() => setCurrentBgIndex(idx)}
+            aria-label={`Switch to background slide ${idx + 1}`}
+            aria-selected={currentBgIndex === idx}
+          />
+        ))}
       </div>
 
       {/* Elegant Bottom Wave Transition */}

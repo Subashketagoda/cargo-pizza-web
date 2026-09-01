@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './MenuPreview.css';
+import cargoHotdogs from '../assets/cargo-hotdogs.jpg';
 
 const menuItems = [
   { 
@@ -166,6 +167,27 @@ const menuItems = [
     tag: 'TOPPING',
     description: 'Add extra mushrooms, bell peppers, onions, or sweetcorn.'
   },
+  { 
+    name: 'Classic Hotdog', 
+    price: '850', 
+    category: 'hotdogs', 
+    tag: 'CLASSIC COMFORT',
+    description: 'Sizzling grilled sausage in a soft toasted bun, topped with classic yellow mustard & tomato ketchup.'
+  },
+  { 
+    name: 'Lamb Dog', 
+    price: '1,200', 
+    category: 'hotdogs', 
+    tag: 'CHEF SPECIAL ⭐',
+    description: 'Spiced aromatic minced lamb chili, fragrant herbs, and cool garlic cream drizzle on toasted hotdog roll.'
+  },
+  { 
+    name: 'Cargo Special Dog', 
+    price: '1,100', 
+    category: 'hotdogs', 
+    tag: 'SIGNATURE LOADED 🔥',
+    description: 'Signature loaded hotdog with grilled sausage, rich melted cheese blend, smoky BBQ & crisp toppings.'
+  },
 ];
 
 const MenuPreview = () => {
@@ -173,6 +195,7 @@ const MenuPreview = () => {
 
   const tabs = [
     { id: 'pizzas', label: '🍕 Pizzas (12")' },
+    { id: 'hotdogs', label: '🌭 Artisan Hot Dogs' },
     { id: 'drinks', label: '🍹 Refreshers' },
     { id: 'desserts', label: '🍫 Desserts' },
     { id: 'addons', label: '🧀 Extra Add-Ons' },
@@ -210,6 +233,34 @@ const MenuPreview = () => {
             </button>
           ))}
         </div>
+
+        {activeTab === 'hotdogs' && (
+          <div className="menu-hotdogs-feature">
+            <div className="menu-hotdogs-feature__img-wrap">
+              <img
+                src={cargoHotdogs}
+                alt="Cargo Pizzeria Artisan Hotdogs - Classic, Lamb Dog, Cargo Special Dog"
+                className="menu-hotdogs-feature__img"
+                loading="lazy"
+                decoding="async"
+                width="340"
+                height="450"
+              />
+            </div>
+            <div className="menu-hotdogs-feature__info">
+              <span className="badge-pill">🔥 FRESHLY GRILLED & LOADED</span>
+              <h3>Authentic Cargo Artisan Hotdogs</h3>
+              <p>
+                Pair your woodfired pizza with our delicious gourmet hot dogs. Prepared fresh with premium sausages, slow-spiced lamb chili, melted cheese, and signature dressings!
+              </p>
+              <div className="menu-hotdogs-feature__highlights">
+                <div>🌭 Soft toasted brioche buns</div>
+                <div>🥩 100% Chef-crafted spiced fillings</div>
+                <div>🧀 Melted cheese & signature sauce drizzles</div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Menu Grid */}
         <div className="menu-grid">

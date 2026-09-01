@@ -222,47 +222,10 @@
         }
       ]
     }
-    </script>
-    <!-- Global Mobile Video Autoplay & Low Power Mode Unlocker (Optimized for 60/120 FPS) -->
-    <script>
-      (function() {
-        function prepareVideo(v) {
-          try {
-            v.muted = true;
-            v.defaultMuted = true;
-            v.volume = 0;
-            v.playsInline = true;
-            v.setAttribute('muted', '');
-            v.setAttribute('playsinline', '');
-            v.setAttribute('webkit-playsinline', '');
-            v.setAttribute('x5-playsinline', '');
-            if (v.paused) {
-              var p = v.play();
-              if (p && typeof p.catch === 'function') p.catch(function(){});
-            }
-          } catch(e) {}
-        }
-        function unlockAll() {
-          var vids = document.querySelectorAll('video');
-          for (var i = 0; i < vids.length; i++) {
-            prepareVideo(vids[i]);
-          }
-        }
-        if (document.readyState === 'loading') {
-          window.addEventListener('DOMContentLoaded', unlockAll, { once: true });
-        } else {
-          unlockAll();
-        }
-        window.addEventListener('load', unlockAll, { once: true });
-        var oneTimeEvents = ['touchstart', 'pointerdown', 'click'];
-        for (var j = 0; j < oneTimeEvents.length; j++) {
-          window.addEventListener(oneTimeEvents[j], unlockAll, { capture: true, passive: true, once: true });
-        }
-      })();
     </script>
-    <script type="module" crossorigin src="./assets/index-fwmgXjOu.js"></script>
+    <script type="module" crossorigin src="./assets/index-BEiZ7tlA.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/react-vendor-CXg56VsP.js">
-    <link rel="stylesheet" crossorigin href="./assets/index-BDuGRYLw.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-CiPPto5w.css">
   </head>
   <body>
     <div id="root"></div>

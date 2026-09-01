@@ -123,67 +123,201 @@
   color: rgba(255, 255, 255, 0.9);
 }
 
-/* ── Real Oven Craftsmanship Photo Strip ── */
-.about__gallery-strip {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 4rem;
+/* ── Real Oven Craftsmanship Swipeable Card Carousel ── */
+.about__carousel-wrapper {
+  margin-bottom: 4.5rem;
+  position: relative;
 }
 
-.about__gallery-item {
+.about__carousel-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 1.25rem;
+}
+
+.about__carousel-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.about__carousel-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(27, 47, 115, 0.85);
+  border: 2px solid rgba(255, 215, 0, 0.5);
+  color: #FFD700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.about__carousel-btn:hover:not(:disabled) {
+  background: #FFD700;
+  color: #1b2f73;
+  transform: translateY(-2px) scale(1.08);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+}
+
+.about__carousel-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ── Horizontal Gallery Track (Swipe Container) ── */
+.about__gallery-track {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.75rem 0.25rem 1.5rem;
+  cursor: grab;
+  scrollbar-width: none; /* Firefox */
+}
+
+.about__gallery-track::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.about__gallery-track--dragging {
+  cursor: grabbing;
+  user-select: none;
+  scroll-behavior: auto;
+}
+
+/* ── Individual Card (9:16 Portrait Format) ── */
+.about__gallery-card {
+  flex: 0 0 250px;
+  scroll-snap-align: start;
   position: relative;
-  border-radius: 20px;
+  border-radius: 22px;
   overflow: hidden;
-  aspect-ratio: 4 / 3;
-  border: 3px solid rgba(255, 215, 0, 0.4);
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.4);
-  background: #000000;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  border: 3px solid rgba(255, 215, 0, 0.35);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.45);
+  background: #0d163a;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
   transform: translateZ(0);
   will-change: transform;
 }
 
-.about__gallery-item:hover {
-  transform: translateY(-5px) translateZ(0);
+.about__gallery-card:hover,
+.about__gallery-card--active {
+  transform: translateY(-6px) translateZ(0);
   border-color: #FFD700;
-  box-shadow: 0 18px 40px rgba(255, 215, 0, 0.25);
+  box-shadow: 0 20px 45px rgba(255, 215, 0, 0.3);
 }
 
-.about__gallery-item img {
+.about__gallery-card-img-wrap {
+  position: relative;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  background: #070d1e;
+}
+
+.about__gallery-card-img-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
 }
 
-.about__gallery-item:hover img {
+.about__gallery-card:hover .about__gallery-card-img-wrap img {
   transform: scale(1.08);
+}
+
+.about__gallery-card-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #1b2f73;
+  background: #FFD700;
+  padding: 0.35rem 0.8rem;
+  border-radius: 100px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  z-index: 2;
 }
 
 .about__gallery-caption {
   position: absolute;
   inset: auto 0 0 0;
-  padding: 1.25rem 1rem 0.8rem;
-  background: linear-gradient(180deg, transparent 0%, rgba(8, 14, 38, 0.95) 100%);
+  padding: 3rem 1.25rem 1.2rem;
+  background: linear-gradient(180deg, transparent 0%, rgba(6, 12, 34, 0.7) 40%, rgba(6, 12, 34, 0.96) 100%);
   color: #ffffff;
+  z-index: 2;
 }
 
 .about__gallery-caption span {
   display: block;
   font-family: var(--font-heading);
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 800;
-  color: var(--yellow);
-  margin-bottom: 0.2rem;
+  color: var(--yellow, #FFD700);
+  margin-bottom: 0.25rem;
 }
 
 .about__gallery-caption p {
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.88);
   margin: 0;
-  line-height: 1.3;
+  line-height: 1.35;
+}
+
+/* ── Dots Indicator ── */
+.about__carousel-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.about__carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about__carousel-dot:hover {
+  background: rgba(255, 215, 0, 0.6);
+}
+
+.about__carousel-dot--active {
+  width: 28px;
+  background: #FFD700;
+  border-color: #FFD700;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .about__gallery-card {
+    flex: 0 0 68vw;
+    max-width: 250px;
+  }
+
+  .about__carousel-header {
+    justify-content: center;
+  }
 }
 
 /* ── Cinema Promo Banner with Live Video ── */
