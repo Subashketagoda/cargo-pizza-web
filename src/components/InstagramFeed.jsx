@@ -12,6 +12,7 @@ import cargoHotdogs from '../assets/cargo-hotdogs.jpg';
 import cargoOvenDuo from '../assets/cargo-oven-duo.jpg';
 import cargoPizzaPoster from '../assets/cargo-pizza-poster.jpg';
 import cargoOvenArch from '../assets/cargo-oven-arch.jpg';
+import logoCircle from '../assets/logo-circle.png';
 
 const instaPosts = [
   {
@@ -210,7 +211,9 @@ const InstagramFeed = () => {
               {/* Card Footer */}
               <div className="insta-card__footer">
                 <div className="insta-card__user">
-                  <div className="insta-user-avatar">🍕</div>
+                  <div className="insta-user-avatar">
+                    <img src={logoCircle} alt="Cargo Pizzeria Logo" className="insta-avatar-img" width="24" height="24" />
+                  </div>
                   <span className="insta-user-name">cargopizzeria</span>
                 </div>
                 <p className="insta-card__caption-preview">{post.title}</p>
@@ -223,7 +226,7 @@ const InstagramFeed = () => {
         <div className="insta-cta-strip">
           <div className="insta-cta-left">
             <div className="insta-profile-avatar">
-              <span>🍕</span>
+              <img src={logoCircle} alt="Cargo Pizzeria Official Profile Logo" className="insta-profile-avatar-img" width="56" height="56" />
             </div>
             <div className="insta-profile-info">
               <h4>@cargopizzeria</h4>
@@ -293,7 +296,9 @@ const InstagramFeed = () => {
 
                 <div className="insta-modal-details">
                   <div className="insta-modal-user-bar">
-                    <div className="insta-modal-avatar">🍕</div>
+                    <div className="insta-modal-avatar">
+                      <img src={logoCircle} alt="Cargo Pizzeria Logo" className="insta-avatar-img" width="44" height="44" />
+                    </div>
                     <div>
                       <div className="insta-modal-username">
                         <strong>cargopizzeria</strong>

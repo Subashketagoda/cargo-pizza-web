@@ -208,11 +208,19 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #fff0eb;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.insta-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
 }
 
 .insta-user-name {
@@ -264,18 +272,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.6rem;
-  padding: 3px;
+  padding: 2.5px;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
-.insta-profile-avatar span {
+.insta-profile-avatar-img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: #0f1b47;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  object-fit: cover;
+  display: block;
+  background: #FFD700;
 }
 
 .insta-profile-info h4 {
@@ -413,7 +421,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.3rem;
+  padding: 2px;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
 .insta-modal-username {
