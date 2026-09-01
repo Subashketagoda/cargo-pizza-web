@@ -86,11 +86,11 @@ const instaPosts = [
     id: 'post-6',
     type: 'image',
     src: cargoHotdogs,
-    title: 'Loaded Artisan Hotdogs: Lamb & Special 🌭',
-    caption: 'Not just pizzas! Treat yourself to our signature Lamb Dog, Classic Hotdog, and Cargo Special Dog loaded with melted cheese and sauces. Starting from Rs. 850! 🌭🔥',
-    likes: '1,090',
-    comments: '52',
-    tag: 'HOT DOGS 🌭',
+    title: 'Loaded Artisan Hotdogs — Coming Soon! 🌭',
+    caption: 'Coming soon to Cargo Pizzeria! Get ready for our signature Lamb Dog, Classic Hotdog, and Cargo Special Dog loaded with melted cheese and sauces. Launching in a few days! 🌭🔥 #comingsoon #cargopizzeria #nawala',
+    likes: '1,590',
+    comments: '78',
+    tag: 'COMING SOON ⏳',
     link: 'https://www.instagram.com/cargopizzeria/'
   },
   {
