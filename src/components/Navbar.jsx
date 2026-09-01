@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 import logo from '../assets/logo.png';
+import logoCircle from '../assets/logo-circle.png';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -61,7 +62,7 @@ const Navbar = () => {
 
         <ul className={`nav-links ${menuOpen ? 'nav-links--open' : ''}`}>
           <div className="nav-mobile-header">
-            <img src={logo} alt="Cargo Pizza Logo" className="nav-mobile-logo" width="140" height="44" decoding="async" />
+            <img src={logoCircle} alt="Cargo Pizza Official Logo" className="nav-mobile-logo" width="76" height="76" decoding="async" />
           </div>
 
           <li><a href="#about" onClick={(e) => handleScrollTo(e, 'about')}>About Us</a></li>

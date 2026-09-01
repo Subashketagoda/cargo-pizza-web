@@ -136,15 +136,26 @@
 }
 
 @media (max-width: 768px) {
+  .nav-logo__img {
+    height: 38px;
+    width: auto;
+  }
+
   .nav-mobile-header {
     display: flex;
     justify-content: center;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.85rem;
   }
 
   .nav-mobile-logo {
-    height: 44px;
-    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+    height: 72px;
+    width: 72px;
+    border-radius: 50%;
+    border: 3px solid #FFD700;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+    object-fit: cover;
+    display: block;
   }
 
   .nav-links {
