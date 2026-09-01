@@ -1,0 +1,106 @@
+/* ==========================================================================
+   MOBILE BOTTOM BAR — Cargo Pizzeria
+   Fixed glassmorphism action bar with safe area support
+   ========================================================================== */
+
+.mobile-bottom-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9995;
+  background: rgba(17, 29, 70, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 2px solid rgba(255, 215, 0, 0.4);
+  box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.45);
+  padding: 0.55rem 1rem calc(0.55rem + env(safe-area-inset-bottom, 0px));
+  transform: translateZ(0);
+}
+
+.mobile-bottom-bar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 0.6rem;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.mobile-bottom-bar__btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.65rem 0.5rem;
+  border-radius: 100px;
+  font-family: var(--font-heading, 'Fredoka', sans-serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+  white-space: nowrap;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-bottom-bar__btn--menu {
+  background: rgba(255, 255, 255, 0.12);
+  color: #FFD700;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.mobile-bottom-bar__btn--menu:active {
+  background: rgba(255, 215, 0, 0.25);
+  transform: scale(0.96);
+}
+
+.mobile-bottom-bar__btn--call {
+  background: linear-gradient(135deg, #e63946, #c1282e);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(230, 57, 70, 0.4);
+}
+
+.mobile-bottom-bar__btn--call:active {
+  transform: scale(0.96);
+}
+
+.mobile-bottom-bar__btn--wa {
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+}
+
+.mobile-bottom-bar__btn--wa:active {
+  transform: scale(0.96);
+}
+
+.mobile-bottom-bar__icon {
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .mobile-bottom-bar {
+    display: block;
+  }
+
+  /* Adjust body padding so footer doesn't get covered */
+  body {
+    padding-bottom: calc(65px + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* Reposition FAB slightly above mobile bottom bar */
+  .fab {
+    bottom: calc(5.2rem + env(safe-area-inset-bottom, 0px)) !important;
+    right: 1.2rem !important;
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  .order-popup {
+    bottom: calc(9rem + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}

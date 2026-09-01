@@ -454,69 +454,94 @@
 
 @media (max-width: 580px) {
   .hero {
-    padding-top: 5rem;
+    padding-top: 4.8rem;
+    padding-bottom: 3.5rem;
+    min-height: auto;
+  }
+
+  .hero__inner {
+    gap: 2rem;
+  }
+
+  .hero__tagline-pill {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.85rem;
+    letter-spacing: 1px;
+    margin-bottom: 0.85rem;
   }
 
   .hero__title {
-    font-size: 2.8rem;
+    font-size: clamp(2rem, 8vw, 2.6rem);
+    line-height: 1.12;
+    margin-bottom: 0.85rem;
+  }
+
+  .hero__desc {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin-bottom: 1.5rem;
   }
 
   .hero__actions {
     flex-direction: column;
     width: 100%;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
   }
 
   .hero__btn-menu,
   .hero__btn-call {
     width: 100%;
     justify-content: center;
+    padding: 0.85rem 1.5rem;
+    font-size: 0.95rem;
   }
 
   .hero__stats {
-    gap: 1rem;
-    padding: 0.85rem 1.2rem;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
     width: 100%;
     justify-content: space-around;
+    border-radius: 18px;
+  }
+
+  .hero__stat strong {
+    font-size: 1.25rem;
+  }
+
+  .hero__stat span {
+    font-size: 0.7rem;
   }
 
   .hero__visual {
-    max-width: 260px;
+    max-width: 240px;
     margin: 0 auto;
   }
 
   /* Floating badges visible and optimized on mobile */
   .hero__float {
     display: flex;
-    padding: 0.4rem 0.75rem;
+    padding: 0.35rem 0.7rem;
     border-radius: 12px;
   }
 
   .hero__float--price {
     top: 5%;
-    left: -8%;
+    left: -4%;
   }
 
   .hero__float--price strong {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
   .hero__float--price span {
-    font-size: 0.62rem;
+    font-size: 0.6rem;
   }
 
   .hero__float--tag {
     bottom: 5%;
-    right: -8%;
-    font-size: 0.75rem;
-    padding: 0.4rem 0.75rem;
-  }
-}
-
-@media (max-width: 380px) {
-  .hero__float--price {
-    left: -4%;
-  }
-  .hero__float--tag {
     right: -4%;
+    font-size: 0.72rem;
+    padding: 0.35rem 0.7rem;
   }
 }

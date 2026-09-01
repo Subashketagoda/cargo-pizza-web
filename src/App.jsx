@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import OrderPopup from './components/OrderPopup';
 import Loading from './components/Loading';
 import PromoPopup from './components/PromoPopup';
+import MobileBottomBar from './components/MobileBottomBar';
 import './App.css';
 
 const Admin = lazy(() => import('./components/Admin'));
@@ -32,6 +33,7 @@ const MainSite = ({ isLoading, setIsLoading }) => (
     <Footer />
     <OrderPopup />
     <PromoPopup />
+    <MobileBottomBar />
   </>
 );
 

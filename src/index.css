@@ -104,6 +104,15 @@ a {
   transition: var(--transition);
 }
 
+button,
+a,
+input,
+select,
+textarea {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
 ul { list-style: none; }
 img { max-width: 100%; display: block; }
 
@@ -114,8 +123,20 @@ img { max-width: 100%; display: block; }
   padding: 0 2rem;
 }
 
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
 .section {
-  padding: clamp(4.5rem, 7vw, 7rem) 0;
+  padding: clamp(3.5rem, 6vw, 6.5rem) 0;
 }
 
 .text-center { text-align: center; }
