@@ -10,9 +10,21 @@
   <!-- Main Homepage -->
   <url>
     <loc>https://cargopizzeria.online/</loc>
-    <lastmod>2026-08-30</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://cargopizzeria.online/logo-circle.png</image:loc>
+      <image:title>Cargo Pizza Official Brand Logo</image:title>
+      <image:caption>Official square brand logo and emblem of Cargo Pizza Nawala</image:caption>
+      <image:geo_location>Nawala, Colombo, Sri Lanka</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://cargopizzeria.online/logo.png</image:loc>
+      <image:title>Cargo Pizza Brand Header Logo</image:title>
+      <image:caption>Cargo Pizza official typography and mascot logo</image:caption>
+      <image:geo_location>Nawala, Colombo, Sri Lanka</image:geo_location>
+    </image:image>
     <image:image>
       <image:loc>https://cargopizzeria.online/food.png</image:loc>
       <image:title>Cargo Pizza Handcrafted Woodfired Pizzas Nawala</image:title>
@@ -33,8 +45,8 @@
     </image:image>
     <image:image>
       <image:loc>https://cargopizzeria.online/favicon.png</image:loc>
-      <image:title>Cargo Pizza Logo</image:title>
-      <image:caption>Cargo Pizza Brand Mascot and Logo</image:caption>
+      <image:title>Cargo Pizza High-Resolution Favicon</image:title>
+      <image:caption>Cargo Pizza 512x512 square brand icon</image:caption>
     </image:image>
   </url>
 

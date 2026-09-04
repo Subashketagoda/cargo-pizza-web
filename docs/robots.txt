@@ -3,9 +3,27 @@
 
 User-agent: *
 Allow: /
-
-# Disallow administrative and private areas from indexing
 Disallow: /admin
+
+# Google Crawlers Explicit Permissions
+User-agent: Googlebot
+Allow: /
+Allow: /favicon.ico
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.svg
+Allow: /*.webp
+Allow: /*.css
+Allow: /*.js
+Disallow: /admin
+
+User-agent: Googlebot-Image
+Allow: /
+Allow: /favicon.ico
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.svg
+Allow: /*.webp
 
 # Official Sitemap
 Sitemap: https://cargopizzeria.online/sitemap.xml
