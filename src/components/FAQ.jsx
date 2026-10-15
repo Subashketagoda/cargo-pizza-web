@@ -18,7 +18,7 @@ const faqList = [
   {
     id: 3,
     question: "When is the Buy 1 Get 1 Free (BOGO) Pizza offer available?",
-    answer: "Our popular Buy 1 Get 1 Free promo is available every Tuesday and Thursday from 4:00 PM to Midnight! Order your favorite handcrafted 12\" woodfired pizza and get another one completely free.",
+    answer: "Our popular Buy 1 Get 1 Free promo is available every Tuesday from 4:00 PM to Midnight! Order your favorite handcrafted 12\" woodfired pizza and get another one completely free.",
     tag: "Special Offers"
   },
   {

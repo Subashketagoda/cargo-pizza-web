@@ -62,7 +62,7 @@ const PromoPopup = () => {
         <div className="promo-popup__img-wrap">
           <img
             src={promoImg}
-            alt="Buy One Get One Free - Every Tuesday & Thursday at Cargo Pizza"
+            alt="Buy One Get One Free - Every Tuesday at Cargo Pizza"
             className="promo-popup__img"
           />
         </div>

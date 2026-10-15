@@ -109,7 +109,7 @@ const instaPosts = [
     type: 'image',
     src: cargoPizzaPoster,
     title: 'Big Heat, Small Bill — Cargo Pizza ❤️',
-    caption: 'Over 20+ woodfired varieties crafted daily in Nawala. Buy One Get One Free every Tuesday & Thursday! Call 077 881 7742 to order now. 🍕📞',
+    caption: 'Over 20+ woodfired varieties crafted daily in Nawala. Buy One Get One Free every Tuesday! Call 077 881 7742 to order now. 🍕📞',
     likes: '1,750',
     comments: '165',
     tag: 'BOGO DEALS ⭐',

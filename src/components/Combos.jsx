@@ -16,7 +16,7 @@ const Combos = () => {
                 <span>EXCLUSIVE WEEKLY OFFER</span>
               </div>
 
-              <span className="bogo-eyebrow">TUES. THURS. CARGO. REPEAT...</span>
+              <span className="bogo-eyebrow">TUES. TUES. CARGO. REPEAT...</span>
               
               <h2 className="bogo-title">
                 BUY ONE<br />
@@ -24,11 +24,11 @@ const Combos = () => {
               </h2>
 
               <p className="bogo-subtitle">
-                Every Tuesday & Thursday • 4.00 PM - MIDNIGHT
+                Every Tuesday • 4.00 PM - MIDNIGHT
               </p>
 
               <p className="bogo-desc">
-                Double the pizza, double the joy! Order your favorite handcrafted pizza every Tuesday & Thursday and get another one absolutely FREE. Big Heat, Small Bill!
+                Double the pizza, double the joy! Order your favorite handcrafted pizza every Tuesday and get another one absolutely FREE. Big Heat, Small Bill!
               </p>
 
               <div className="bogo-actions">
@@ -46,7 +46,7 @@ const Combos = () => {
               <div className="bogo-poster-frame">
                 <img
                   src={bogoImg}
-                  alt="Cargo Pizza Buy One Get One Free Pizza Deal in Nawala Colombo - Every Tuesday and Thursday"
+                  alt="Cargo Pizza Buy One Get One Free Pizza Deal in Nawala Colombo - Every Tuesday"
                   className="bogo-poster-img"
                   loading="lazy"
                   decoding="async"
